@@ -25,9 +25,9 @@
 
     $mainMenu = [
         '/' => 'Accueil', 
-        'habitats.php' => 'Habitats',
-        'services.php' => 'Services',
-        'contact.php' => 'Contact',
+        'habitats' => 'Habitats',
+        'services' => 'Services',
+        'contact' => 'Contact',
       ];
     
     $openingTimes = [
@@ -71,16 +71,18 @@
                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                     data-bs-custom-class="custom-tooltip"
                     data-bs-title="Accès limité aux employés"
-                    href="login.php">
+                    href="login">
                     Connexion staff</a>
                 </div>
             </div>
         </nav>
     </header>
-    
-    <main id="main-page">
-        <!-- The content of the page will be added here -->
-    </main>
+
+    <div class="container-lg main-page"> 
+        <main id="main-page">
+            <!-- The content of the page will be added here -->
+        </main>
+    </div>
 
     <footer id="footer">
         <div class="bg-arc-dark px-3 pt-2 arc-footer">
