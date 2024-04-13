@@ -1,8 +1,9 @@
 import Route from "./Route.js";
 
-// Define routes underneath - add nex pages
+// Define routes underneath - add new pages
 export const allRoutes = [
-    new Route("/studi-arcadia/", "Accueil", "pages/home.html"),];
+    new Route("/", "Accueil", "pages/home.php"),
+    new Route(),];
 
 // Display the title
 export const websiteName = "Zoo d'Arcadia";

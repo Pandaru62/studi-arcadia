@@ -33,3 +33,38 @@ $theme-colors: map-merge($arcadia-theme-colors, $theme-colors);
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+/* CAROUSEL */
+
+.bg-image{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+} 
+
+#carousel img {
+  max-height: 530px;
+}
+
+@media (max-width: 767px) {
+  #carousel img {
+      max-height: 140px;
+  }
+}
+
+
+.carousel-caption {
+  background-color: #00261ccc;
+  border-radius: 20px;
+  color: #eefaec;
+}
+
+.img-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 5px 5px 10px 10px #ffffff inset;
+  max-height: 600px;
+}
