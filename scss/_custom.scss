@@ -1,0 +1,35 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+$primary: #168039;
+$light: #eefaec;
+
+// import the functions & variables
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// custom theme
+$arcadia-theme-colors: (
+    "arc-primary": #168039,
+    "arc-secondary": #00261ccc,
+    "arc-dark": #044D29,
+    // "arc-dark-bg": #00261c,
+    // "arc-light-green": #97ED8A,
+    "arc-mint-green": #B9ECC1
+);
+
+$theme-colors: map-merge($arcadia-theme-colors, $theme-colors);
+
+// custom tooltip
+
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bd-violet-bg);
+    --bs-tooltip-color: var(--bs-white);
+  }
+
+// import bootstrap
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
