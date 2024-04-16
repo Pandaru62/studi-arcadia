@@ -1,6 +1,10 @@
+<?php $title = "Zoo d'Arcadia"; ?>
+
+<?php ob_start(); ?>
+
     
         <!-- Carousel -->
-    <?php require_once("./lib/carousel.php"); ?>
+        <?php require_once("./lib/carousel.php"); ?>
         <!-- Introduction -->
 
 <div class="container my-4 py-3">
@@ -226,3 +230,8 @@
         
     </section>
 </div>
+
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('layout.php') ?>

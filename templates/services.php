@@ -1,15 +1,17 @@
-<?php 
+<?php $title = "Zoo d'Arcadia";
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-   require_once('../templates/header.php');
+ob_start();
 
-$user = 'admin';
+$user = 'employee';
 
-require_once("../lib/carousel.php");
-require_once('../lib/pdo.php'); 
-require_once('../model/service.php');
+require_once("./lib/carousel.php");
+require_once('./lib/pdo.php'); 
+require_once('./model/service.php');
+require_once('./lib/config.php');
 
 ?>
 
@@ -78,7 +80,7 @@ require_once('../model/service.php');
                     
             <?php endforeach ;?>
                                 
-            <?php if($user == "employee"):?>
+            <?php if($user == "employee" || $user = "admin"):?>
             
             <div class="row bg-arc-mint-green p-3">
                 <div class="py-3 my-3 d-flex align-items-center justify-content-center">
@@ -99,4 +101,8 @@ require_once('../model/service.php');
 
         </div>
 
-<?php require_once('../templates/footer.php'); ?>
+    <?php $content = ob_get_clean(); ?>
+
+<?php 
+require('layout.php')
+ ?>
