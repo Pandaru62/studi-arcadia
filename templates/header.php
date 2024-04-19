@@ -1,4 +1,28 @@
-<?php require_once('./lib/config.php'); ?>
+<?php
+require_once('./lib/config.php');
+
+$title = "Arcadia - accueil" ?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Mountains+of+Christmas&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Hind+Madurai:wght@300;400;500;600;700&family=Mountains+of+Christmas&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="scss/main.min.css">
+
+        <title><?=$title?></title>
+    </head>
 
 <header>
         <nav class="navbar navbar-expand-lg bg-arc-dark sticky-top">
@@ -12,7 +36,7 @@
                         <?php foreach($mainMenu as $link => $title):
                             if($title !== 'Habitats'):?>
                             <li class="nav-item">
-                                <a class="nav-link link-light" href="<?=_MENU_PATH_.$link?>"><?= $title?></a>
+                                <a class="nav-link link-light" href="<?=BASE_URL.$link?>"><?= $title?></a>
                             </li>
                             <?php else:?>
                                 <li class="nav-item dropdown">
@@ -20,7 +44,7 @@
                                         Habitats
                                     </a>
                                     <ul class="dropdown-menu bg-arc-mint-green text-light">
-                                        <li><a class="dropdown-item" href="<?=_MENU_PATH_.$link;?>">Tous les habitats</a></li>
+                                        <li><a class="dropdown-item" href="<?=BASE_URL.$link;?>">Tous les habitats</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="habitat_single.php?habitat=1">Marais</a></li>
                                         <li><a class="dropdown-item" href="habitat_single.php?habitat=2">Jungle</a></li>

@@ -6,10 +6,9 @@ error_reporting(E_ALL);
 
 $user = 'employee';
 
-require_once('../lib/pdo.php'); 
-require_once('../model/service.php');
-require_once('../lib/config.php');
-
+require_once('./templates/header.php');
+require_once('./lib/pdo.php'); 
+// require_once('./model/service.php');
 ?>
 
 <div class="container my-md-4 py-3">

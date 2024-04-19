@@ -1,5 +1,11 @@
 <?php 
-   require_once('./lib/config.php');
+
+if(file_exists("./lib/config.php")) {
+    require_once('./lib/config.php');
+} else {
+    require_once('../lib/config.php');
+}
+
 ?>
 
 <!DOCTYPE html>

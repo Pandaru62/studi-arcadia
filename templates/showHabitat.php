@@ -1,19 +1,21 @@
-<?php
-
-require_once "templates/header.php";
-require_once "lib/pdo.php";
-require_once "habitat.php";
-require_once "tools.php";
-
-error_reporting(E_ALL);
+<?php 
 ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+require_once "../lib/pdo.php";
+// require_once('../lib/config.php');
+require_once('../controllers/habitats.php');
 
 $id = $_GET["habitat"];
 
 $habitats = getHabitatsById($pdo, intval($id));
 
+$title = $habitats["id"==$id]['name'];
+
+$user = 'employee';
 ?>
+
 
 <div class="container my-md-4 py-3">
     <section id="habitat_top">
@@ -44,7 +46,7 @@ $habitats = getHabitatsById($pdo, intval($id));
                         $species = getSpeciesByHabitat($pdo, $id);
                         foreach($species as $num => $specie): ?>
                         
-                        <?php $folderPath = 'assets/ANIMAUX/'.substr_replace($habitats["id"==$id]['image'], '', -4).'/'.$specie['image'];
+                        <?php $folderPath = '../assets/ANIMAUX/'.substr_replace($habitats["id"==$id]['image'], '', -4).'/'.$specie['image'];
                                 $randomImagePath = getRandomImageFromFolder($folderPath);?>                    
                             <div class="col-lg-4 py-3">
                                 <img src="<?=$randomImagePath?>" alt="<?=$specie['name']?>" class="img-fluid img-habitat">
@@ -59,8 +61,7 @@ $habitats = getHabitatsById($pdo, intval($id));
             </section>   
         </div>
 
-        <?php require_once "habitat_explore.php"; ?>
+        <?php require_once "../templates/habitats_explore.php"; ?>
 
 </div>
 
-<?php require_once "templates/footer.php"; ?>

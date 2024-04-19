@@ -4,14 +4,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-ob_start();
+// ob_start();
 
 $user = 'employee';
 
-require_once("./lib/carousel.php");
-require_once('./lib/pdo.php'); 
-require_once('./model/service.php');
-require_once('./lib/config.php');
+// require_once("./lib/carousel.php");
+require_once('../lib/pdo.php'); 
+require_once('../model/service.php');
+require_once('../lib/config.php');
 
 ?>
 
@@ -101,8 +101,10 @@ require_once('./lib/config.php');
 
         </div>
 
-    <?php $content = ob_get_clean(); ?>
+    <?php 
+    // $content = ob_get_clean(); 
+    ?>
 
 <?php 
-require('layout.php')
+// require('layout.php')
  ?>

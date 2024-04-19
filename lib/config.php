@@ -4,9 +4,9 @@
 
     $mainMenu = [
         '/' => 'Accueil', 
-        'habitats' => 'Habitats',
-        'services' => 'Services',
-        'contact' => 'Contact',
+        '/habitats' => 'Habitats',
+        '/services' => 'Services',
+        '/contact' => 'Contact',
       ];
     
     $openingTimes = [

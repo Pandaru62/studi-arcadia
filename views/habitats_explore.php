@@ -1,3 +1,7 @@
+<?php 
+require_once("controllers/habitats.php")
+?>
+
 <div class="row bg-arc-mint-green py-3">
     <h2>Explorer un habitat</h2>
     <div class="row g-0 px-2">
