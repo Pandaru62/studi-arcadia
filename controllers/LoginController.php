@@ -1,5 +1,6 @@
 <?php
 
+// Redirects to the login view
 
 class LoginController {
 

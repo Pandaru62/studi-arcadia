@@ -1,27 +1,31 @@
 <?php
-class Router { 
-    private $routes;
-public function __construct() {
-$this->routes = [];
 
-}
-public function addRoute(string $method,string $path, string $controller, string $action)  { 
- $this->routes [] = [
-    'method' => $method,
-    'path' => $path,
-    'controller' =>$controller,
-    'action' => $action
- ];    
-}
- public function getHandler(string $method, string $uri) { 
-    foreach($this->routes as $route) {
-        if($route['method'] === $method && $route['path'] === $uri) {
-            return [
-            'method' => $route['method'],
-            'controller' => $route['controller'],
-            'action' =>$route['action'],
-                    ];
+class Router {
+    protected $routes = [];
+
+    public function addRoute($method, $path, $controller, $action) {
+        $this->routes[] = [
+            'method' => $method,
+            'path' => $path,
+            'controller' => $controller,
+            'action' => $action
+        ];
     }
- }
- return null;
-} }
+
+    public function dispatch() {
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        foreach ($this->routes as $route) {
+            if ($route['method'] == $requestMethod && $route['path'] == $requestPath) {
+                $controller = new $route['controller'];
+                $action = $route['action'];
+                $controller->$action();
+                return;
+            }
+        }
+
+        // Route not found
+        echo "404 Not Found";
+    }
+}

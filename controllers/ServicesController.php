@@ -1,5 +1,6 @@
 <?php
 
+// Redirects to the services view
 
 class ServicesController {
 

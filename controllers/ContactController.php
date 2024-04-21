@@ -1,5 +1,6 @@
 <?php
 
+// Redirects to the contact view
 
 class ContactController {
 

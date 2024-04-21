@@ -1,5 +1,5 @@
 <?php
-
+// Redirects to the habitats view
 
 class HabitatsController {
 

@@ -1,5 +1,6 @@
 <?php
 
+// Redirects to the homepage view
 
 class HomeController {
 

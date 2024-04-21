@@ -15,7 +15,9 @@ require_once 'controllers/HabitatsController.php';
 require_once 'controllers/ServicesController.php';
 require_once 'controllers/ContactController.php';
 require_once 'controllers/LoginController.php';
-
+require_once 'controllers/ShowHabitatController.php';
+// require_once 'controllers/AnimalController.php';
+require_once 'controllers/FeedingController.php';
 
 
 // Instanciation router 
@@ -27,27 +29,9 @@ $router->addRoute('GET', BASE_URL.'/habitats', 'HabitatsController', 'habitats')
 $router->addRoute('GET', BASE_URL.'/services', 'ServicesController', 'services');
 $router->addRoute('GET', BASE_URL.'/contact', 'ContactController', 'contact');
 $router->addRoute('GET', BASE_URL.'/login', 'LoginController', 'login');
+$router->addRoute('GET', BASE_URL.'/showHabitat', 'ShowHabitatController', 'showHabitat');
+// $router->addRoute('GET', BASE_URL.'/animal', 'AnimalController', 'showAnimal');
+$router->addRoute('GET', BASE_URL.'/animal', 'FeedingController', 'showFeeding');
 
 
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
-$handler = $router->gethandler($method, $uri);
-
-// echo($method)."<br/>";
-// echo($uri)."<br/>";
-// var_dump($handler);
-
-if ($handler == null ) { 
-
-    header ('HTTP/1.1 404 not found');
-    exit();
-}
-
-// APPEL CONTROLLEUR
-
-$controller = new $handler['controller']();
-$action = $handler['action'];
-$controller->$action();
-
-// var_dump($action);
+$router->dispatch();

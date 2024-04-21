@@ -7,8 +7,6 @@ error_reporting(E_ALL);
 $user = 'employee';
 
 require_once('./templates/header.php');
-require_once('./lib/pdo.php'); 
-// require_once('./model/service.php');
 ?>
 
 <div class="container my-md-4 py-3">
@@ -36,9 +34,9 @@ require_once('./lib/pdo.php');
         <?php 
         include_once("habitats_explore.php");
         ?>
-                
     </section>
     
 </div>
 
-    
+<?php require_once "./templates/footer.php"; ?>
+

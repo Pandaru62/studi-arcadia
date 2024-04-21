@@ -1,5 +1,17 @@
 <?php
-require_once('./lib/config.php');
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+if(file_exists('./lib/config.php')) {
+    require_once('./lib/config.php');
+} else {
+require_once('../lib/config.php');
+}
+
+// require_once("models/Habitats.view.php");
+
 
 $title = "Arcadia - accueil" ?>
 
@@ -46,9 +58,18 @@ $title = "Arcadia - accueil" ?>
                                     <ul class="dropdown-menu bg-arc-mint-green text-light">
                                         <li><a class="dropdown-item" href="<?=BASE_URL.$link;?>">Tous les habitats</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="habitat_single.php?habitat=1">Marais</a></li>
-                                        <li><a class="dropdown-item" href="habitat_single.php?habitat=2">Jungle</a></li>
-                                        <li><a class="dropdown-item" href="habitat_single.php?habitat=3">Savane</a></li>
+                                        <?php
+                                        // $habitats = new HabitatsView();
+                                        // $singleHabitats = $habitats->showHabitats();
+                                        // foreach ($singleHabitats as $habitat) { 
+                                            ?>
+                                        <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=1">Marais</a></li>
+                                        <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=2">Jungle</a></li>
+                                        <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=3">Savane</a></li>
+
+                                        <?php 
+                                        // } 
+                                        ?>
                                     </ul>
                                 </li>
                             <?php endif ?>
