@@ -16,8 +16,8 @@ require_once 'controllers/ServicesController.php';
 require_once 'controllers/ContactController.php';
 require_once 'controllers/LoginController.php';
 require_once 'controllers/ShowHabitatController.php';
-// require_once 'controllers/AnimalController.php';
 require_once 'controllers/FeedingController.php';
+require_once 'controllers/ReviewController.php';
 
 
 // Instanciation router 
@@ -32,6 +32,8 @@ $router->addRoute('GET', BASE_URL.'/login', 'LoginController', 'login');
 $router->addRoute('GET', BASE_URL.'/showHabitat', 'ShowHabitatController', 'showHabitat');
 // $router->addRoute('GET', BASE_URL.'/animal', 'AnimalController', 'showAnimal');
 $router->addRoute('GET', BASE_URL.'/animal', 'FeedingController', 'showFeeding');
+$router->addRoute('GET', BASE_URL.'/review', 'ReviewController', 'review');
+
 
 
 $router->dispatch();

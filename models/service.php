@@ -1,17 +1,6 @@
 <?php
-function getServices(PDO $pdo, int $limit = null) {
-    $sql = 'SELECT * FROM services ORDER BY id ASC';
-    if ($limit) {
-        $sql .= ' LIMIT :limit';
-    }
-    $query = $pdo->prepare($sql);
-    if ($limit) {
-    $query->bindParam(':limit', $limit, PDO::PARAM_INT);
-    }
-    $query->execute();
-    return $query->fetchAll();
-}
 
+// SOON TO BE DELETED
 function getServicesById (PDO $pdo, int $id) {
     $query = $pdo->prepare("SELECT * FROM services WHERE id = :id");
     $query->bindParam(':id', $id, PDO::PARAM_INT);

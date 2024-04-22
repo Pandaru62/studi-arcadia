@@ -10,9 +10,6 @@ if(file_exists('./lib/config.php')) {
 require_once('../lib/config.php');
 }
 
-// require_once("models/Habitats.view.php");
-
-
 $title = "Arcadia - accueil" ?>
 
 <!DOCTYPE html>

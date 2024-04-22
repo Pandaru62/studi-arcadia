@@ -9,57 +9,15 @@ require_once "templates/header.php";
 $title = "Zoo d'Arcadia"; ?>
 
         <!-- Carousel -->
-        <section id="carousel" class="bg-arc-mint-green mt-md-2">
-    <div id="carouselExampleCaptions" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="img-container">
-                    <img src="assets/carrousel/elephant.jpg" class="d-block w-100" alt="elephants">
-                </div>
-                <div class="carousel-caption d-none d-md-block text-bottom">
-                    <h5>Des animaux venant de tous horizons</h5>
-                    <p>Découvrez trois mondes fidèles aux habitats naturels des animaux.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="img-container">
-                    <img src="assets/carrousel/solar-panel.jpg" class="d-block w-100" alt="solar panels">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Un cadre respectueux de la nature</h5>
-                    <p>L'énergie est précieuse : le parc veille à préserver notre planète..</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="img-container">
-                    <img src="assets/carrousel/suricates.jpg" class="d-block w-100" alt="suricates">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>La santé avant tout</h5>
-                    <p>Au zoo d'Arcadia, le bien-être de nos animaux est une priorité.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</section>
+    
+    
         <!-- Introduction -->
 
-<div class="container my-4 py-3">
-    <section id="welcome">
+<div class="container mb-4 py-3">
+
+    <?php include_once("./templates/carousel.php"); ?>
+
+    <section id="welcome" class="mt-3">
 
         <div class="row">
             <div class="col rect-upper-effect"></div>
@@ -207,31 +165,46 @@ $title = "Zoo d'Arcadia"; ?>
             <div class="col rect-lower-effect"></div>
         </div>
     </section>
+    
+    
     <section id="services" class="bg-arc-mint-green">
-        <div class="row bg-arc-mint-green py-3">
-        <h2>Nos services</h2>
-            <div class="col-lg-4 py-3 text-center">
-                <img src="assets/services/train.jpg" alt="train" class="service-img">
-            <h3 class="fw-normal">Petit train</h2>
-            <p>Explorez notre parc à bord de notre charmant petit train, une manière relaxante et divertissante de découvrir les trésors cachés de la forêt de Brocéliande et d'admirer nos merveilleux pensionnaires sous un nouvel angle.</p>
-            <p><a class="btn btn-arc-dark" href="#">En savoir plus »</a></p>
-            </div>
+                <div class="row bg-arc-mint-green py-3">
+                    <h2>Nos services</h2>
+                    <p>Savourez votre journée en compagnie des animaux : nos employés sont aux petits soins pour vous proposer des services qui rendront votre expérience unique.</p>
 
-            <div class="col-lg-4 bg-arc-mint-green py-3 text-center">
-                <img src="assets/services/fauconnier.jpg" alt="fauconnier" class="service-img">
-                <h3 class="fw-normal">Visites guidées</h2>
-                <p>Pour une expérience encore plus enrichissante, nos visites guidées vous emmènent dans un voyage captivant à travers les différents habitats de nos animaux. Nos guides passionnés partageront avec vous des connaissances fascinantes sur nos résidents, tout en mettant l'accent sur notre engagement envers le respect de l'environnement et le bien-être animal. Rejoignez-nous pour une aventure mémorable, où chaque moment est une découverte.</p>
-                <p><a class="btn btn-arc-dark" href="#">En savoir plus »</a></p>
-            </div>
+                    <div class="row text-center align-items-center g-0 d-none d-md-flex">
+                    <?php 
+                    foreach($services as $key => $service): ?>                    
+                        <div class="col-lg-4 py-3">
+                            <img src="<?=_SERVICES_IMG_PATH_.$service['image']?>" alt="<?=$service['name']?>" class="service-img">
+                        <h3 class="fw-normal"><?=$service['name']?></h2>
+                        </div>
+                    <?php endforeach ?>
+                    
+                    </div>
+                    <div id="carouselExampleAutoplaying" class="carousel slide d-md-none" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <?php foreach($services as $key => $service): ?>
+                            <div class="carousel-item <?php if($key==1){echo "active";} ?>">
+                            <img src="<?=_SERVICES_IMG_PATH_.$service['image']?>" class="d-block w-100" alt="<?=$service['name']?>">
+                            </div>
+                            <?php endforeach ?>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
 
-            <div class="col-lg-4 py-3 text-center">
-                <img src="assets/services/restaurant.jpg" alt="restaurant" class="service-img">
-                <h3 class="fw-normal">Restauration</h2>
-                <p>Plongez dans une aventure unique au zoo Arcadia, où chaque visiteur est choyé avec une gamme de services exceptionnels. Notre espace de restauration propose une variété de délices culinaires, allant des snacks rapides aux repas gastronomiques, pour ravir les papilles des petits et des grands aventuriers.</p>
-                <p><a class="btn btn-arc-dark" href="#">En savoir plus »</a></p>
-            </div>
-        </div>
-    </section>
+                    <p class="text-center pt-3"><a class="btn btn-arc-dark btn-lg" href="<?=BASE_URL?>/services">En savoir plus sur nos services »</a></p>
+                </div>
+            </section>
+
 
     <section id="contact">
         <div class="row bg-arc-mint-green">
@@ -242,7 +215,7 @@ $title = "Zoo d'Arcadia"; ?>
             <p class="text-light">Vos avis comptent pour nous : partagez votre expérience.</p>
             <div class="row g-0 text-center d-flex align-items-center">
                 <div class="col-md-3 text-light">
-                    <a class="btn btn-arc-mint-green mb-3 btn-lg" href="contact.php"><i class="bi bi-pencil-square"></i> Écrivez nous</a>
+                    <a class="btn btn-arc-mint-green mb-3 btn-lg" href="<?=BASE_URL?>/review"><i class="bi bi-pencil-square"></i> Écrivez nous</a>
                     <ul class="list-inline my-2 fs-2 text">
                         <li class="list-inline-item">
                             <a href="#" class="text-decoration-none text-light"><i class="bi bi-youtube"></i></a>
@@ -263,11 +236,10 @@ $title = "Zoo d'Arcadia"; ?>
                     <div class="card">
                         <div class="card-header bg-arc-primary text-light d-flex justify-content-between align-items-center">
                             <i class="fa-regular fa-user"></i>
-                            <span>@Marc</span>
+                            <span>@<?=$reviews[0]["pseudo"];?></span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Une incroyable journée !</h5>
-                            <p class="card-text">"Quelle journée incroyable au zoo ! Les animaux étaient si fascinants à observer, et j'ai tellement appris sur la diversité de notre belle planète. C'était une expérience qui a vraiment égayé ma journée et renforcé mon amour pour la nature. 🌿🦁 #Gratitude #BelleJournée"</p>
+                            <p class="card-text">"<?=$reviews[0]["message"];?>"</p>
                         </div>
                         </div>
                 </div>
