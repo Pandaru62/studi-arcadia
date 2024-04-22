@@ -1,4 +1,6 @@
 
+<?php require_once"./templates/header.php" ?>
+
 <div class="alert alert-warning mt-4" role="alert">
     <i class="fa-solid fa-triangle-exclamation"></i> Seuls les employés du zoo sont autorisés à se connecter.
 </div>
@@ -23,3 +25,5 @@
         </form>
     </div>
 
+
+<?php require_once"./templates/footer.php" ?>
