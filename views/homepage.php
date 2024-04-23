@@ -4,16 +4,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once "templates/header.php";
+require_once "./templates/header.php";
 
 $title = "Zoo d'Arcadia"; ?>
 
-        <!-- Carousel -->
-    
-    
-        <!-- Introduction -->
 
 <div class="container mb-4 py-3">
+        <!-- Carousel -->
 
     <?php include_once("./templates/carousel.php"); ?>
 

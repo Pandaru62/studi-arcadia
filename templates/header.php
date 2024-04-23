@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -10,7 +11,8 @@ if(file_exists('./lib/config.php')) {
 require_once('../lib/config.php');
 }
 
-$title = "Arcadia - accueil" ?>
+$title = "Arcadia - accueil" ;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,53 +36,51 @@ $title = "Arcadia - accueil" ?>
     </head>
 
 <header>
-        <nav class="navbar navbar-expand-lg bg-arc-dark sticky-top">
-            <div class="container-fluid">
-                <img src="assets/Logo.svg" alt="Logo" height="60px" class="d-inline-block align-text-top" id="logo">
-              <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-three-dots-vertical text-light"></i>
-              </button>
-                <div class="collapse navbar-collapse" id="navbarToggler">
-                    <ul class="navbar-nav nav-underline mx-auto">
-                        <?php foreach($mainMenu as $link => $title):
-                            if($title !== 'Habitats'):?>
-                            <li class="nav-item">
-                                <a class="nav-link link-light" href="<?=BASE_URL.$link?>"><?= $title?></a>
-                            </li>
-                            <?php else:?>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Habitats
-                                    </a>
-                                    <ul class="dropdown-menu bg-arc-mint-green text-light">
-                                        <li><a class="dropdown-item" href="<?=BASE_URL.$link;?>">Tous les habitats</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <?php
-                                        // $habitats = new HabitatsView();
-                                        // $singleHabitats = $habitats->showHabitats();
-                                        // foreach ($singleHabitats as $habitat) { 
-                                            ?>
-                                        <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=1">Marais</a></li>
-                                        <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=2">Jungle</a></li>
-                                        <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=3">Savane</a></li>
-
-                                        <?php 
-                                        // } 
+    <nav class="navbar navbar-expand-lg bg-arc-dark sticky-top">
+        <div class="container-fluid">
+            <img src="assets/Logo.svg" alt="Logo" height="60px" class="d-inline-block align-text-top" id="logo">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots-vertical text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav nav-underline mx-auto">
+                    <?php foreach($mainMenu as $link => $title):
+                        if($title !== 'Habitats'):?>
+                        <li class="nav-item">
+                            <a class="nav-link link-light" href="<?=BASE_URL.$link?>"><?= $title?></a>
+                        </li>
+                        <?php else:?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Habitats
+                                </a>
+                                <ul class="dropdown-menu bg-arc-mint-green text-light">
+                                    <li><a class="dropdown-item" href="<?=BASE_URL.$link;?>">Tous les habitats</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <?php
+                                    foreach ($habitats as $habitat) { 
                                         ?>
-                                    </ul>
-                                </li>
-                            <?php endif ?>
-                        <?php endforeach?>
-            
-                    </ul>
-                    <a type="button" class="btn btn-outline-light me-2"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Accès limité aux employés"
-                    href="login">
-                    Connexion staff</a>
-                </div>
+                                    <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=<?=$habitat['id']?>"><?=$habitat['name']?></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                        <?php endif ?>
+                    <?php endforeach?>
+        
+                </ul>
+                <a type="button" class="btn btn-outline-light me-2"
+                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="Accès limité aux employés"
+                href="login">
+                Connexion staff</a>
             </div>
-        </nav>
-    </header>
-
+        </div>
+    </nav>
+<?php
+    if(isset($_SESSION["userEmail"]))
+{
+    echo 'Bienvenue ' .$_SESSION["userFirstName"]. '. Vous êtes connecté en tant que ' .$_SESSION["userRole"]. '.';
+}
+?>
+</header>
