@@ -1,6 +1,7 @@
 <?php
 
 require_once "Dbh.php";
+
 class Reviews extends Dbh {
     private $id;
     private $pseudo;
@@ -54,7 +55,7 @@ class Reviews extends Dbh {
         $this->isChecked = $isChecked;
 
         return $this;
-    }
+    }  
 
     protected function getLastReviews(bool $isChecked, int $limit = null) {
         $sql = 'SELECT * FROM reviews 
@@ -72,7 +73,7 @@ class Reviews extends Dbh {
         $stmt->execute();
         $reviews = $stmt->fetchAll();
         return $reviews;
-    }
+}
 
     protected function insertReview($pseudo, $message, $isChecked) {
         $sql = 'INSERT INTO reviews(pseudo, message, isChecked)

@@ -23,9 +23,8 @@ class Login extends Dbh{
         } 
 
         if(!password_verify($userPassword, $user[0]["password"])) {
-            var_dump($user);
             $stmt = null;
-            // header("location: /studi-arcadia/login?error=wrongPassword");
+            header("location: /studi-arcadia/login?error=wrongPassword");
             exit();
         }
 

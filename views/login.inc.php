@@ -1,14 +1,8 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 if(isset($_POST["loginForm"])) {
     $userEmail = $_POST["userEmail"];
     $userPassword = $_POST["userPassword"];
 
-    // include "../models/Dbh.php";
     include "../models/login.class.php";
     include "../models/loginContr.class.php";
     $signup = new LoginContr($userEmail, $userPassword);

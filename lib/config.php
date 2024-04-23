@@ -1,6 +1,5 @@
 <?php
-    define('_SERVICES_IMG_PATH_', './uploads/services/');
-    define('_MENU_PATH_', './src/controllers/');
+
 
     $mainMenu = [
         '/' => 'Accueil', 

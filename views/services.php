@@ -46,7 +46,7 @@ require_once('./templates/header.php');
             <div class="col-md-4 d-flex justify-content-center text-align-center">
                 <img src="./uploads/services/<?=$service['image']?>" alt="<?=$service['name']?>" class="service-img">
             </div>
-            <?php if($user == "employee" || $user == "admin"):?>
+            <?php if(isset($_SESSION["userRole"]) && ($_SESSION["userRole"] == "employé" || $_SESSION["userRole"] == "admin")):?>
                 <div class="col-md-1 d-flex flex-col flex-column justify-content-center">
                     <a href="edit_service.php?myid=<?=$service['id'];?>" class="btn btn-warning my-2"><i class="fa-regular fa-pen-to-square"></i> éditer</a>
                     <?php if($user == "admin"):?>
@@ -70,7 +70,7 @@ require_once('./templates/header.php');
             
     <?php endforeach ;?>
                         
-    <?php if($user == "employee" || $user == "admin"):?>
+    <?php if(isset($_SESSION["userRole"]) && ($_SESSION["userRole"] == "employé" || $_SESSION["userRole"] == "admin")):?>
     
     <div class="row bg-arc-mint-green p-3">
         <div class="py-3 my-3 d-flex align-items-center justify-content-center">

@@ -4,11 +4,11 @@
 
 require_once "./models/habitat.class.php";
 class ShowHabitatController extends Habitats {
-
     public function showHabitat() {
         $id = $_GET["habitat"];
         $habitat = $this->getHabitatsById($id);
         $species = $this->getSpeciesByHabitat($id);
+        $menuHabitats = $this->getHabitats();
         if(!isset($habitat[0]['id'])) {
             header("Location: " .BASE_URL."/error_page.php");
             } else {

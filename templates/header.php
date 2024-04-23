@@ -58,9 +58,9 @@ $title = "Arcadia - accueil" ;
                                     <li><a class="dropdown-item" href="<?=BASE_URL.$link;?>">Tous les habitats</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <?php
-                                    foreach ($habitats as $habitat) { 
+                                    foreach ($menuHabitats as $menuHabitat) { 
                                         ?>
-                                    <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=<?=$habitat['id']?>"><?=$habitat['name']?></a></li>
+                                    <li><a class="dropdown-item" href="<?=BASE_URL?>/showHabitat?habitat=<?=$menuHabitat['id']?>"><?=$menuHabitat['name']?></a></li>
                                     <?php } ?>
                                 </ul>
                             </li>
@@ -68,12 +68,13 @@ $title = "Arcadia - accueil" ;
                     <?php endforeach?>
         
                 </ul>
-                <a type="button" class="btn btn-outline-light me-2"
-                data-bs-toggle="tooltip" data-bs-placement="bottom"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="Accès limité aux employés"
-                href="login">
+                <?php if(!isset($_SESSION['userEmail'])) { ?>
+                <a type="button" class="btn btn-outline-light me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Accès limité aux employés" href="login">
                 Connexion staff</a>
+                <?php } else {?>
+                <a type="button" class="btn btn-outline-light me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Accès limité aux employés" href="logout">
+                Déconnexion</a>
+                <?php } ?>
             </div>
         </div>
     </nav>
