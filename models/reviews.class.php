@@ -2,7 +2,27 @@
 
 require_once "Dbh.php";
 
+trait getLastReview {
+    protected function getLastReviews(bool $isChecked, int $limit = null) {
+        $sql = 'SELECT * FROM reviews 
+                WHERE isChecked = ? 
+                ORDER BY id DESC';
+        if ($limit) {
+            $sql .= ' LIMIT ?';
+        }
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(1, $isChecked, PDO::PARAM_BOOL);
+        if ($limit) {
+            $stmt->bindParam(2, $limit, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        $reviews = $stmt->fetchAll();
+        return $reviews;
+}
+}
 class Reviews extends Dbh {
+    use getLastReview;
     private $id;
     private $pseudo;
     private $message;
@@ -57,23 +77,6 @@ class Reviews extends Dbh {
         return $this;
     }  
 
-    protected function getLastReviews(bool $isChecked, int $limit = null) {
-        $sql = 'SELECT * FROM reviews 
-                WHERE isChecked = ? 
-                ORDER BY id DESC';
-        if ($limit) {
-            $sql .= ' LIMIT ?';
-        }
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->bindParam(1, $isChecked, PDO::PARAM_BOOL);
-        if ($limit) {
-            $stmt->bindParam(2, $limit, PDO::PARAM_INT);
-        }
-
-        $stmt->execute();
-        $reviews = $stmt->fetchAll();
-        return $reviews;
-}
 
     protected function insertReview($pseudo, $message, $isChecked) {
         $sql = 'INSERT INTO reviews(pseudo, message, isChecked)

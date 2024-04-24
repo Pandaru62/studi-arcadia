@@ -2,9 +2,9 @@
 
 require_once "AnimalController.php";
 class FeedingController extends AnimalController{
-  
     public function showFeeding() { 
         $animal = $this->showAnimal();
+        $menuHabitats = $this->getHabitats();
         foreach($animal as $ani) {
         $feeding = $this->getLastFeeding($ani["animalId"]);
         $lastFeeding[$ani["animalId"]] = [

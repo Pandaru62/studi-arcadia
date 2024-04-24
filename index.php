@@ -27,7 +27,7 @@ require_once 'controllers/LogoutController.php';
 require_once 'controllers/ShowHabitatController.php';
 require_once 'controllers/FeedingController.php';
 require_once 'controllers/ReviewController.php';
-
+require_once 'controllers/ErrorPageController.php';
 
 // Instanciation router 
 
@@ -42,5 +42,6 @@ $router->addRoute('GET', BASE_URL.'/logout', 'LogoutController', 'logout');
 $router->addRoute('GET', BASE_URL.'/showHabitat', 'ShowHabitatController', 'showHabitat');
 $router->addRoute('GET', BASE_URL.'/animal', 'FeedingController', 'showFeeding');
 $router->addRoute('GET', BASE_URL.'/review', 'ReviewController', 'review');
+$router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPage');
 
 $router->dispatch();

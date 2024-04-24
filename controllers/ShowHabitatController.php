@@ -10,7 +10,7 @@ class ShowHabitatController extends Habitats {
         $species = $this->getSpeciesByHabitat($id);
         $menuHabitats = $this->getHabitats();
         if(!isset($habitat[0]['id'])) {
-            header("Location: " .BASE_URL."/error_page.php");
+            header("Location: " .BASE_URL."/404");
             } else {
                 require_once "views/showHabitat.php";
             }

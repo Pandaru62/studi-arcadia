@@ -1,13 +1,38 @@
 <?php
+// if(isset($_POST["loginForm"])) {
+//     $userEmail = $_POST["userEmail"];
+//     $userPassword = $_POST["userPassword"];
+
+//     include "../models/login.class.php";
+//     include "../models/loginContr.class.php";
+//     $logging = new LoginContr($userEmail, $userPassword);
+
+//     $logging->loginUser();
+
+    // header("location: ".BASE_URL);
+// }
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if(isset($_POST["loginForm"])) {
     $userEmail = $_POST["userEmail"];
     $userPassword = $_POST["userPassword"];
 
     include "../models/login.class.php";
     include "../models/loginContr.class.php";
-    $signup = new LoginContr($userEmail, $userPassword);
 
-    $signup->loginUser();
-
-    header("location: /studi-arcadia/login?error=none");
+    try {
+        $signup = new LoginContr($userEmail, $userPassword);
+        $signup->loginUser();
+        
+        // If login successful, redirect or do further processing
+        header("location: /studi-arcadia");
+        exit();
+    } catch (Exception $e) {
+        // Catch any exception
+        header("Location: /studi-arcadia/login?error=" . urlencode($e->getMessage()));
+        exit();
+    }
 }
+

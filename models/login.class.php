@@ -18,14 +18,16 @@ class Login extends Dbh{
         if(!$user)
         {
             $stmt = null;
-            header("Location: " .BASE_URL."/login?error=wronguser");
-            exit();
+            throw new Exception ("login-error");
+            // header("Location: " .BASE_URL."/login?error=wronguser");
+            // exit();
         } 
 
         if(!password_verify($userPassword, $user[0]["password"])) {
             $stmt = null;
-            header("location: /studi-arcadia/login?error=wrongPassword");
-            exit();
+            throw new Exception ("login-error");
+            // header("location: /studi-arcadia/login?error=wrongPassword");
+            // exit();
         }
 
             session_start();

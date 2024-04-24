@@ -12,8 +12,7 @@ class LoginContr extends Login {
     public function loginUser() {
         if($this->emptyInput() == true) {
             // Empty input
-            header("location: /studi-arcadia/login?error=emptyinput");
-            exit();
+            throw new Exception ("champs");
         }
 
     $this->getUser($this->userEmail, $this->userPassword);
