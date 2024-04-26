@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -28,6 +28,11 @@ require_once 'controllers/ShowHabitatController.php';
 require_once 'controllers/FeedingController.php';
 require_once 'controllers/ReviewController.php';
 require_once 'controllers/ErrorPageController.php';
+require_once 'controllers/SignUpController.php';
+require_once 'controllers/EditAccountController.php';
+require_once 'controllers/OpeningTimeController.php';
+
+
 
 // Instanciation router 
 
@@ -43,5 +48,13 @@ $router->addRoute('GET', BASE_URL.'/showHabitat', 'ShowHabitatController', 'show
 $router->addRoute('GET', BASE_URL.'/animal', 'FeedingController', 'showFeeding');
 $router->addRoute('GET', BASE_URL.'/review', 'ReviewController', 'review');
 $router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPage');
+
+// Admin pages
+$router->addRoute('GET', BASE_URL.'/signup', 'SignUpController', 'signUp');
+$router->addRoute('GET', BASE_URL.'/editaccount', 'EditAccountController', 'editAccount');
+$router->addRoute('GET', BASE_URL.'/time', 'OpeningTimeController', 'time');
+
+
+
 
 $router->dispatch();

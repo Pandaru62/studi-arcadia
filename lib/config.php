@@ -16,6 +16,12 @@ $error = [
   'login-error' => 'Votre mot de passe ou votre email est incorrect.'
 ];
 
+$sucess = [
+  'userAdded' => 'Le nouvel utilisateur a été ajouté avec succès.',
+  'userEdited' => 'Le compte a été édité avec succès.',
+  'timeupdated' => 'Les horaires ont été modifiés avec succès.',
+];
+
 $mainMenu = [
   "visiteur" => [
       '/' => 'Accueil', 
@@ -55,11 +61,11 @@ $mainMenu = [
       // ],
       "Comptes" => [
           '/seeusers' => 'Voir les utilisateurs',
-          '/signin' => 'Ajouter un compte',
+          '/signup' => 'Ajouter un compte',
           '/editaccount' => 'Editer un compte'
       ],
       "Services et Horaires" => [
-          '/' => 'Modifier les horaires',
+          '/time' => 'Modifier les horaires',
           '/services' => 'Modifier un service',
           '/addservices' => 'Ajouter un service',
       ],
