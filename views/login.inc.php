@@ -1,16 +1,4 @@
 <?php
-// if(isset($_POST["loginForm"])) {
-//     $userEmail = $_POST["userEmail"];
-//     $userPassword = $_POST["userPassword"];
-
-//     include "../models/login.class.php";
-//     include "../models/loginContr.class.php";
-//     $logging = new LoginContr($userEmail, $userPassword);
-
-//     $logging->loginUser();
-
-    // header("location: ".BASE_URL);
-// }
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

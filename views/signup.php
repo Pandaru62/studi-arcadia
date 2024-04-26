@@ -16,5 +16,5 @@ if(isset($_POST["signupForm"])) {
 
     $signup->signupUser();
 
-    header("location: /studi-arcadia/login?error=none");
+    header("location: /studi-arcadia/signup?success=userAdded");
 }

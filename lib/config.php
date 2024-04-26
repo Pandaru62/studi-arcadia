@@ -13,13 +13,15 @@ $openingTimes = [
 
 $error = [
   'champs' => 'Vous devez remplir tous les champs pour vous connecter.',
-  'login-error' => 'Votre mot de passe ou votre email est incorrect.'
+  'login-error' => 'Votre mot de passe ou votre email est incorrect.',
+  'accountdeleted' => 'Une erreur s\'est produite. Veuillez réessayer',
 ];
 
 $sucess = [
   'userAdded' => 'Le nouvel utilisateur a été ajouté avec succès.',
   'userEdited' => 'Le compte a été édité avec succès.',
   'timeupdated' => 'Les horaires ont été modifiés avec succès.',
+  'accountdeleted' => 'Le compte a bien été supprimé',
 ];
 
 $mainMenu = [
@@ -60,7 +62,7 @@ $mainMenu = [
       //     '/contact' => 'Contact',
       // ],
       "Comptes" => [
-          '/seeusers' => 'Voir les utilisateurs',
+          '/showaccounts' => 'Voir les utilisateurs',
           '/signup' => 'Ajouter un compte',
           '/editaccount' => 'Editer un compte'
       ],

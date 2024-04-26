@@ -1,5 +1,7 @@
 <?php
+define('BASE_URL', '/studi-arcadia');
 
+include_once "signup.class.php";
 class SignUpContr extends Signup {
 
     private $userLastName;
@@ -8,8 +10,7 @@ class SignUpContr extends Signup {
     private $userPassword;
     private $userRole;
 
-    public function __construct($userLastName, $userFirstName, $userEmail, $userPassword, $userRole) {
-        $this->userLastName = $userLastName;
+    public function __construct($userLastName = null, $userFirstName = null, $userEmail = null, $userPassword = null, $userRole = null) {        $this->userLastName = $userLastName;
         $this->userFirstName = $userFirstName;
         $this->userEmail = $userEmail;
         $this->userPassword = $userPassword;
@@ -31,16 +32,47 @@ class SignUpContr extends Signup {
         $this->setUser($this->userLastName, $this->userFirstName, $this->userEmail, $this->userPassword, $this->userRole);
     }
 
-    private function emptyInput() {
-        $isEmpty = null;
-        if(empty($this->userLastName) || empty($this->userFirstName) || empty($this->userEmail) ||empty($this->userPassword) || empty($this->userRole) ) {
-            $isEmpty = true;
-        } else {
-            $isEmpty = false;
-        }
-        return $isEmpty;
-    }
 
+    public function updateUser($userId) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($this->emptyInput() == true) {
+                // Empty input
+                header("Location: " . BASE_URL ."/editaccount?error=emptyinput");
+                exit();
+            }
+            if ($this->invalidEmail() == true) {
+                // Invalid email
+                header("Location: " . BASE_URL . "/editaccount?error=email");
+                exit();
+            }
+    
+            // Perform update logic
+            $this->editUser($userId, $this->userLastName, $this->userFirstName, $this->userEmail, $this->userPassword, $this->userRole);
+        } else {
+            // Fetch user details based on $userId
+            // Display edit form with pre-filled data
+            // Include HTML form for editing user
+        }
+    }
+    
+
+    // private function emptyInput() {
+    //     $isEmpty = null;
+    //     if(empty($this->userLastName) || empty($this->userFirstName) || empty($this->userEmail) ||empty($this->userPassword) || empty($this->userRole) ) {
+    //         $isEmpty = true;
+    //     } else {
+    //         $isEmpty = false;
+    //     }
+    //     return $isEmpty;
+    // }
+
+    private function emptyInput() {
+        if (empty($this->userLastName) || empty($this->userFirstName) || empty($this->userEmail) || empty($this->userRole)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     private function invalidEmail() {
         $result = false;
         if (!filter_var($this->userEmail, FILTER_VALIDATE_EMAIL)) {

@@ -30,8 +30,10 @@ require_once 'controllers/ReviewController.php';
 require_once 'controllers/ErrorPageController.php';
 require_once 'controllers/SignUpController.php';
 require_once 'controllers/EditAccountController.php';
+require_once 'controllers/showAccountsController.php';
+require_once 'controllers/deleteAccountController.php';
 require_once 'controllers/OpeningTimeController.php';
-
+require_once 'controllers/editHabitatController.php';
 
 
 // Instanciation router 
@@ -52,8 +54,11 @@ $router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPa
 // Admin pages
 $router->addRoute('GET', BASE_URL.'/signup', 'SignUpController', 'signUp');
 $router->addRoute('GET', BASE_URL.'/editaccount', 'EditAccountController', 'editAccount');
+$router->addRoute('GET', BASE_URL.'/showaccounts', 'showAccountsController', 'showAccounts');
+$router->addRoute('GET', BASE_URL.'/deleteaccount', 'deleteAccountController', 'deleteAccount');
 $router->addRoute('GET', BASE_URL.'/time', 'OpeningTimeController', 'time');
 
+$router->addRoute('GET', BASE_URL.'/editHabitat', 'editHabitatController', 'editHabitat');
 
 
 

@@ -15,7 +15,7 @@ require_once "templates/header.php";
                 <p><a href="<?= BASE_URL ?>" class="btn btn-primary">Retour à l'accueil</a></p>
             </div>
             <div class="offset-md-1 col-md-3">
-                <img src="assets/Logo_RedPanda1.png" class="img-fluid d-none d-md-block" style="opacity: 70%; height: 80%">
+                <img src="assets/errror404.png" class="img-fluid d-none d-md-block" style="opacity: 70%; height: 80%">
             </div>
         </div>
        
