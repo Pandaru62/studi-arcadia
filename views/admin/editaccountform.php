@@ -1,6 +1,3 @@
-
-<?php var_dump($user);?>
-
 <?php
 require_once "./templates/header.php";
 ?>

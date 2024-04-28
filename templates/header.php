@@ -96,10 +96,12 @@ require_once('../lib/config.php');
             </div>
         </div>
     </nav>
-<?php
-    if(isset($_SESSION["userEmail"]))
-{
-    echo 'Bienvenue ' .$_SESSION["userFirstName"]. '. Vous êtes connecté en tant que ' .$_SESSION["userRole"]. '.';
-}
-?>
+        <?php if(isset($_SESSION["userEmail"])): ?>
+            <div class="d-flex justify-content-center">
+                <div class="bg-arc-dark mt-2 text-light p-1 rounded-3">
+                    <?php echo 'Bienvenue ' .$_SESSION["userFirstName"]. '. Vous êtes connecté en tant que "' .$_SESSION["userRole"]. '".';?>
+                </div>
+            </div>
+        <?php endif ?>
+
 </header>

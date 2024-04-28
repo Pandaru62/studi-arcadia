@@ -7,17 +7,19 @@ error_reporting(E_ALL);
 // CONSTANTS
 
 define("BASE_URL", '/studi-arcadia');
-define('_SERVICES_IMG_PATH_', './uploads/services/');
+define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
 define('_MENU_PATH_', './src/controllers/');
 
-$habitats = [
-    "Marais", "Jungle", "Savane"
-];
+// $habitats = [
+//     "Marais", "Jungle", "Savane"
+// ];
 
 // Instanciation classes
 
+// include 'lib/controller-autoloader.php'; 
+// the autoloader automatically gets the paths to the controllers
 require_once 'models/Router.php';
-require_once 'models/User.php';
+
 require_once 'controllers/HomeController.php';
 require_once 'controllers/HabitatsController.php';
 require_once 'controllers/ServicesController.php';
@@ -33,7 +35,10 @@ require_once 'controllers/EditAccountController.php';
 require_once 'controllers/showAccountsController.php';
 require_once 'controllers/deleteAccountController.php';
 require_once 'controllers/OpeningTimeController.php';
-require_once 'controllers/editHabitatController.php';
+require_once 'controllers/editServiceController.php';
+require_once 'controllers/addServicesController.php';
+require_once 'controllers/DeleteServiceController.php';
+
 
 
 // Instanciation router 
@@ -58,7 +63,9 @@ $router->addRoute('GET', BASE_URL.'/showaccounts', 'showAccountsController', 'sh
 $router->addRoute('GET', BASE_URL.'/deleteaccount', 'deleteAccountController', 'deleteAccount');
 $router->addRoute('GET', BASE_URL.'/time', 'OpeningTimeController', 'time');
 
-$router->addRoute('GET', BASE_URL.'/editHabitat', 'editHabitatController', 'editHabitat');
+$router->addRoute('GET', BASE_URL.'/editservice', 'editServiceController', 'editService');
+$router->addRoute('GET', BASE_URL.'/addservice', 'addServicesController', 'addService');
+$router->addRoute('GET', BASE_URL.'/deleteservice', 'deleteServiceController', 'deleteServ');
 
 
 

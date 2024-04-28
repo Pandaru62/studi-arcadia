@@ -14,7 +14,11 @@ $openingTimes = [
 $error = [
   'champs' => 'Vous devez remplir tous les champs pour vous connecter.',
   'login-error' => 'Votre mot de passe ou votre email est incorrect.',
-  'accountdeleted' => 'Une erreur s\'est produite. Veuillez réessayer',
+  'accountdeleted' => 'Une erreur s\'est produite. Veuillez réessayer.',
+  'addservice' => 'Le service n\'a pas pu être ajouté. Veuillez réessayer.',
+  'notimage' => 'Le fichier envoyé doit impérativement être une image.',
+  'uploaderror' => 'Une erreur s\'est produite lors de l\'envoi de l\'image.',
+  'servicedeleted' => 'Le service n\'a pas pu être supprimé.',
 ];
 
 $sucess = [
@@ -22,6 +26,9 @@ $sucess = [
   'userEdited' => 'Le compte a été édité avec succès.',
   'timeupdated' => 'Les horaires ont été modifiés avec succès.',
   'accountdeleted' => 'Le compte a bien été supprimé',
+  'serviceEdited' => 'Le service a bien été édité',
+  'serviceAdded' => 'Le nouveau service a été ajouté avec succès.',
+  'servicedeleted' => 'Le service a bien été supprimé.'
 ];
 
 $mainMenu = [
@@ -69,7 +76,7 @@ $mainMenu = [
       "Services et Horaires" => [
           '/time' => 'Modifier les horaires',
           '/services' => 'Modifier un service',
-          '/addservices' => 'Ajouter un service',
+          '/addservice' => 'Ajouter un service',
       ],
       "Habitats" => [
           '/edithabitat' => 'Modifier un habitat',

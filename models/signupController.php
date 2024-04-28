@@ -48,24 +48,9 @@ class SignUpContr extends Signup {
     
             // Perform update logic
             $this->editUser($userId, $this->userLastName, $this->userFirstName, $this->userEmail, $this->userPassword, $this->userRole);
-        } else {
-            // Fetch user details based on $userId
-            // Display edit form with pre-filled data
-            // Include HTML form for editing user
-        }
+        } 
     }
     
-
-    // private function emptyInput() {
-    //     $isEmpty = null;
-    //     if(empty($this->userLastName) || empty($this->userFirstName) || empty($this->userEmail) ||empty($this->userPassword) || empty($this->userRole) ) {
-    //         $isEmpty = true;
-    //     } else {
-    //         $isEmpty = false;
-    //     }
-    //     return $isEmpty;
-    // }
-
     private function emptyInput() {
         if (empty($this->userLastName) || empty($this->userFirstName) || empty($this->userEmail) || empty($this->userRole)) {
             return true;
