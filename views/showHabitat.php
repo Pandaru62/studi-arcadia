@@ -7,7 +7,6 @@ require_once "./lib/function.php";
 
 $title = $habitat[0]['name'];
 
-$user = 'employee';
 require_once "./templates/header.php";
 ?>
 
@@ -24,7 +23,7 @@ require_once "./templates/header.php";
                 <p class="py-3"><?= $habitat[0]['description']?></p>
             </div>
             <div class="col-md-4">
-                <img src="./assets/habitats/<?=$habitat[0]['image'];?>" class="img-fluid img-habitat">
+                <img src="./uploads/habitats/<?=$habitat[0]['image'];?>" class="img-fluid img-habitat">
             </div>
         </div>
         <div class="row bg-arc-dark">

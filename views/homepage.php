@@ -37,39 +37,9 @@ $title = "Zoo d'Arcadia";
 
     </section>
 
-    <section id="habitats">
-        <div class="row bg-arc-mint-green py-3">
-            <h2>Trois mondes magiques à explorer</h2>
-            <?php foreach($menuHabitats as $menuHabitat) 
-            {?>
-            <div class="col-12 col-md-4 pb-3">
-                <div class="card card-habitat">
-                    <img src="assets/habitats/<?= $menuHabitat["image"]; ?>" class="card-img-top z-0" alt="marais">
-                    <div class="card-img-overlay d-flex align-items-start justify-content-center">
-                        <h5 class="card-title text-light z-1"><?= $menuHabitat["name"]; ?></h5>
-                    </div>                    
-                    <div class="card-body bg-light d-flex flex-column">
-                        <p class="card-text z-1"><?= $menuHabitat["description"]; ?></p>
-                        <button class="btn btn-arc-dark align-self-end z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais" aria-expanded="false" aria-controls="collapseMarais">
-                            Voir les animaux
-                        </button>
-                        <div class="collapse" id="collapseMarais">
-                            <h4>Animaux de la zone :</h4>
-                            <ul class="fa-ul">
-                            <?php foreach($species[$menuHabitat["id"]] as $specie):?>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>
-                                <a  class="link-arc-dark-green" href="<?=BASE_URL?>/animal?species=<?=$specie["id"]?>"><?= $specie["name"];?></a></li>
-                            <?php endforeach ?>
-                            </ul>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-            <?php 
-            } ?>
+    <!-- section habitats -->
 
-        </div>
-    </section>
+    <?php require_once "./views/habitats_explore.php"; ?>
 
     <section id="facts">
         <div class="row bg-arc-mint-green">

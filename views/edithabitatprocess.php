@@ -6,13 +6,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
 define("BASE_URL", '/studi-arcadia');
 
-
 // Include necessary files
-include_once "../models/services.class.php";
-include_once "../models/servicesController.php";
+include_once "../models/habitat.class.php";
+include_once "../models/habitatsController.php";
 
 function slugify($text, string $divider = '-')
 {
@@ -42,7 +40,7 @@ function slugify($text, string $divider = '-')
 }
 
 
-function checkFile($file, $serviceId) {
+function checkFile() {
     if (isset($_FILES['file'])) {
         // If a file was sent
         if(isset($_FILES['file']['tmp_name']) && $_FILES['file']['tmp_name'] != '') {
@@ -51,18 +49,18 @@ function checkFile($file, $serviceId) {
             if ($checkImage !== false) {
                 // changes the name if it's an image and moves it
                 $fileName = uniqid().'-'.slugify($_FILES['file']['name']);
-                $destination = dirname(__FILE__) . "/../uploads/services/" . $fileName;
+                $destination = dirname(__FILE__) . "/../uploads/habitats/" . $fileName;
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
                     // File uploaded successfull
                     return $fileName;
 
                 } else {
                     // Error moving file
-                    header("Location: " . BASE_URL . "/addservice?error=uploaderror");
+                    header("Location: " . BASE_URL . "/addhabitat?error=uploaderror");
                 }
             } else {
                 // else error message
-                header("Location: " . BASE_URL . "/addservice?error=notimage");
+                header("Location: " . BASE_URL . "/addhabitat?error=notimage");
                 exit();
             }
         }
@@ -71,21 +69,28 @@ function checkFile($file, $serviceId) {
 
 
 // Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addService"]) && isset($_SESSION) && $_SESSION['userRole'] == 'admin' || $_SESSION['userRole'] == 'employé') {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editHabitat"]) && isset($_SESSION) && $_SESSION['userRole'] == 'admin') {
     // Get form data
-    $serviceId = $_POST["serviceId"];
-    $serviceName = $_POST["serviceName"];
-    $serviceDescription = $_POST["serviceDescription"];
-    $serviceImage = $_FILES["file"];
-    $isFree = $_POST["isFree"];
+    $habitatId = $_POST["habitatId"];
+    $habitatName = $_POST["habitatName"];
+    $habitatDescription = $_POST["habitatDescription"];
+    $keepOrChangePhoto = $_POST["keepOrChangePhoto"];
 
-    $fileName = checkFile($serviceImage, $serviceId);
+    // Checks if the user wants to change the photo or not
+    if($keepOrChangePhoto == 'change') {
+    $habitatImage = $_FILES["file"];
+    // if he changes, a new photo is being checked and uploaded
+    $fileName = checkFile(); 
+    } else {
+    // else we keep the current image with the same name
+    $fileName = $_POST["currentImage"];
+    }
 
-    // Adding service
-    $service = new ServicesContr($serviceName, $serviceDescription, $fileName, $isFree);
-    $service->addService();
+    // Editing habitat
+    $habitat = new HabitatsContr($habitatName, $fileName, $habitatDescription);
+    $habitat->updateHabitat($habitatId);
 
-    header("Location: " . BASE_URL . "/addservice?success=serviceAdded");
+    header("Location: " . BASE_URL . "/habitats?success=habitatedited");
 
 }
 

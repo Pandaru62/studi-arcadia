@@ -38,7 +38,10 @@ require_once 'controllers/OpeningTimeController.php';
 require_once 'controllers/editServiceController.php';
 require_once 'controllers/addServicesController.php';
 require_once 'controllers/DeleteServiceController.php';
-
+require_once 'controllers/seeReviewsController.php';
+require_once 'controllers/deleteReviewController.php';
+require_once 'controllers/validateReviewController.php';
+require_once 'controllers/editHabitatController.php';
 
 
 // Instanciation router 
@@ -67,6 +70,13 @@ $router->addRoute('GET', BASE_URL.'/editservice', 'editServiceController', 'edit
 $router->addRoute('GET', BASE_URL.'/addservice', 'addServicesController', 'addService');
 $router->addRoute('GET', BASE_URL.'/deleteservice', 'deleteServiceController', 'deleteServ');
 
+$router->addRoute('GET', BASE_URL.'/seereviews', 'seeReviewsController', 'seeReviews');
+$router->addRoute('GET', BASE_URL.'/deletereview', 'deleteReviewController', 'deleteRev');
+$router->addRoute('GET', BASE_URL.'/validatereview', 'ValidateReviewController', 'validateRev');
+
+$router->addRoute('GET', BASE_URL.'/edithabitat', 'editHabitatController', 'editHab');
+$router->addRoute('GET', BASE_URL.'/addhabitat', 'editHabitatController', 'addHab');
+$router->addRoute('GET', BASE_URL.'/deletehabitat', 'editHabitatController', 'deleteHab');
 
 
 $router->dispatch();

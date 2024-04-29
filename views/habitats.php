@@ -31,7 +31,8 @@ require_once('./templates/header.php');
     </section>
 
     <section id="habitat">
-        <?php 
+
+        <?php
         include_once("habitats_explore.php");
         ?>
     </section>

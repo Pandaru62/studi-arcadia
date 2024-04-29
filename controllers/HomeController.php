@@ -12,7 +12,9 @@ class HomeController extends Habitats {
     public function index() { 
         $reviews = $this->getLastReviews(true, 1);
         $services = $this->getServices(3);
-        $menuHabitats = $this->getHabitats();
+        $menuHabitats = $this->getHabitats(3);
+        $unCheckedReview = $this->countReview();
+        $countUncheckedReviews = $unCheckedReview[0]["COUNT(*)"];
         foreach($menuHabitats as $hab) {
             $species[$hab['id']] = $this->getSpeciesByHabitat($hab["id"]);
         }

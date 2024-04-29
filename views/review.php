@@ -10,7 +10,7 @@ require_once "templates/header.php";
         </div>
         <div class="row text-center pt-md-3 bg-arc-dark text-light">
             <div class="col-md-8">
-                <h1 class="text-light text-center pb-2">Contact</h1>
+                <h1 class="text-light text-center pb-2">Ajouter un avis</h1>
                 <p class="py-3">Vos avis nous intéressent : notre équipe consulte régulièrement vos messages afin de nous améliorer.</p>
             </div>
             <div class="offset-md-1 col-md-3">

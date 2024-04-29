@@ -9,4 +9,10 @@ public function showHabitats() {
     return ($habitats);
 }
 
+public function showSpecies() {
+    $species = $this->getAllSpecies();
+    return ($species);
+}
+
+
 }

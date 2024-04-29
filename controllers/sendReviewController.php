@@ -1,6 +1,7 @@
 <?php
 
 require_once "../models/reviews.class.php";
+require_once "../models/habitat.class.php";
 
 class SendReviewController extends Reviews {
     use getHabitats;

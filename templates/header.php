@@ -65,7 +65,18 @@ require_once('../lib/config.php');
                 // checks if the value $tag is not an array to return a simple button
                 ?>
                     <li class="nav-item">
-                        <a class="nav-link link-light" href="<?=BASE_URL.$url?>"><?= $tag?></a>
+                        <?php if ($tag == 'Avis des visiteurs') { ?>
+                        <a class="nav-link link-light position-relative" href="<?=BASE_URL.$url?>"><?= $tag?>
+                        <?php if (isset($countUncheckedReviews) && $countUncheckedReviews > 0) { ?>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?= $countUncheckedReviews ?>
+                                <span class="visually-hidden">nombre d'avis</span>
+                            </span>
+                        <?php } ?>
+                        </a>
+                        <?php } else {?>
+                            <a class="nav-link link-light" href="<?=BASE_URL.$url?>"><?= $tag?></a>
+                        <?php } ?>
                     </li>
                 <?php else : 
                 // the value $tag is an array, so the header displays a dropdown

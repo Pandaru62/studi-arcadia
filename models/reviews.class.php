@@ -78,6 +78,23 @@ class Reviews extends Dbh {
     }  
 
 
+    protected function getReviews() {
+        $sql = 'SELECT * FROM reviews 
+                ORDER BY isChecked ASC';
+        // if ($limit) {
+        //     $sql .= ' LIMIT ?';
+        // }
+        $stmt = $this->connect()->prepare($sql);
+        // $stmt->bindParam(1, $isChecked, PDO::PARAM_BOOL);
+        // if ($limit) {
+        //     $stmt->bindParam(2, $limit, PDO::PARAM_INT);
+        // }
+        $stmt->execute();
+        $allReviews = $stmt->fetchAll();
+        return $allReviews;
+    }
+
+
     protected function insertReview($pseudo, $message, $isChecked) {
         $sql = 'INSERT INTO reviews(pseudo, message, isChecked)
                 VALUES (?, ?, ?)';
@@ -94,5 +111,25 @@ class Reviews extends Dbh {
         return $stmt->execute();
     }
 
-}
+    protected function deleteReview(int $id) {
+        $sql = 'DELETE FROM reviews
+                WHERE `reviews`.`id` = :id';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $deletedReview = $stmt->fetch();
+        return $deletedReview;
+    }
 
+    protected function validateReview(int $id) {
+        $sql = 'UPDATE reviews
+                SET isChecked = 1
+                WHERE `reviews`.`id` = :id';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $validatedReview = $stmt->fetch();
+        return $validatedReview;
+    }
+
+}

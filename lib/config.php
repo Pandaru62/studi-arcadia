@@ -4,13 +4,6 @@ $openingTimes = [
   'Le weekend, les vacances et les jours fériés : de 9h à 20h',
 ];
 
-// $mainMenu2 = [
-//   '/' => 'Accueil', 
-//   '/habitats' => 'Habitats & Animaux',
-//   '/services' => 'Services',
-//   '/contact' => 'Contact',
-// ];
-
 $error = [
   'champs' => 'Vous devez remplir tous les champs pour vous connecter.',
   'login-error' => 'Votre mot de passe ou votre email est incorrect.',
@@ -19,6 +12,12 @@ $error = [
   'notimage' => 'Le fichier envoyé doit impérativement être une image.',
   'uploaderror' => 'Une erreur s\'est produite lors de l\'envoi de l\'image.',
   'servicedeleted' => 'Le service n\'a pas pu être supprimé.',
+  'reviewdeleted' => 'L\'avis n\'a pas pu être supprimé.',
+  'reviewnotvalidated' => 'L\'avis n\'a pas pu être validé.',
+  'habitatnotedited' => 'L\'habitat n\'a pas pu être modifié.',
+  'habitatnotdeleted' => 'L\'habitat n\'a pas pu être supprimé.',
+  'habitatnotadded' => 'L\'habitat n\'a pas pu être ajouté.',
+
 ];
 
 $sucess = [
@@ -28,7 +27,12 @@ $sucess = [
   'accountdeleted' => 'Le compte a bien été supprimé',
   'serviceEdited' => 'Le service a bien été édité',
   'serviceAdded' => 'Le nouveau service a été ajouté avec succès.',
-  'servicedeleted' => 'Le service a bien été supprimé.'
+  'servicedeleted' => 'Le service a bien été supprimé.',
+  'reviewdeleted' => 'L\'avis a bien été supprimé.',
+  'reviewvalidated' =>  'L\'avis a bien été validé.',
+  'habitatedited' => 'L\'habitat a bien été modifié.',
+  'habitatdeleted' => 'L\'habitat a bien été supprimé.',
+  'habitatadded' => 'L\'habitat a bien été ajouté.',
 ];
 
 $mainMenu = [
@@ -79,7 +83,7 @@ $mainMenu = [
           '/addservice' => 'Ajouter un service',
       ],
       "Habitats" => [
-          '/edithabitat' => 'Modifier un habitat',
+          '/habitats' => 'Modifier un habitat',
           '/addhabitat' => 'Ajouter un habitat',
       ],
       "Animaux" => [
