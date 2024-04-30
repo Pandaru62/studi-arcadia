@@ -16,6 +16,6 @@ class DeleteAccountController extends Signup {
         } else {
             header("Location: ".BASE_URL."/showaccounts?error=accountdeleted");
         }
-        }
+    }
 }
 

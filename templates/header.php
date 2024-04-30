@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 if(file_exists('./lib/config.php')) {
     require_once('./lib/config.php');
 } else {
@@ -109,10 +105,25 @@ require_once('../lib/config.php');
     </nav>
         <?php if(isset($_SESSION["userEmail"])): ?>
             <div class="d-flex justify-content-center">
-                <div class="bg-arc-dark mt-2 text-light p-1 rounded-3">
+                <div class="bg-arc-dark mt-3 text-light p-1 rounded-3">
                     <?php echo 'Bienvenue ' .$_SESSION["userFirstName"]. '. Vous êtes connecté en tant que "' .$_SESSION["userRole"]. '".';?>
                 </div>
             </div>
         <?php endif ?>
+        <?php if(isset($_GET['success'])) { ?>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php } else if(isset($_GET['error'])) { ?>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-check"></i> <?= $error[$_GET['error']]; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php } ?>
 
 </header>

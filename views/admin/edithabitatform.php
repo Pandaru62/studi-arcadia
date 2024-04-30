@@ -52,7 +52,7 @@
     <div class="mb-3" id="fieldContainer" style="display: none;">
         <!-- if the admin decides to change the photo -->
         <label for="file" class="form-label">Ajouter une nouvelle photographie de l'habitat</label>
-        <input class="form-control" type="file" id="file" name="file" value="<?=$editedHabitat[0]['image']?>">
+        <input class="form-control" type="file" id="file" name="file">
     </div>
     <input class="btn btn-arc-dark" name="editHabitat" type="submit" value="Modifier cet habitat">
 </form>

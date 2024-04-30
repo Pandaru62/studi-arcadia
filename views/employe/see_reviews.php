@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 require_once "./templates/header.php"; ?>
 
 <div class="container mb-4 py-3">
@@ -26,10 +23,6 @@ require_once "./templates/header.php"; ?>
                     </div>
                 <?php } ?>
 
-                
-                <?php 
-                // var_dump($allReviews); 
-                ?>
 
 <div class="row g-0 px-5">
     <div class="table-responsive">

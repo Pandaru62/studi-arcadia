@@ -27,6 +27,8 @@ trait getHabitats {
         $unCheckedReview = $stmt->fetchAll();
         return $unCheckedReview;
     }
+
+    
 }
 
 class Habitats extends Dbh {
@@ -40,6 +42,7 @@ use getHabitats;
             $results = $stmt->fetchAll();
             return $results;
         }
+
 
     protected function getSpeciesByHabitat (int $id) {
             $sql = 'SELECT * FROM species

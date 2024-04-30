@@ -1,11 +1,5 @@
 <?php
-
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-
-require_once "./lib/function.php";
 require_once "./templates/header.php";
-
 ?>
 
 <div class="container-lg main-page"> 
@@ -21,11 +15,37 @@ require_once "./templates/header.php";
                         <h1 class="text-light text-center pb-2"><?= $animal[0]['speciesName']?></h1>
                         <p class="py-2">Arcadia recense actuellement <?= count($animal); ?> espèces de "<?= $animal[0]['speciesName']?>".
                         <p class="py-2">L'animal se trouve dans l'habitat : <?= $animal[0]['habitatName']?></p>
+                        <?php if(isset($_SESSION) && $_SESSION['userRole'] == 'admin'): ?>
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-warning me-2" href="<?=BASE_URL?>/editspecie?id=<?=$animal[0]['species_id'];?>"><i class="bi bi-pencil"></i> éditer l'espèce</a>
+                                <!-- delete -->
+                                <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteSpModal<?=$animal[0]['species_id']?>">
+                                    <i class="bi bi-trash-fill"></i> Supprimer l'espèce</a>
+                                </button>
+                            </div>
+                            <!-- modal config : warning message before species is deleted -->
+                            <div class="modal fade" id="deleteSpModal<?=$animal[0]['species_id'];?>" tabindex="-1" aria-labelledby="deleteSpModal<?=$animal[0]['species_id'];?>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-arc-mint-green">
+                                            <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">Supprimer l'espèce ?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-dark">
+                                            Voulez-vous vraiment supprimer l'espèce "<?= $animal[0]['speciesName']; ?>" ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
+                                            <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$animal[0]['species_id'];?>">Supprimer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- end modal -->
+                        <?php endif ?>
                     </div>
                     <div class="offset-md-1 col-md-3">
-                        <?php $imgPath = './assets/ANIMAUX/'.substr_replace($animal[0]['habitatImage'], '', -4).'/'.$animal[0]['speciesImage'].'/';
-                        $randomImgPath = getRandomImageFromFolder($imgPath);?>   
-                        <img src="<?=$randomImgPath?>"  alt="<?=$specie['speciesName']?>" class="img-fluid img-habitat">
+                        <img class="img-fluid img-habitat" src="./uploads/ANIMAUX/SPECIES/<?=$animal[0]['speciesImage'];?>"  alt="<?=$animal[0]['speciesName']?>">
                     </div>
                 </div>
                 <div class="row bg-arc-dark">
@@ -43,9 +63,45 @@ require_once "./templates/header.php";
                         ?>
                         <div class="col-12 col-md-6 pb-3 pe-md-2">
                             <div class="card card-habitat">
-                                <img src="<?='./assets/ANIMAUX/'.substr_replace($ani['habitatImage'], '', -4).'/'.$ani['speciesImage'].'/'.$ani['animalImage']?>" class="card-img-top z-0" alt="<?=$ani['first_name'];?>">                    
+                                <img src="<?='./uploads/ANIMAUX/'.$ani['animalImage']?>" class="card-img-top z-0" alt="<?=$ani['first_name'];?>">                    
                                 <div class="card-body bg-light d-flex flex-column">
                                     <h2><?=$ani['first_name']?></h2>
+
+                                    <?php if(isset($_SESSION) && isset($_SESSION['userRole'])): ?>
+                                    <div class="">
+                                        <a class="btn btn-info" href="<?=BASE_URL?>/animal?species=<?=$animal[0]['species_id'];?>"><i class="bi bi-eye-fill"></i> Voir la fiche détaillée</a></td>
+                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/feedanimal?species=<?=$animal[0]['species_id'];?>"><i class="fa-solid fa-carrot"></i> Nourrir l'animal</a></td>
+                                    <?php if(isset($_SESSION) && $_SESSION['userRole'] == 'admin'): ?>
+                                        <a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$animal[0]['animalId'];?>"><i class="bi bi-pencil"></i> éditer l'animal</a>
+                                        <!-- delete -->
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAniModal<?=$animal[0]['animalId']?>">
+                                            <i class="bi bi-trash-fill"></i> Supprimer l'animal</a>
+                                        </button>
+                                    </div>
+                                    <!-- modal config : warning message before species is deleted -->
+                                    <div class="modal fade" id="deleteAniModal<?=$animal[0]['animalId'];?>" tabindex="-1" aria-labelledby="deleteAniModal<?=$animal[0]['animalId'];?>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-arc-mint-green">
+                                                    <h1 class="modal-title fs-5 text-dark" id="modalLabel">Supprimer l'animal ?</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-dark">
+                                                    Voulez-vous vraiment supprimer l'animal "<?= $animal[0]['first_name']; ?>" ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
+                                                    <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$animal[0]['animalId'];?>">Supprimer</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end modal -->
+                                    <?php endif ?>
+                                    <?php else: ?>
+                                    </div>
+                                    <?php endif ?>
+
                                     <div class="bg-arc-secondary rounded-5 mt-3 p-3">
                                         <h3 class="light-h3"><i class="fa-solid fa-user-doctor"></i> L'avis du vétérinaire</h3>
                                         <ul class="text-light">

@@ -38,10 +38,9 @@ require_once "./templates/header.php";
                         <?php 
                         foreach($species as $num => $specie): ?>
                         
-                        <?php $folderPath = './assets/ANIMAUX/'.substr_replace($habitat[0]['image'], '', -4).'/'.$specie['image'];
-                                $randomImagePath = getRandomImageFromFolder($folderPath);?>                    
+                        <?php $imagePath = './uploads/ANIMAUX/SPECIES/'.$specie['image'];?>                    
                             <div class="col-lg-4 py-3">
-                                <img src="<?=$randomImagePath?>" alt="<?=$specie['name']?>" class="img-fluid img-habitat">
+                                <img src="<?=$imagePath?>" alt="<?=$specie['name']?>" class="img-fluid img-habitat">
                                 <h3 class="fw-normal"><?=$specie['name']?></h3>
                                 <a class="btn btn-arc-dark align-self-center z-1" href="<?=BASE_URL?>/animal?species=<?=$specie['id']?>" type="button">
                                 Consulter

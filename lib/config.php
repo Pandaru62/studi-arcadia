@@ -17,6 +17,7 @@ $error = [
   'habitatnotedited' => 'L\'habitat n\'a pas pu être modifié.',
   'habitatnotdeleted' => 'L\'habitat n\'a pas pu être supprimé.',
   'habitatnotadded' => 'L\'habitat n\'a pas pu être ajouté.',
+  'animalnotdeleted' => 'L\'animal n\'a pas pu être supprimé.',
 
 ];
 
@@ -32,7 +33,9 @@ $sucess = [
   'reviewvalidated' =>  'L\'avis a bien été validé.',
   'habitatedited' => 'L\'habitat a bien été modifié.',
   'habitatdeleted' => 'L\'habitat a bien été supprimé.',
-  'habitatadded' => 'L\'habitat a bien été ajouté.',
+  'habitatadded' => 'L\'habitat a bien été ajouté.', 
+  'animaldeleted' => 'L\'animal a bien été supprimé.',
+
 ];
 
 $mainMenu = [
@@ -87,9 +90,9 @@ $mainMenu = [
           '/addhabitat' => 'Ajouter un habitat',
       ],
       "Animaux" => [
-          '/seeanimals' => 'Voir les animaux',
-          '/insertanimal' => 'Créer un animal',
-          '/editanimal' => 'Modifier un animal',
+          '/seeanimals' => 'Liste des animaux',
+          '/addspecies' => 'Ajouter une espèce',
+          '/addanimal' => 'Ajouter un animal',
           '/seefeeding' => 'Historique d\'alimentation',
           '/seereports' => 'Comptes rendus vétérinaire',
       ],
