@@ -4,7 +4,7 @@ include "Dbh.php";
 
 class Login extends Dbh{
     protected function getUser ($userEmail, $userPassword) {
-        $sql = 'SELECT * 
+        $sql = 'SELECT email, first_name, last_name, password, user.role_id, name, user.id AS userId  
                FROM user
                LEFT JOIN role
                ON user.role_id = role.id
@@ -35,9 +35,7 @@ class Login extends Dbh{
             $_SESSION["userFirstName"] = $user[0]["first_name"];
             $_SESSION["userLastName"] = $user[0]["last_name"];
             $_SESSION["userRole"] = $user[0]["name"];
-            $_SESSION["userFirstName"] = $user[0]["first_name"];
-
-
+            $_SESSION["userId"] = $user[0]["userId"];
 
                     $stmt = null;
         }

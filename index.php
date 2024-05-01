@@ -44,6 +44,7 @@ require_once 'controllers/validateReviewController.php';
 require_once 'controllers/editHabitatController.php';
 require_once 'controllers/SeeAnimalsController.php';
 require_once 'controllers/SeeSpeciesController.php';
+require_once 'controllers/SeeHabitatsCommentsController.php';
 
 
 // Instanciation router 
@@ -88,6 +89,10 @@ $router->addRoute('GET', BASE_URL.'/addanimal', 'SeeAnimalsController', 'addAnim
 $router->addRoute('GET', BASE_URL.'/addspecies', 'SeeSpeciesController', 'addSpec');
 $router->addRoute('GET', BASE_URL.'/editspecie', 'SeeSpeciesController', 'editSpec');
 $router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec');
+
+// Vet
+$router->addRoute('GET', BASE_URL.'/commenthabitat', 'SeeHabitatsCommentsController', 'addHabComment');
+$router->addRoute('GET', BASE_URL.'/seeHabitatComment', 'SeeHabitatsCommentsController', 'seeHabComment');
 
 
 

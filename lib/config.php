@@ -18,6 +18,7 @@ $error = [
   'habitatnotdeleted' => 'L\'habitat n\'a pas pu être supprimé.',
   'habitatnotadded' => 'L\'habitat n\'a pas pu être ajouté.',
   'animalnotdeleted' => 'L\'animal n\'a pas pu être supprimé.',
+  'commentnotadded' => 'Le commentaire n\'a pas pu être ajouté. Veuillez réessayer.'
 
 ];
 
@@ -35,6 +36,7 @@ $sucess = [
   'habitatdeleted' => 'L\'habitat a bien été supprimé.',
   'habitatadded' => 'L\'habitat a bien été ajouté.', 
   'animaldeleted' => 'L\'animal a bien été supprimé.',
+  'commentsent' => 'Le commentaire a été envoyé avec succès.',
 
 ];
 
@@ -63,9 +65,20 @@ $mainMenu = [
           '/services' => 'Services',
           '/contact' => 'Contact',
       ],
-      '/addreport' => 'Comptes rendus animaux',
-      '/habitat' => 'Habitats',
-      '/seefeeding' => 'Alimentation',
+      "Habitats" => [
+        '/habitats' => 'Voir les habitats', 
+        '/commenthabitat' => 'Commenter un habitat',
+        '/seeHabitatComment' => 'Voir les commentaires',
+      ],
+      "Comptes rendus animaux" => [
+        '/addreport' => 'Rédiger un compte rendu',
+        '/seereports' => 'Consulter l\'historique',
+      ],
+      "Animaux & Alimentation" => [
+        '/seeanimals' => 'Liste des animaux',
+        '/seefeeding' => 'Historiques d\'alimentation',
+      ],
+
   ],
   "admin" => [
       '/dashboard' => 'Dashboard',
