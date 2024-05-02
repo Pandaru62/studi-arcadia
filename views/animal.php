@@ -70,7 +70,11 @@ require_once "./templates/header.php";
                                     <?php if(isset($_SESSION) && isset($_SESSION['userRole'])): ?>
                                     <div class="">
                                         <a class="btn btn-info" href="<?=BASE_URL?>/animal?species=<?=$animal[0]['species_id'];?>"><i class="bi bi-eye-fill"></i> Voir la fiche détaillée</a></td>
-                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/feedanimal?species=<?=$animal[0]['species_id'];?>"><i class="fa-solid fa-carrot"></i> Nourrir l'animal</a></td>
+                                        <?php if(($_SESSION['userRole']) !== 'vétérinaire') { ?>
+                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/feeding?id=<?=$animal[0]['animalId'];?>"><i class="fa-solid fa-carrot"></i> Nourrir l'animal</a></td>
+                                        <?php } elseif(($_SESSION['userRole']) !== 'employé') { ?>
+                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/checkupanimal?animal=<?=$animal[0]['animalId'];?>"><i class="fa-solid fa-user-doctor"></i> Ajouter un avis médical</a></td>
+                                        <?php } ?>
                                     <?php if(isset($_SESSION) && $_SESSION['userRole'] == 'admin'): ?>
                                         <a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$animal[0]['animalId'];?>"><i class="bi bi-pencil"></i> éditer l'animal</a>
                                         <!-- delete -->
@@ -97,19 +101,19 @@ require_once "./templates/header.php";
                                         </div>
                                     </div>
                                     <!-- end modal -->
-                                    <?php endif ?>
                                     <?php else: ?>
                                     </div>
                                     <?php endif ?>
+                                    <?php endif ?>
 
                                     <div class="bg-arc-secondary rounded-5 mt-3 p-3">
-                                        <h3 class="light-h3"><i class="fa-solid fa-user-doctor"></i> L'avis du vétérinaire</h3>
+                                        <h3 class="light-h3"><i class="fa-solid fa-user-doctor"></i> Le dernier avis du vétérinaire</h3>
                                         <ul class="text-light">
-                                            <li>Santé : </li>
-                                            <li>Nourriture conseillée : </li>
-                                            <li>Grammage : </li>
-                                            <li>Dernière visite : </li>
-                                            <li>Autres remarques : </li>
+                                            <li><u>Santé</u> : <?=$lastCheckUp[$ani['animalId']]['health'];?></li>
+                                            <li><u>Nourriture conseillée</u> : <?=$lastCheckUp[$ani['animalId']]['food'];?></li>
+                                            <li><u>Grammage</u> : <?=$lastCheckUp[$ani['animalId']]['quantity'];?></li>
+                                            <li><u>Dernière visite</u> : <?=$lastCheckUp[$ani['animalId']]['date'];?></li>
+                                            <li><u>Autres remarques</u> : <?=$lastCheckUp[$ani['animalId']]['opinion'];?></li>
                                         </ul>
                                     </div>
                                     <div class="bg-arc-secondary rounded-5 mt-3 p-3">

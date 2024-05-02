@@ -18,7 +18,8 @@ $error = [
   'habitatnotdeleted' => 'L\'habitat n\'a pas pu être supprimé.',
   'habitatnotadded' => 'L\'habitat n\'a pas pu être ajouté.',
   'animalnotdeleted' => 'L\'animal n\'a pas pu être supprimé.',
-  'commentnotadded' => 'Le commentaire n\'a pas pu être ajouté. Veuillez réessayer.'
+  'commentnotadded' => 'Le commentaire n\'a pas pu être ajouté. Veuillez réessayer.',
+  'checkuperror' => 'Une erreur est survenue, veuillez réessayer.',
 
 ];
 
@@ -37,6 +38,8 @@ $sucess = [
   'habitatadded' => 'L\'habitat a bien été ajouté.', 
   'animaldeleted' => 'L\'animal a bien été supprimé.',
   'commentsent' => 'Le commentaire a été envoyé avec succès.',
+  'checkupadded' => 'Le nouvel avis a bien été ajouté.',
+  'foodrecorded' => 'La nourriture a bien été enregistrée.',
 
 ];
 
@@ -54,7 +57,10 @@ $mainMenu = [
           '/services' => 'Services',
           '/contact' => 'Contact',
       ],
+      "Animaux & Nourriture" => [
+      '/seeanimals' => 'Liste des animaux',
       '/feeding' => 'Nourrir un animal',
+      ],
       '/services' => 'Gérer les services',
       '/seereviews' => 'Avis des visiteurs',
   ],
@@ -71,8 +77,8 @@ $mainMenu = [
         '/seeHabitatComment' => 'Voir les commentaires',
       ],
       "Comptes rendus animaux" => [
-        '/addreport' => 'Rédiger un compte rendu',
-        '/seereports' => 'Consulter l\'historique',
+        '/checkupanimal' => 'Rédiger un compte rendu',
+        '/seecheckup' => 'Consulter l\'historique',
       ],
       "Animaux & Alimentation" => [
         '/seeanimals' => 'Liste des animaux',
@@ -82,12 +88,6 @@ $mainMenu = [
   ],
   "admin" => [
       '/dashboard' => 'Dashboard',
-      // "Vue visiteur" => [
-      //     '/' => 'Accueil', 
-      //     '/habitats' => 'Habitats',
-      //     '/services' => 'Services',
-      //     '/contact' => 'Contact',
-      // ],
       "Comptes" => [
           '/showaccounts' => 'Voir les utilisateurs',
           '/signup' => 'Ajouter un compte',

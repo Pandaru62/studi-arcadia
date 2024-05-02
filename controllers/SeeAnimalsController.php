@@ -4,7 +4,7 @@
 class SeeAnimalsController extends Animals {
     use getHabitats;
     public function seeAnimals() {
-        if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
+        if (!isset($_SESSION['userRole'])) {
             header("Location: ".BASE_URL);
         } elseif(!isset($_GET['id'])) {
             $animals = $this->getAllAnimals();

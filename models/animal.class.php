@@ -2,30 +2,7 @@
 
 require_once('Dbh.php');
 
-class Animals extends Dbh {
-
-    private $speciesId;
-
-    public function __construct($speciesId = null) {
-        $this->speciesId = $speciesId;
-    }
-    
-    public function getAnimalsBySpecies(int $id) {
-        $sql = 'SELECT habitats.image AS habitatImage, habitats.name AS habitatName, animals.id AS animalId, first_name, species_id, animals.image AS animalImage, species.image AS speciesImage, species.name AS speciesName
-        FROM animals 
-        LEFT JOIN species 
-        ON animals.species_id = species.id
-        LEFT JOIN habitats
-        ON species.habitat_id = habitats.id
-        WHERE species_id = :id';
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        $results = $stmt->fetchAll();
-        return $results;
-    }
-
+trait getAllAnimals {
     protected function getAllAnimals(int $id = null) {
         if($id == null) {
         $sql = 'SELECT habitats.image AS habitatImage, habitats.name AS habitatName, animals.id AS animalId, first_name, species_id, animals.image AS animalImage, species.image AS speciesImage, species.name AS speciesName
@@ -53,6 +30,33 @@ class Animals extends Dbh {
         $allAnimals = $stmt->fetchAll();
         return $allAnimals;
     }
+}
+class Animals extends Dbh {
+    use getAllAnimals;
+
+    private $speciesId;
+
+    public function __construct($speciesId = null) {
+        $this->speciesId = $speciesId;
+    }
+    
+    public function getAnimalsBySpecies(int $id) {
+        $sql = 'SELECT habitats.image AS habitatImage, habitats.name AS habitatName, animals.id AS animalId, first_name, species_id, animals.image AS animalImage, species.image AS speciesImage, species.name AS speciesName
+        FROM animals 
+        LEFT JOIN species 
+        ON animals.species_id = species.id
+        LEFT JOIN habitats
+        ON species.habitat_id = habitats.id
+        WHERE species_id = :id';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll();
+        return $results;
+    }
+
+
 
     protected function getAllSpecies() {
         $sql = 'SELECT species.*, COUNT(animals.species_id) AS animal_count 

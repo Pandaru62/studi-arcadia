@@ -45,6 +45,8 @@ require_once 'controllers/editHabitatController.php';
 require_once 'controllers/SeeAnimalsController.php';
 require_once 'controllers/SeeSpeciesController.php';
 require_once 'controllers/SeeHabitatsCommentsController.php';
+require_once 'controllers/VetCheckUpController.php';
+require_once 'controllers/FeedingPageController.php';
 
 
 // Instanciation router 
@@ -58,7 +60,7 @@ $router->addRoute('GET', BASE_URL.'/contact', 'ContactController', 'contact');
 $router->addRoute('GET', BASE_URL.'/login', 'LoginController', 'login');
 $router->addRoute('GET', BASE_URL.'/logout', 'LogoutController', 'logout');
 $router->addRoute('GET', BASE_URL.'/showHabitat', 'ShowHabitatController', 'showHabitat');
-$router->addRoute('GET', BASE_URL.'/animal', 'FeedingController', 'showFeeding');
+$router->addRoute('GET', BASE_URL.'/animal', 'FeedingController', 'showAnimalPage');
 $router->addRoute('GET', BASE_URL.'/review', 'ReviewController', 'review');
 $router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPage');
 
@@ -93,6 +95,11 @@ $router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'del
 // Vet
 $router->addRoute('GET', BASE_URL.'/commenthabitat', 'SeeHabitatsCommentsController', 'addHabComment');
 $router->addRoute('GET', BASE_URL.'/seeHabitatComment', 'SeeHabitatsCommentsController', 'seeHabComment');
+$router->addRoute('GET', BASE_URL.'/checkupanimal', 'VetCheckUpController', 'addCheckUp');
+$router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeCheckUp');
+
+$router->addRoute('GET', BASE_URL.'/feeding', 'FeedingPageController', 'feedAnimal');
+
 
 
 

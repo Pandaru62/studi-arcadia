@@ -6,23 +6,9 @@ require_once "./templates/header.php"; ?>
 
     <section id="seereviews">
 
-        <div class="row bg-arc-mint-green py-3 my-5">
+        <div class="row bg-arc-mint-green py-3 mb-5">
             <div class="col">
                 <h2>Les avis de nos visiteurs</h2>
-                <?php if(isset($_GET['success'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-success" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                        </div>
-                    </div>
-                <?php } else if(isset($_GET['error'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-danger" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['error']]; ?>
-                        </div>
-                    </div>
-                <?php } ?>
-
 
 <div class="row g-0 px-5">
     <div class="table-responsive">

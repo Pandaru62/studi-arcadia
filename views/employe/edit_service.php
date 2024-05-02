@@ -9,22 +9,9 @@ require_once "./templates/header.php"; ?>
 
     <section id="signup">
 
-        <div class="row bg-arc-mint-green py-3 my-5">
+        <div class="row bg-arc-mint-green py-3 my-3">
             <div class="col-md-8">
                 <h2>Editer un service</h2>
-                <?php if(isset($_GET['success'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-success" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                        </div>
-                    </div>
-                <?php } else if(isset($_GET['error'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-danger" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['error']]; ?>
-                        </div>
-                    </div>
-                <?php } ?>
 
                 <form method="POST" enctype="multipart/form-data" action="./views/editserviceprocess.php">
                     <div class="mb-3">

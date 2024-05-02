@@ -17,3 +17,4 @@ hideFieldRadio.addEventListener('change', () => {
         fieldContainer.style.display = 'none';
     }
 });
+

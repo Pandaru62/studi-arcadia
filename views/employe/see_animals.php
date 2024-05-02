@@ -105,7 +105,7 @@ require_once "./templates/header.php"; ?>
                                 <td><?=$animal['first_name']?></td>
                                 <td><a class="" href="<?=BASE_URL?>/animal?species=<?=$animal['species_id'];?>"><?=$animal['speciesName']?></a></td>
                                 <td><a class="btn btn-info" href="<?=BASE_URL?>/animal?species=<?=$animal['species_id'];?>"><i class="bi bi-eye-fill"></i></a></td>
-                                <td><a class="btn btn-arc-dark" href="<?=BASE_URL?>/feedanimal?species=<?=$animal['species_id'];?>"><i class="fa-solid fa-carrot"></i></a></td>
+                                <td><a class="btn btn-arc-dark" href="<?=BASE_URL?>/feeding?id=<?=$animal['animalId'];?>"><i class="fa-solid fa-carrot"></i></a></td>
                                 <!-- edit -->
                                 <td><a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$animal['animalId'];?>"><i class="bi bi-pencil"></i></a></td>
                                 <td> <!-- delete -->
