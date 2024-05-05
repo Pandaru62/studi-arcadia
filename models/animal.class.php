@@ -11,7 +11,7 @@ trait getAllAnimals {
         ON animals.species_id = species.id
         LEFT JOIN habitats
         ON species.habitat_id = habitats.id
-        ORDER BY speciesName';
+        ORDER BY first_name';
         } else {
         $sql = 'SELECT habitats.image AS habitatImage, habitats.name AS habitatName, animals.id AS animalId, first_name, species_id, animals.image AS animalImage, species.image AS speciesImage, species.name AS speciesName
         FROM animals 

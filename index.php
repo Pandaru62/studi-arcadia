@@ -47,6 +47,8 @@ require_once 'controllers/SeeHabitatsCommentsController.php';
 require_once 'controllers/VetCheckUpController.php';
 require_once 'controllers/FeedingPageController.php';
 require_once 'controllers/AnimalDetailsController.php';
+require_once 'controllers/SeeFeedingController.php';
+
 
 // Instanciation router 
 
@@ -96,7 +98,7 @@ $router->addRoute('GET', BASE_URL.'/dashboard', 'DashboardController', 'showDash
 $router->addRoute('GET', BASE_URL.'/commenthabitat', 'SeeHabitatsCommentsController', 'addHabComment');
 $router->addRoute('GET', BASE_URL.'/seeHabitatComment', 'SeeHabitatsCommentsController', 'seeHabComment');
 $router->addRoute('GET', BASE_URL.'/checkupanimal', 'VetCheckUpController', 'addCheckUp');
-$router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeCheckUp'); // à voir
+$router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeCheckUp');
 
 $router->addRoute('GET', BASE_URL.'/feeding', 'FeedingPageController', 'feedAnimal');
 $router->addRoute('GET', BASE_URL.'/show', 'AnimalDetailsController', 'showAnimal');

@@ -1,26 +1,10 @@
 <?php
-// Redirects to the check up view for vets
 
-require_once "./models/animal.class.php";
-require_once "./models/checkup.class.php";
-
-
-class VetCheckUpController extends CheckUp {
+class SeeFeedingController extends Feeding {
     use getAllAnimals;
-    public function addCheckUp() { 
-        if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin' || $_SESSION['userRole'] == 'vétérinaire') {
-            if(isset($_GET['animal'])) {
-                $animalCheckId = $_GET['animal'];
-            }
-        $animals = $this->getAllAnimals();
-        require_once './views/vet/addCheckUpForm.php';
-        } 
-        else {
-            header("Location: ".BASE_URL);
-        }
-    }
+    
+    public function seeFeeding() {
 
-    public function seeCheckUp() { 
         function formatDate($dateString) {
             $date = DateTime::createFromFormat('Y-m-d', $dateString);
             if ($date !== false) {
@@ -31,20 +15,24 @@ class VetCheckUpController extends CheckUp {
             }
         }
 
-        if (isset($_SESSION['userRole'])) {
-            // when a user is logged in
 
+
+        if (isset($_SESSION['userRole'])) {
             // retrieve the names of the animals for the select in the search bar
+
             $animals = $this->getAllAnimals();
+
+
 
             // default values
             $currentPage = 1;
             $currentOffset = 0;
             $filter = "none";
             $sort = "datenew";
+
             if(!isset($_GET['pp']) || !isset($_GET['sort']) || !isset($_GET['filter'])) { 
                 // sends default values if there's a missing GET argument
-                header("Location: ".BASE_URL."/seecheckup?filter=".$filter."&sort=".$sort."&pp=".$currentPage);
+                header("Location: ".BASE_URL."/seefeeding?filter=".$filter."&sort=".$sort."&pp=".$currentPage);
 
             } else { // if pp,sort, and filter are correctly given
 
@@ -74,17 +62,17 @@ class VetCheckUpController extends CheckUp {
 
                 $limit = 20;
                 if($filter == 'none') { 
-                    $numberCheckUp = $this->countAllCheckUp();
+                    $numberFeeding = $this->countAllFeeding();
                 } else {
-                    $numberCheckUp = $this->countFilteredCheckUp($sort, $filter, $id);
+                    $numberFeeding = $this->countFilteredFeeding($sort, $filter, $id);
                 }
 
-                if ($numberCheckUp % $limit === 0) {
-                    $pagesNumber = ($numberCheckUp/$limit);
-                } elseif($numberCheckUp < $limit) {
+                if ($numberFeeding % $limit === 0) {
+                    $pagesNumber = ($numberFeeding/$limit);
+                } elseif($numberFeeding < $limit) {
                     $pagesNumber = 1;
                 } else {
-                    $pagesNumber = ceil($numberCheckUp/$limit);
+                    $pagesNumber = ceil($numberFeeding/$limit);
                 }
                 
                 // set up page and offset with a 20 limit / page
@@ -98,7 +86,7 @@ class VetCheckUpController extends CheckUp {
                     }
                 } else {
                     // if page doesn't exist => default values
-                    header("Location: ".BASE_URL."/seecheckup?filter=none&sort=datenew&pp=1");
+                    header("Location: ".BASE_URL."/seefeeding?filter=none&sort=datenew&pp=1");
                 }
 
                 // adapting the pages
@@ -106,28 +94,31 @@ class VetCheckUpController extends CheckUp {
                 $nextPage = $currentPage +1;
 
                 if($filter == 'none') {
-                    $checkUps = $this->getAllCheckUp($limit, $currentOffset, $sort);
+                    $feedings = $this->getAllFeeding($limit, $currentOffset, $sort);
                 } else {
-                    $checkUps = $this->getCheckUpFiltered($limit, $currentOffset, $sort, $filter, $id);
+                    $feedings = $this->getFeedingFiltered($limit, $currentOffset, $sort, $filter, $id);
                 }
 
-                // format dates
-                
-                foreach($checkUps as $key => $checkUp) {
-                    $checkUps[$key]['date'] = formatDate($checkUp['date']);
+                 // format dates
+            
+                foreach($feedings as $key => $feeding) {
+                    $feedings[$key]['date'] = formatDate($feeding['date']);
                 }
 
-                require_once './views/seecheckup.php';
-                return $checkUps;
-                
+        
+                require_once "./views/vet/seefeedingdetails.php";
+                return $feeding;
+
+            } // end if pp / sort / filters
+
+        } else { // if user not logged in
+            header("Location: ".BASE_URL);
+        }
+
+    }  // end function
+
+} // end of class
+    
+        
+
             
-            }    // end if there's pp, filter, and sort
-            
-        } else { // if it's not a user
-                header("Location: ".BASE_URL);
-            }
-
-    } // end seeCheckUp
-
-
-}// end of class

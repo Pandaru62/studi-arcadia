@@ -113,7 +113,7 @@ $mainMenu = [
           '/seefeeding' => 'Historique d\'alimentation',
           '/seecheckup' => 'Comptes rendus vétérinaire',
       ],
-      '/seereviews' => 'Avis visiteurs',
+      '/review' => 'Avis visiteurs',
   ],
 ];
   function checkRole($role) {
