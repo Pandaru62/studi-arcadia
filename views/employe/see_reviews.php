@@ -27,9 +27,9 @@ require_once "./templates/header.php"; ?>
                     <td><?=$review['pseudo']?></td>
                     <td><?=$review['message']?></td>
                     <td><?php if($review['isChecked'] === 1) {?>
-                    <button class="btn btn-arc-dark" href="<?=BASE_URL?>/validatereview?id=<?=$review['id'];?>" disabled><i class="bi bi-check-circle-fill"></i></button></td>
+                    <button class="btn btn-arc-dark" href="#" disabled><i class="bi bi-check-circle-fill"></i></button>
                     <?php } else { ?>
-                    <button class="btn btn-arc-dark" href="<?=BASE_URL?>/validatereview?id=<?=$review['id'];?>"><i class="bi bi-check-circle-fill"></i></button></td>
+                    <a class="btn btn-arc-dark" href="<?= BASE_URL ?>/validatereview?id=<?= $review['id'];?>"><i class="bi bi-check-circle-fill"></i></a>
                         <?php } ?>
                     </td>
                     <td>

@@ -21,6 +21,17 @@ require_once "./templates/header.php";
             <div class="col-md-8">
                 <h1 class="text-light text-center pb-2"><?= $habitat[0]['name']?></h1>
                 <p class="py-3"><?= $habitat[0]['description']?></p>
+                <div>
+                    <?php if(isset($_SESSION) && isset($_SESSION['userRole']) && !empty($lastComments)){ ?>
+                    <div class="card d-flex">
+                        <h5 class="card-header bg-arc-mint-green">Dernier commentaire sur l'état de l'habitat</h5>
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $lastComments[0]['first_name']. ' ' .$lastComments[0]['last_name'];?> a écrit :</h5>
+                            <p class="card-text"><?= $lastComments[0]['comment']; ?></p>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
             </div>
             <div class="col-md-4">
                 <img src="./uploads/habitats/<?=$habitat[0]['image'];?>" class="img-fluid img-habitat">

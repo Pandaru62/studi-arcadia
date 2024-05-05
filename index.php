@@ -38,7 +38,6 @@ require_once 'controllers/OpeningTimeController.php';
 require_once 'controllers/editServiceController.php';
 require_once 'controllers/addServicesController.php';
 require_once 'controllers/DeleteServiceController.php';
-require_once 'controllers/seeReviewsController.php';
 require_once 'controllers/deleteReviewController.php';
 require_once 'controllers/validateReviewController.php';
 require_once 'controllers/editHabitatController.php';
@@ -47,7 +46,7 @@ require_once 'controllers/SeeSpeciesController.php';
 require_once 'controllers/SeeHabitatsCommentsController.php';
 require_once 'controllers/VetCheckUpController.php';
 require_once 'controllers/FeedingPageController.php';
-
+require_once 'controllers/AnimalDetailsController.php';
 
 // Instanciation router 
 
@@ -75,7 +74,6 @@ $router->addRoute('GET', BASE_URL.'/editservice', 'editServiceController', 'edit
 $router->addRoute('GET', BASE_URL.'/addservice', 'addServicesController', 'addService');
 $router->addRoute('GET', BASE_URL.'/deleteservice', 'deleteServiceController', 'deleteServ');
 
-$router->addRoute('GET', BASE_URL.'/seereviews', 'seeReviewsController', 'seeReviews');
 $router->addRoute('GET', BASE_URL.'/deletereview', 'deleteReviewController', 'deleteRev');
 $router->addRoute('GET', BASE_URL.'/validatereview', 'ValidateReviewController', 'validateRev');
 
@@ -91,15 +89,18 @@ $router->addRoute('GET', BASE_URL.'/addanimal', 'SeeAnimalsController', 'addAnim
 $router->addRoute('GET', BASE_URL.'/addspecies', 'SeeSpeciesController', 'addSpec');
 $router->addRoute('GET', BASE_URL.'/editspecie', 'SeeSpeciesController', 'editSpec');
 $router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec');
+$router->addRoute('GET', BASE_URL.'/dashboard', 'DashboardController', 'showDashboard');
+
 
 // Vet
 $router->addRoute('GET', BASE_URL.'/commenthabitat', 'SeeHabitatsCommentsController', 'addHabComment');
 $router->addRoute('GET', BASE_URL.'/seeHabitatComment', 'SeeHabitatsCommentsController', 'seeHabComment');
 $router->addRoute('GET', BASE_URL.'/checkupanimal', 'VetCheckUpController', 'addCheckUp');
-$router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeCheckUp');
+$router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeCheckUp'); // à voir
 
 $router->addRoute('GET', BASE_URL.'/feeding', 'FeedingPageController', 'feedAnimal');
-
+$router->addRoute('GET', BASE_URL.'/show', 'AnimalDetailsController', 'showAnimal');
+$router->addRoute('GET', BASE_URL.'/seefeeding', 'SeeFeedingController', 'seeFeeding'); // à voir
 
 
 

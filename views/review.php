@@ -1,6 +1,9 @@
 <?php 
 require_once "templates/header.php";
+
+if(!isset($_SESSION['$userEmail'])) {
 ?>
+
 
 <div class="container my-md-4 py-3">
     <section id="contact_top">
@@ -11,12 +14,35 @@ require_once "templates/header.php";
         <div class="row text-center pt-md-3 bg-arc-dark text-light">
             <div class="col-md-8">
                 <h1 class="text-light text-center pb-2">Ajouter un avis</h1>
-                <p class="py-3">Vos avis nous intéressent : notre équipe consulte régulièrement vos messages afin de nous améliorer.</p>
+                <p class="py-3">Vos avis nous intéressent : notre équipe consulte régulièrement vos messages afin de nous améliorer.<br> Voici nos derniers avis reçus.</p>
+
+                <div id="carouselReviews" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php $first = true; ?>
+                        <?php foreach($lastCheckedReviews as $lastCheckedReview): ?>
+                            <div class="carousel-item <?php echo $first ? 'active' : ''; ?>">
+                                <?php $first = false; ?>
+                                <div class="card">
+                                    <div class="card-header bg-arc-primary text-light d-flex justify-content-between align-items-center">
+                                        <i class="fa-regular fa-user"></i>
+                                        <span>@<?=$lastCheckedReview["pseudo"];?></span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">"<?=$lastCheckedReview["message"];?>"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
             </div>
             <div class="offset-md-1 col-md-3">
                 <img src="assets/leaf.svg" class="img-fluid d-none d-md-block" style="opacity: 70%; height: 80%">
             </div>
+
+
         </div>
+
         <div class="row bg-arc-dark">
             <div class="col rect-lower-effect"></div>
         </div>
@@ -64,5 +90,7 @@ require_once "templates/header.php";
     </section>
 
 </div>
+
+<?php } ?>
 
 <?php require_once "templates/footer.php"; ?>

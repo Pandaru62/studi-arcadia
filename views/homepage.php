@@ -62,7 +62,7 @@ $title = "Zoo d'Arcadia";
         <div class="row text-center py-3 bg-arc-dark text-light">
             <div id="top-animal" class="col-md-8 py-3">
                 <figure class="figure">
-                    <img src="assets/ANIMAUX/JUNGLE/panda-4836503_1920.jpg" alt="Panda roux" class="img-top-animal img-fluid">
+                    <img src="assets/panda-4836503_1920.jpg" alt="Panda roux" class="img-top-animal img-fluid">
                     <figcaption class="figure-caption">Partez à la rencontre de nos pandas roux.</figcaption>
                 </figure>
             </div>

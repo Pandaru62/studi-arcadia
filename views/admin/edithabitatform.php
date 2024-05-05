@@ -21,7 +21,7 @@
                     </div>
                 <?php } ?>
 
-                <form method="POST" enctype="multipart/form-data" action="./views/edithabitatprocess.php">
+<form method="POST" enctype="multipart/form-data" action="./views/edithabitatprocess.php">
     <div class="mb-3">
         <input type="hidden" class="form-control" id="habitatId" name="habitatId" value="<?=$editedHabitat[0]['id']?>">
         <input type="hidden" class="form-control" id="currentImage" name="currentImage" value="<?=$editedHabitat[0]['image']?>">

@@ -95,8 +95,10 @@ require_once "./templates/header.php"; ?>
                                 <td>Espèce</td>
                                 <td>Consulter</td>
                                 <td>Nourrir</td>
+                                <?php if($_SESSION['userRole'] == 'admin') { ?>
                                 <td>Editer</td>
                                 <td>Supprimer</td>
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,9 +106,10 @@ require_once "./templates/header.php"; ?>
                             <tr class="text-center alianign-middle">
                                 <td><?=$animal['first_name']?></td>
                                 <td><a class="" href="<?=BASE_URL?>/animal?species=<?=$animal['species_id'];?>"><?=$animal['speciesName']?></a></td>
-                                <td><a class="btn btn-info" href="<?=BASE_URL?>/animal?species=<?=$animal['species_id'];?>"><i class="bi bi-eye-fill"></i></a></td>
+                                <td><a class="btn btn-info" href="<?=BASE_URL?>/show?animal=<?=$animal[0]['animalId'];?>"><i class="bi bi-eye-fill"></i></a></td>
                                 <td><a class="btn btn-arc-dark" href="<?=BASE_URL?>/feeding?id=<?=$animal['animalId'];?>"><i class="fa-solid fa-carrot"></i></a></td>
                                 <!-- edit -->
+                                <?php if($_SESSION['userRole'] == 'admin') { ?>
                                 <td><a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$animal['animalId'];?>"><i class="bi bi-pencil"></i></a></td>
                                 <td> <!-- delete -->
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?=$animal['animalId'];?>">
@@ -132,6 +135,7 @@ require_once "./templates/header.php"; ?>
                                     </div>
                                     <!-- end modal -->
                                 </td>
+                                <?php } ?>
                             </tr>
                         <?php endforeach ?>
                         </tbody>

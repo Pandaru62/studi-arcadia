@@ -61,8 +61,12 @@ $mainMenu = [
       '/seeanimals' => 'Liste des animaux',
       '/feeding' => 'Nourrir un animal',
       ],
+      "Habitats" => [
+        '/habitats' => 'Voir les habitats', 
+        '/seeHabitatComment' => 'Voir les commentaires',
+      ],
       '/services' => 'Gérer les services',
-      '/seereviews' => 'Avis des visiteurs',
+      '/review' => 'Avis des visiteurs',
   ],
   "vétérinaire" => [
       "Vue visiteur" => [
@@ -107,7 +111,7 @@ $mainMenu = [
           '/addspecies' => 'Ajouter une espèce',
           '/addanimal' => 'Ajouter un animal',
           '/seefeeding' => 'Historique d\'alimentation',
-          '/seereports' => 'Comptes rendus vétérinaire',
+          '/seecheckup' => 'Comptes rendus vétérinaire',
       ],
       '/seereviews' => 'Avis visiteurs',
   ],

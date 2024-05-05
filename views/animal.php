@@ -54,6 +54,8 @@ require_once "./templates/header.php";
 
             </section>
 
+
+
             <section id="habitats">
                 <div class="row bg-arc-mint-green py-3">
                         <h2>Nos pensionnaires</h2>
@@ -69,21 +71,21 @@ require_once "./templates/header.php";
 
                                     <?php if(isset($_SESSION) && isset($_SESSION['userRole'])): ?>
                                     <div class="">
-                                        <a class="btn btn-info" href="<?=BASE_URL?>/animal?species=<?=$animal[0]['species_id'];?>"><i class="bi bi-eye-fill"></i> Voir la fiche détaillée</a></td>
+                                        <a class="btn btn-info" href="<?=BASE_URL?>/show?animal=<?=$ani['animalId'];?>"><i class="bi bi-eye-fill"></i> Voir la fiche détaillée</a></td>
                                         <?php if(($_SESSION['userRole']) !== 'vétérinaire') { ?>
-                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/feeding?id=<?=$animal[0]['animalId'];?>"><i class="fa-solid fa-carrot"></i> Nourrir l'animal</a></td>
+                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/feeding?id=<?=$ani['animalId'];?>"><i class="fa-solid fa-carrot"></i> Nourrir l'animal</a></td>
                                         <?php } elseif(($_SESSION['userRole']) !== 'employé') { ?>
-                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/checkupanimal?animal=<?=$animal[0]['animalId'];?>"><i class="fa-solid fa-user-doctor"></i> Ajouter un avis médical</a></td>
+                                        <a class="btn btn-arc-dark" href="<?=BASE_URL?>/checkupanimal?animal=<?=$an['animalId'];?>"><i class="fa-solid fa-user-doctor"></i> Ajouter un avis médical</a></td>
                                         <?php } ?>
                                     <?php if(isset($_SESSION) && $_SESSION['userRole'] == 'admin'): ?>
-                                        <a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$animal[0]['animalId'];?>"><i class="bi bi-pencil"></i> éditer l'animal</a>
+                                        <a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$ani['animalId'];?>"><i class="bi bi-pencil"></i> éditer l'animal</a>
                                         <!-- delete -->
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAniModal<?=$animal[0]['animalId']?>">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAniModal<?=$ani['animalId']?>">
                                             <i class="bi bi-trash-fill"></i> Supprimer l'animal</a>
                                         </button>
                                     </div>
                                     <!-- modal config : warning message before species is deleted -->
-                                    <div class="modal fade" id="deleteAniModal<?=$animal[0]['animalId'];?>" tabindex="-1" aria-labelledby="deleteAniModal<?=$animal[0]['animalId'];?>" aria-hidden="true">
+                                    <div class="modal fade" id="deleteAniModal<?=$ani['animalId'];?>" tabindex="-1" aria-labelledby="deleteAniModal<?=$ani['animalId'];?>" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header bg-arc-mint-green">
@@ -91,11 +93,11 @@ require_once "./templates/header.php";
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-dark">
-                                                    Voulez-vous vraiment supprimer l'animal "<?= $animal[0]['first_name']; ?>" ?
+                                                    Voulez-vous vraiment supprimer l'animal "<?= $ani['first_name']; ?>" ?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                    <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$animal[0]['animalId'];?>">Supprimer</a>
+                                                    <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$ani['animalId'];?>">Supprimer</a>
                                                 </div>
                                             </div>
                                         </div>
