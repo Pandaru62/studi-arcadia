@@ -40,6 +40,7 @@ $sucess = [
   'commentsent' => 'Le commentaire a été envoyé avec succès.',
   'checkupadded' => 'Le nouvel avis a bien été ajouté.',
   'foodrecorded' => 'La nourriture a bien été enregistrée.',
+  'emailsent' => 'Votre email a bien été envoyé. Nous vous répondrons le plus rapidement possible.',
 
 ];
 

@@ -17,7 +17,7 @@ require_once "./templates/header.php";
                     </div>
                 <?php } ?>
 
-                <form method="POST" enctype="multipart/form-data" action="./views/signup.php">
+                <form method="POST" enctype="multipart/form-data" action="./views/signupProcess.php">
                     <div class="mb-3">
                         <label for="userLastName" class="form-label">Nom de famille :</label>
                         <input required type="text" class="form-control" id="userLastName" name="userLastName" placeholder="ex. Doe">

@@ -30,6 +30,18 @@ trait getAllAnimals {
         $allAnimals = $stmt->fetchAll();
         return $allAnimals;
     }
+
+    protected function getAllSpecies() {
+        $sql = 'SELECT species.*, COUNT(animals.species_id) AS animal_count 
+                FROM species 
+                LEFT JOIN animals ON species.id = animals.species_id 
+                GROUP BY species.id';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        
+        $allSpecies = $stmt->fetchAll();
+        return $allSpecies;
+    }
 }
 class Animals extends Dbh {
     use getAllAnimals;

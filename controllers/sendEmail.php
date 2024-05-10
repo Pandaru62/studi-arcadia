@@ -1,17 +1,20 @@
 <?php 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST["contactTitle"];
+require "../PHPMailer/script.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ContactForm'])) {
+    if(empty($_POST["contactTitle"]) || empty($_POST["contactEmail"]) || empty($_POST["contactMessage"])) {
+        header("Location: /studi-arcadia/contact?error=emptyimput");
+        exit();
+    } else {
+    $subject = $_POST["contactTitle"];
     $email = $_POST["contactEmail"];
     $message = $_POST["contactMessage"];
 
-    $to = "loris.buchelet@gmail.com";
-    $subject = "Arcadia - Nouveau message depuis le site";
-    $body = "Title: $title\nEmail: $email\n\n$message";
+    $response = sendContactFormMail($email, $subject, $message);
+        header("Location: /studi-arcadia/contact?success=emailsent");
 
-    // Send email
-    if (mail($to, $subject, $body)) {
-        echo "Votre message a été envoyé avec succès!";
-    } else {
-        echo "Erreur lors de l'envoi du mail. Merci de réessayer.";
+        exit();
     }
+
 }
+

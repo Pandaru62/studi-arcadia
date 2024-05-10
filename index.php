@@ -10,6 +10,7 @@ define("BASE_URL", '/studi-arcadia');
 define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
 define('_MENU_PATH_', './src/controllers/');
 
+require_once __DIR__ . '/vendor/autoload.php';
 // $habitats = [
 //     "Marais", "Jungle", "Savane"
 // ];
@@ -48,7 +49,7 @@ require_once 'controllers/VetCheckUpController.php';
 require_once 'controllers/FeedingPageController.php';
 require_once 'controllers/AnimalDetailsController.php';
 require_once 'controllers/SeeFeedingController.php';
-
+require_once 'controllers/DashboardController.php';
 
 // Instanciation router 
 

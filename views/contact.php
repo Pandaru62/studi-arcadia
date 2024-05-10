@@ -31,7 +31,7 @@ require_once "templates/header.php";
             <form method="POST" enctype="multipart/form-data" action="./controllers/sendEmail.php">
                 <div class="mb-3">
                     <label for="contactTitle" class="form-label">Titre du message :</label>
-                    <input type="text" class="form-control" id="contactTitle" name="contactTitle" placeholder="Votre pseudo">
+                    <input required type="text" class="form-control" id="contactTitle" name="contactTitle" placeholder="ex. Réclamation">
                 </div>
                 <div class="mb-3">
                     <label for="contactMessage" class="form-label">Votre message :</label>
@@ -39,7 +39,7 @@ require_once "templates/header.php";
                 </div>
                 <div class="mb-3">
                     <label for="contactEmail" class="form-label">Votre adresse e-mail :</label>
-                    <input type="email" class="form-control" id="contactEmail" name="contactEmail" placeholder="Votre pseudo">
+                    <input required type="email" class="form-control" id="contactEmail" name="contactEmail" placeholder="ex : moi@email.com">
                 </div>
                 
                 <input class="btn btn-arc-dark" name="ContactForm" type="submit" value="Envoyer ce message"></input>
