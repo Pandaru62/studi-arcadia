@@ -1,4 +1,5 @@
 <?php 
+
 require_once "templates/header.php";
 
 if(!isset($_SESSION['$userEmail'])) {
@@ -52,35 +53,16 @@ if(!isset($_SESSION['$userEmail'])) {
 
         <div class="row bg-arc-mint-green py-3">
 
-        <div class="my-3">
-            <?php 
-            if (isset($_GET['sent']) && $_GET['sent'] == 'true') {
-            ?>
-                <div class="alert alert-success" role="alert">
-                    <i class="fa-solid fa-check"></i> Votre message a bien été envoyé.
-                </div>
-            <?php 
-            } else if (isset($_GET['sent']) && $_GET['sent'] == 'false') {
-            ?>
-                <div class="alert alert-danger" role="alert">
-                    <i class="fa-solid fa-triangle-exclamation"></i> Une erreur s'est produite. Veuillez réessayer.
-                </div>
-            <?php 
-            }
-            ?>
-
-        </div>
-
             <h2><i class="bi bi-pencil-square"></i> Votre message</h2>
 
             <form method="POST" enctype="multipart/form-data" action="./controllers/ProcessContactForm.php">
                 <div class="mb-3">
                     <label for="visitorPseudo" class="form-label">Pseudo :</label>
-                    <input type="text" class="form-control" id="visitorPseudo" name="visitorPseudo" placeholder="Votre pseudo">
+                    <input required type="text" class="form-control" id="visitorPseudo" name="visitorPseudo" placeholder="Votre pseudo">
                 </div>
                 <div class="mb-3">
                     <label for="visitorReview" class="form-label">Avis :</label>
-                    <textarea class="form-control" id="visitorReview" name="visitorReview" rows="3">Donnez votre avis</textarea>
+                    <textarea required class="form-control" id="visitorReview" name="visitorReview" rows="3"></textarea>
                 </div>
                 
                 <input class="btn btn-arc-dark" name="ContactForm" type="submit" value="Envoyer ce message"></input>

@@ -4,14 +4,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once "./templates/header.php";
-
-$title = "Zoo d'Arcadia";
 ?>
-<div class="container mb-4 py-3">
+
+<div class="container-lg mb-4 py-3">
         <!-- Carousel -->
-
-    <?php include_once("./templates/carousel.php"); ?>
-
+    <div class="d-flex d-md-block justify-content-center">
+        <?php include_once("./templates/carousel.php"); ?>
+    </div>
     <section id="welcome" class="mt-3">
 
         <div class="row">
@@ -85,21 +84,26 @@ $title = "Zoo d'Arcadia";
                     <h2>Nos services</h2>
                     <p>Savourez votre journée en compagnie des animaux : nos employés sont aux petits soins pour vous proposer des services qui rendront votre expérience unique.</p>
 
-                    <div class="row text-center align-items-center g-0 d-none d-md-flex">
+                    <div class="row text-center align-items-center g-0 d-none d-lg-flex">
                     <?php 
                     foreach($services as $key => $service): ?>                    
                         <div class="col-lg-4 py-3">
                             <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
-                        <h3 class="fw-normal"><?=$service['name'];?></h2>
+                        <h3 class="fw-normal"><?=$service['name'];?></h3>
                         </div>
                     <?php endforeach ?>
                     
                     </div>
-                    <div id="carouselExampleAutoplaying" class="carousel slide d-md-none" data-bs-ride="carousel">
+                    
+                        <!-- Carousel on smaller screens -->
+                    <div id="carouselExampleAutoplaying" class="carousel slide d-lg-none" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php foreach($services as $key => $service): ?>
-                            <div class="carousel-item <?php if($key==1){echo "active";} ?>">
-                            <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" class="d-block w-100" alt="<?=$service['name'];?>">
+                            <div class="carousel-item <?php if($key==1){echo " active";} ?>">
+                                <div class="d-flex flex-column align-items-center justify-content-center"> <!-- Add classes -->
+                                    <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
+                                    <h3 class="fw-normal text-center"><?=$service['name'];?></h3>
+                                </div>
                             </div>
                             <?php endforeach ?>
                         </div>
@@ -112,6 +116,7 @@ $title = "Zoo d'Arcadia";
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+
                     
 
                     <p class="text-center pt-3"><a class="btn btn-arc-dark btn-lg" href="<?=BASE_URL?>/services">En savoir plus sur nos services »</a></p>
@@ -127,7 +132,7 @@ $title = "Zoo d'Arcadia";
             <h2 class="light-h2">Restons en contact</h2>
             <p class="text-light">Vos avis comptent pour nous : partagez votre expérience.</p>
             <div class="row g-0 text-center d-flex align-items-center">
-                <div class="col-md-3 text-light">
+                <div class="col-md-12 col-lg-3 text-light">
                     <a class="btn btn-arc-mint-green mb-3 btn-lg" href="<?=BASE_URL?>/review"><i class="bi bi-pencil-square"></i> Écrivez nous</a>
                     <ul class="list-inline my-2 fs-2 text">
                         <li class="list-inline-item">
@@ -145,7 +150,7 @@ $title = "Zoo d'Arcadia";
                     </ul>
                 </div>
                 
-                <div class="col-md-5 p-2">
+                <div class="col-md-6 col-lg-5 p-2">
                     <div class="card">
                         <div class="card-header bg-arc-primary text-light d-flex justify-content-between align-items-center">
                             <i class="fa-regular fa-user"></i>
@@ -157,7 +162,7 @@ $title = "Zoo d'Arcadia";
                         </div>
                 </div>
 
-                <div class="col-md-4 px-2">
+                <div class="col-md-6 col-lg-4 px-2">
                 <h3 class="light-h3"><i class="fa-regular fa-map"></i> Nous trouver</h3>                       
                     <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d21352.38877067888!2d-2.178005767221728!3d48.01277099625603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sforet%20de%20broceliande!5e0!3m2!1sfr!2sfr!4v1710694787647!5m2!1sfr!2sfr" width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>

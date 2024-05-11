@@ -18,6 +18,15 @@ class HomeController extends Habitats {
         foreach($menuHabitats as $hab) {
             $species[$hab['id']] = $this->getSpeciesByHabitat($hab["id"]);
         }
+
+        // Check for success or error messages
+        $great = isset($_SESSION['success']) ? $_SESSION['success'] : null;
+        $bad = isset($_SESSION['error']) ? $_SESSION['error'] : null;
+
+        // Clear session variables
+        unset($_SESSION['success']);
+        unset($_SESSION['error']);
+
         require_once 'views/homepage.php';
         return $reviews;
     }

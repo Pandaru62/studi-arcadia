@@ -1,11 +1,15 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
 
 if(isset($_POST["loginForm"])) {
-    $userEmail = $_POST["userEmail"];
+    $userEmail = filter_var($_POST["userEmail"], FILTER_SANITIZE_EMAIL);
     $userPassword = $_POST["userPassword"];
+
+    if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = "Format de l'email invalide.";
+        header("Location: /studi-arcadia/login");
+        exit();
+    }
 
     include "../models/login.class.php";
     include "../models/loginContr.class.php";
@@ -14,12 +18,14 @@ if(isset($_POST["loginForm"])) {
         $signup = new LoginContr($userEmail, $userPassword);
         $signup->loginUser();
         
-        // If login successful, redirect or do further processing
-        header("location: /studi-arcadia");
+        // if login ok
+        $_SESSION['success'] = "Vous êtes connecté.";
+        header("location: ".BASE_URL);
         exit();
     } catch (Exception $e) {
         // Catch any exception
-        header("Location: /studi-arcadia/login?error=" . urlencode($e->getMessage()));
+        $_SESSION['error'] = "Une erreur s'est produite. Veuillez réessayer.";
+        header("location: ".BASE_URL."/login");
         exit();
     }
 }

@@ -1,6 +1,6 @@
 <?php
-
 require_once "./templates/header.php"; ?>
+
 
 <div class="container mb-4 py-3">
 

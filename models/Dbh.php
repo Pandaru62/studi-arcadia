@@ -1,6 +1,10 @@
 <?php
 // Database 
 
+if (!defined('BASE_URL')) {
+    define("BASE_URL", '/studi-arcadia');
+}
+
 class Dbh {
     private $host = "localhost";
     private $user = "root";
@@ -18,6 +22,14 @@ class Dbh {
         catch (PDOException $e) {
             print "Error!:" . $e->getMessage() . "<br/>";
             die();
+        }
+    }
+
+    protected function isLoggedIn() {
+        if(isset($_SESSION['userRole']) & isset ($_SESSION['userEmail'])) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

@@ -28,7 +28,8 @@ class FeedingController extends AnimalController {
             $checkUp = $this->getCheckUpBySpecies($ani["animalId"]);
 
             // Replace NULL values with "?"
-            $feedingDate = formatDate($feeding[0]['date']);
+            $feedingDate = $feeding[0]['date'] ?? "?";
+            if($feedingDate !== "?") {$feedingDate = formatDate($feedingDate);};
             $feedingTime = $feeding[0]['time'] ?? "?";
             $feedingFood = $feeding[0]['food'] ?? "?";
             $feedingQuantity = $feeding[0]['quantity'] ?? "?";
@@ -84,34 +85,7 @@ class FeedingController extends AnimalController {
                 }
             }
         }
-        
-
-        // previous function counting visitors
-
-        function count_visitor2($speciesId) {
-            if (!isset($_SESSION['visited'][$speciesId])) {
-                $_SESSION['visited'][$speciesId] = true;
-
-                // Increment the count in database or file
-                $count_file = 'visitor_count_' . $speciesId . '.txt';
-                    
-                if (!file_exists($count_file)) {
-                    // Create the count file if it doesn't exist
-                    file_put_contents($count_file, 0);
-                }
-
-                $count = file_get_contents($count_file);
-                $count++;
-                file_put_contents($count_file, $count);
-
-                return $count;
-            } else {
-                // Count already incremented, just return it
-                $count_file = 'visitor_count_' . $speciesId . '.txt';
-                return file_get_contents($count_file);
-            }
-        }
-
+  
         count_visitor($ani['species_id']);
 
         require_once "views/animal.php";

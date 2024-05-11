@@ -15,7 +15,7 @@ require_once "./templates/header.php";
                         <h1 class="text-light text-center pb-2"><?= $animal[0]['speciesName']?></h1>
                         <p class="py-2">Arcadia recense actuellement <?= count($animal); ?> espèces de "<?= $animal[0]['speciesName']?>".
                         <p class="py-2">L'animal se trouve dans l'habitat : <?= $animal[0]['habitatName']?></p>
-                        <?php if(isset($_SESSION) && $_SESSION['userRole'] == 'admin'): ?>
+                        <?php if(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin'): ?>
                             <div class="d-flex justify-content-center">
                                 <a class="btn btn-warning me-2" href="<?=BASE_URL?>/editspecie?id=<?=$animal[0]['species_id'];?>"><i class="bi bi-pencil"></i> éditer l'espèce</a>
                                 <!-- delete -->

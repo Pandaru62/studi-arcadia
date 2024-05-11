@@ -1,8 +1,25 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+// ERROR HANDLING
+
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    // Log the error
+    error_log("Error: [$errno] $errstr in $errfile on line $errline");
+    
+    // Display error message
+    echo "Une erreur s'est produite. Veuillez réessayer plus tard.";
+    
+    return true;
+}
+
+set_error_handler("customErrorHandler");
+
+// Your other PHP code...
+
 
 // CONSTANTS
 
@@ -11,9 +28,7 @@ define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
 define('_MENU_PATH_', './src/controllers/');
 
 require_once __DIR__ . '/vendor/autoload.php';
-// $habitats = [
-//     "Marais", "Jungle", "Savane"
-// ];
+
 
 // Instanciation classes
 
@@ -32,13 +47,8 @@ require_once 'controllers/FeedingController.php';
 require_once 'controllers/ReviewController.php';
 require_once 'controllers/ErrorPageController.php';
 require_once 'controllers/SignUpController.php';
-require_once 'controllers/EditAccountController.php';
-require_once 'controllers/showAccountsController.php';
-require_once 'controllers/deleteAccountController.php';
+require_once 'controllers/AccountsController.php';
 require_once 'controllers/OpeningTimeController.php';
-require_once 'controllers/editServiceController.php';
-require_once 'controllers/addServicesController.php';
-require_once 'controllers/DeleteServiceController.php';
 require_once 'controllers/deleteReviewController.php';
 require_once 'controllers/validateReviewController.php';
 require_once 'controllers/editHabitatController.php';
@@ -55,6 +65,8 @@ require_once 'controllers/DashboardController.php';
 
 $router = new Router();
 
+// Visitor pages
+
 $router->addRoute('GET', BASE_URL.'/', 'HomeController', 'index');
 $router->addRoute('GET', BASE_URL.'/habitats', 'HabitatsController', 'habitats');
 $router->addRoute('GET', BASE_URL.'/services', 'ServicesController', 'services');
@@ -67,15 +79,16 @@ $router->addRoute('GET', BASE_URL.'/review', 'ReviewController', 'review');
 $router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPage');
 
 // Admin pages
+
 $router->addRoute('GET', BASE_URL.'/signup', 'SignUpController', 'signUp');
-$router->addRoute('GET', BASE_URL.'/editaccount', 'EditAccountController', 'editAccount');
-$router->addRoute('GET', BASE_URL.'/showaccounts', 'showAccountsController', 'showAccounts');
-$router->addRoute('GET', BASE_URL.'/deleteaccount', 'deleteAccountController', 'deleteAccount');
+$router->addRoute('GET', BASE_URL.'/editaccount', 'AccountsController', 'editAccount');
+$router->addRoute('GET', BASE_URL.'/showaccounts', 'AccountsController', 'showAccounts');
+$router->addRoute('GET', BASE_URL.'/deleteaccount', 'AccountsController', 'deleteAccount');
 $router->addRoute('GET', BASE_URL.'/time', 'OpeningTimeController', 'time');
 
-$router->addRoute('GET', BASE_URL.'/editservice', 'editServiceController', 'editService');
-$router->addRoute('GET', BASE_URL.'/addservice', 'addServicesController', 'addService');
-$router->addRoute('GET', BASE_URL.'/deleteservice', 'deleteServiceController', 'deleteServ');
+$router->addRoute('GET', BASE_URL.'/editservice', 'ServicesController', 'editService');
+$router->addRoute('GET', BASE_URL.'/addservice', 'ServicesController', 'addService');
+$router->addRoute('GET', BASE_URL.'/deleteservice', 'ServicesController', 'deleteServ');
 
 $router->addRoute('GET', BASE_URL.'/deletereview', 'deleteReviewController', 'deleteRev');
 $router->addRoute('GET', BASE_URL.'/validatereview', 'ValidateReviewController', 'validateRev');
@@ -94,7 +107,6 @@ $router->addRoute('GET', BASE_URL.'/editspecie', 'SeeSpeciesController', 'editSp
 $router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec');
 $router->addRoute('GET', BASE_URL.'/dashboard', 'DashboardController', 'showDashboard');
 
-
 // Vet
 $router->addRoute('GET', BASE_URL.'/commenthabitat', 'SeeHabitatsCommentsController', 'addHabComment');
 $router->addRoute('GET', BASE_URL.'/seeHabitatComment', 'SeeHabitatsCommentsController', 'seeHabComment');
@@ -103,8 +115,7 @@ $router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeChe
 
 $router->addRoute('GET', BASE_URL.'/feeding', 'FeedingPageController', 'feedAnimal');
 $router->addRoute('GET', BASE_URL.'/show', 'AnimalDetailsController', 'showAnimal');
-$router->addRoute('GET', BASE_URL.'/seefeeding', 'SeeFeedingController', 'seeFeeding'); // à voir
-
+$router->addRoute('GET', BASE_URL.'/seefeeding', 'SeeFeedingController', 'seeFeeding'); 
 
 
 $router->dispatch();

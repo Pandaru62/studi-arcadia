@@ -8,7 +8,7 @@ require_once "./models/checkup.class.php";
 class VetCheckUpController extends CheckUp {
     use getAllAnimals;
     public function addCheckUp() { 
-        if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin' || $_SESSION['userRole'] == 'vétérinaire') {
+        if (isset($_SESSION['userRole']) && ($_SESSION['userRole'] == 'admin' || $_SESSION['userRole'] == 'vétérinaire')) {
             if(isset($_GET['animal'])) {
                 $animalCheckId = $_GET['animal'];
             }

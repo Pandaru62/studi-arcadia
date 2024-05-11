@@ -9,7 +9,7 @@ class FeedingPageController extends Feeding {
     use getAllAnimals;
 
     public function feedAnimal() {      
-        if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin' || $_SESSION['userRole'] == 'employé') {
+        if (isset($_SESSION['userRole']) && ($_SESSION['userRole'] == 'admin' || $_SESSION['userRole'] == 'employé')) {
             $animals = $this->getAllAnimals();
 
             if (isset($_GET['id'])) {

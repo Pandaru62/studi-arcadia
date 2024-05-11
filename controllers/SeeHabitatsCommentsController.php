@@ -14,6 +14,9 @@ class SeeHabitatsCommentsController extends HabitatComment {
         if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'vétérinaire') {
             $habitats = $this->getHabitats();
                 require_once 'views/vet/addhabcommentform.php';
+        } else {
+            header("Location: ".BASE_URL);
+            exit();
         }
     }
 
@@ -22,6 +25,9 @@ class SeeHabitatsCommentsController extends HabitatComment {
             $habitats = $this->getHabitats();
             $comments = $this->getHabitatsComments();
             require_once 'views/seehabcomment.php';
+        } else {
+            header("Location: ".BASE_URL);
+            exit();
         }
     }
 

@@ -123,10 +123,29 @@ require_once('../lib/config.php');
         <?php } else if(isset($_GET['error'])) { ?>
             <div class="d-flex justify-content-center mt-2">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="fa-solid fa-check"></i> <?= $error[$_GET['error']]; ?>
+                    <i class="fa-solid fa-xmark"></i> <?= $error[$_GET['error']]; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         <?php } ?>
 
+    <?php if(isset($great) || isset($bad)) {?>
+        <?php if ($great): ?>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-check"></i> <?= $great;; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+        
+        <?php if ($bad): ?>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-xmark"></i> <?= $bad; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php } ?>
 </header>
