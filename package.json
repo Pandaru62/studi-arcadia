@@ -1,5 +1,5 @@
 {
-  "name": "studi-arcadia",
+  "name": "arcadia",
   "version": "1.0.0",
   "description": "Ce site est un site vitrine pour un zoo.\r Il a été créé dans le cadre de l'ECF pour Studi.",
   "main": "index.js",
@@ -12,5 +12,12 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3"
-  }
+  },
+  "engines": {
+    "node": "21.2.0"
+},
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {}
 }
