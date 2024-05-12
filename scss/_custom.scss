@@ -35,21 +35,28 @@ $theme-colors: map-merge($arcadia-theme-colors, $theme-colors);
 
 /* CAROUSEL */
 
-.bg-image{
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-} 
+// .bg-image{
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// } 
 
 #carousel img {
   max-height: 530px;
 }
 
+// .carousel-inner img {
+//   margin: auto;
+// }
+
 @media (max-width: 767px) {
   #carousel img {
-      max-height: 140px;
+      max-height: 200px;
+      max-width: 500px ;
   }
+ 
 }
+
 
 
 .carousel-caption {

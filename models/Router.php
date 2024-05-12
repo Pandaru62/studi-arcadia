@@ -26,6 +26,6 @@ class Router {
         }
 
         // Route not found
-        echo "404 Not Found";
+        header("Location: " .BASE_URL."/404");
     }
 }

@@ -1,22 +1,16 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once "templates/header.php";
+require_once "./templates/header.php";
+?>
 
-$title = "Zoo d'Arcadia"; ?>
-
+<div class="container-lg mb-4 py-3">
         <!-- Carousel -->
-    
-    
-        <!-- Introduction -->
-
-<div class="container mb-4 py-3">
-
-    <?php include_once("./templates/carousel.php"); ?>
-
+    <div class="d-flex d-md-block justify-content-center">
+        <?php include_once("./templates/carousel.php"); ?>
+    </div>
     <section id="welcome" class="mt-3">
 
         <div class="row">
@@ -42,91 +36,9 @@ $title = "Zoo d'Arcadia"; ?>
 
     </section>
 
-    <section id="habitats">
-        <div class="row bg-arc-mint-green py-3">
-            <h2>Trois mondes magiques à explorer</h2>
-            <div class="col-12 col-md-4 pb-3">
-                <div class="card card-habitat">
-                    <img src="assets/habitats/marais.jpg" class="card-img-top z-0" alt="marais">
-                    <div class="card-img-overlay d-flex align-items-start justify-content-center">
-                        <h5 class="card-title text-light z-1">Les Marais de la Légende</h5>
-                    </div>                    
-                    <div class="card-body bg-light d-flex flex-column">
-                        <p class="card-text z-1">Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière.</p>
-                        <button class="btn btn-arc-dark align-self-end z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais" aria-expanded="false" aria-controls="collapseMarais">
-                            En voir plus
-                        </button>
-                        <div class="collapse" id="collapseMarais">
-                            <h4>Animaux de la zone :</h4>
-                            <ul class="fa-ul">
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Faucon pélerin</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Buse à queue rousse</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Aigle royal</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Epervier d'Europe</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Crocodile</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Hippopotame</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Castor</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Héron</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Flamand Rose</li>
-                            </ul>
-                        </div> 
-                    </div>
-                </div>
-            </div>
+    <!-- section habitats -->
 
-            <div class="col-12 col-md-4 pb-3">
-                <div class="card card-habitat">
-                    <img src="assets/habitats/jungle.jpg" class="card-img-top z-0" alt="jungle">
-                    <div class="card-img-overlay d-flex align-items-start justify-content-center">
-                        <h5 class="card-title text-light z-1">La jungle aux Merveilles</h5>
-                    </div>
-                    <div class="card-body bg-light d-flex flex-column">
-                        <p class="card-text z-1">Une forêt luxuriante où panthères, pandas roux et lémuriens cohabitent près d'un imposant vivarium.</p>
-
-                        <button class="btn btn-arc-dark align-self-end z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJungle" aria-expanded="false" aria-controls="collapseJungle">
-                            En voir plus
-                        </button>
-                        <div class="collapse" id="collapseJungle">
-                            <h4>Animaux de la zone :</h4>
-                            <ul class="fa-ul">
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Couleuvre vipérine</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Boa constrictor</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Python</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Panthère noire</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Panda roux</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Lémurien</li>
-                            </ul>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 pb-3">
-                <div class="card card-habitat">
-                    <img src="assets/habitats/savane.jpg" class="card-img-top z-0" alt="savane">
-                    <div class="card-img-overlay d-flex align-items-start justify-content-center">
-                        <h5 class="card-title text-light z-1">La Savane des Obis</h5>
-                    </div>
-                    <div class="card-body bg-light d-flex flex-column">
-                        <p class="card-text z-1">Plongez au coeur d'un monde aride où girafes, zèbres, suricates et lions trônent et n'attendent que vous.</p>
-
-                        <button class="btn btn-arc-dark align-self-end z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSavana" aria-expanded="false" aria-controls="collapseSavana">
-                            En voir plus
-                        </button>
-                        <div class="collapse" id="collapseSavana">
-                            <h4>Animaux de la zone :</h4>
-                            <ul class="fa-ul">
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Girafe</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Zèbre</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Suricate</li>
-                                <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>Lion</li>                            
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php require_once "./views/habitats_explore.php"; ?>
 
     <section id="facts">
         <div class="row bg-arc-mint-green">
@@ -149,7 +61,7 @@ $title = "Zoo d'Arcadia"; ?>
         <div class="row text-center py-3 bg-arc-dark text-light">
             <div id="top-animal" class="col-md-8 py-3">
                 <figure class="figure">
-                    <img src="assets/ANIMAUX/JUNGLE/panda-4836503_1920.jpg" alt="Panda roux" class="img-top-animal img-fluid">
+                    <img src="assets/panda-4836503_1920.jpg" alt="Panda roux" class="img-top-animal img-fluid">
                     <figcaption class="figure-caption">Partez à la rencontre de nos pandas roux.</figcaption>
                 </figure>
             </div>
@@ -157,7 +69,7 @@ $title = "Zoo d'Arcadia"; ?>
                 <div class="bg-arc-mint-green rounded-5 rounded-top-0 h-100 p-3 text-arc-dark justify-content-center d-flex flex-column align-items-center">
                     <h3 class="pb-3">Fun fact:</h3>
                     <p>Les pandas roux, également connus sous le nom de "petits pandas", ne sont pas de vrais pandas, mais plutôt des membres de la famille des mustélidés, plus proches des ratons laveurs que des grands pandas. Leur pelage roux et leur visage mignon en font des créatures adorables, mais ils sont également connus pour leur agilité dans les arbres, où ils se déplacent avec grâce grâce à leurs pattes agiles et à leur queue touffue, qui leur sert d'équilibreur.</p>
-                    <a href="#" class="btn btn-arc-dark">Accéder à la page des pandas roux</a>
+                    <a href="<?=BASE_URL?>/animal?species=14" class="btn btn-arc-dark">Accéder à la page des pandas roux</a>
                 </div>
             </div>
         </div>
@@ -172,21 +84,26 @@ $title = "Zoo d'Arcadia"; ?>
                     <h2>Nos services</h2>
                     <p>Savourez votre journée en compagnie des animaux : nos employés sont aux petits soins pour vous proposer des services qui rendront votre expérience unique.</p>
 
-                    <div class="row text-center align-items-center g-0 d-none d-md-flex">
+                    <div class="row text-center align-items-center g-0 d-none d-lg-flex">
                     <?php 
                     foreach($services as $key => $service): ?>                    
                         <div class="col-lg-4 py-3">
-                            <img src="<?=_SERVICES_IMG_PATH_.$service['image']?>" alt="<?=$service['name']?>" class="service-img">
-                        <h3 class="fw-normal"><?=$service['name']?></h2>
+                            <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
+                        <h3 class="fw-normal"><?=$service['name'];?></h3>
                         </div>
                     <?php endforeach ?>
                     
                     </div>
-                    <div id="carouselExampleAutoplaying" class="carousel slide d-md-none" data-bs-ride="carousel">
+                    
+                        <!-- Carousel on smaller screens -->
+                    <div id="carouselExampleAutoplaying" class="carousel slide d-lg-none" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php foreach($services as $key => $service): ?>
-                            <div class="carousel-item <?php if($key==1){echo "active";} ?>">
-                            <img src="<?=_SERVICES_IMG_PATH_.$service['image']?>" class="d-block w-100" alt="<?=$service['name']?>">
+                            <div class="carousel-item <?php if($key==1){echo " active";} ?>">
+                                <div class="d-flex flex-column align-items-center justify-content-center"> <!-- Add classes -->
+                                    <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
+                                    <h3 class="fw-normal text-center"><?=$service['name'];?></h3>
+                                </div>
                             </div>
                             <?php endforeach ?>
                         </div>
@@ -199,6 +116,7 @@ $title = "Zoo d'Arcadia"; ?>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+
                     
 
                     <p class="text-center pt-3"><a class="btn btn-arc-dark btn-lg" href="<?=BASE_URL?>/services">En savoir plus sur nos services »</a></p>
@@ -214,7 +132,7 @@ $title = "Zoo d'Arcadia"; ?>
             <h2 class="light-h2">Restons en contact</h2>
             <p class="text-light">Vos avis comptent pour nous : partagez votre expérience.</p>
             <div class="row g-0 text-center d-flex align-items-center">
-                <div class="col-md-3 text-light">
+                <div class="col-md-12 col-lg-3 text-light">
                     <a class="btn btn-arc-mint-green mb-3 btn-lg" href="<?=BASE_URL?>/review"><i class="bi bi-pencil-square"></i> Écrivez nous</a>
                     <ul class="list-inline my-2 fs-2 text">
                         <li class="list-inline-item">
@@ -232,7 +150,7 @@ $title = "Zoo d'Arcadia"; ?>
                     </ul>
                 </div>
                 
-                <div class="col-md-5 p-2">
+                <div class="col-md-6 col-lg-5 p-2">
                     <div class="card">
                         <div class="card-header bg-arc-primary text-light d-flex justify-content-between align-items-center">
                             <i class="fa-regular fa-user"></i>
@@ -244,7 +162,7 @@ $title = "Zoo d'Arcadia"; ?>
                         </div>
                 </div>
 
-                <div class="col-md-4 px-2">
+                <div class="col-md-6 col-lg-4 px-2">
                 <h3 class="light-h3"><i class="fa-regular fa-map"></i> Nous trouver</h3>                       
                     <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d21352.38877067888!2d-2.178005767221728!3d48.01277099625603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sforet%20de%20broceliande!5e0!3m2!1sfr!2sfr!4v1710694787647!5m2!1sfr!2sfr" width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -256,6 +174,4 @@ $title = "Zoo d'Arcadia"; ?>
 
 <?php 
 require_once "templates/footer.php";
-
 ?>
-

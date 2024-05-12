@@ -1,17 +1,45 @@
-<?php 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST["contactTitle"];
-    $email = $_POST["contactEmail"];
-    $message = $_POST["contactMessage"];
+<?php
+// Display all errors
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    $to = "loris.buchelet@gmail.com";
-    $subject = "Arcadia - Nouveau message depuis le site";
-    $body = "Title: $title\nEmail: $email\n\n$message";
+var_dump($_POST["contactTitle"]);
+var_dump($_POST["contactEmail"]);
+var_dump($_POST["contactMessage"]);
 
-    // Send email
-    if (mail($to, $subject, $body)) {
-        echo "Votre message a été envoyé avec succès!";
-    } else {
-        echo "Erreur lors de l'envoi du mail. Merci de réessayer.";
+require "../models/Dbh.php";
+require "../PHPMailer/script.php";
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ContactForm'])) {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die('Erreur CSRF !'); 
     }
+    try {
+        $subject = $_POST["contactTitle"];
+        $email = filter_var($_POST["contactEmail"], FILTER_SANITIZE_EMAIL);
+        $message = htmlspecialchars($_POST["contactMessage"], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+        if(empty($subject) || empty($email) || empty($message) || strlen($subject) < 5 || strlen($message) < 50) {
+            throw new Exception("Champs invalides");
+        } 
+
+        $subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+        $response = sendContactFormMail($email, $subject, $message);
+
+        if ($response) {
+            $_SESSION['success'] = "Votre avis a bien été envoyé.";
+        } else {
+            throw new Exception("Une erreur s'est produite lors de l'envoi de l'email.");
+        }
+    } catch (Exception $e) {
+        $_SESSION['error'] = $e->getMessage();
+    
+    }
+    header("Location: ".BASE_URL."/contact");
+    exit();
+
 }
+
+

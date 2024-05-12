@@ -4,15 +4,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$user = 'admin';
-
 require_once('./templates/header.php');
 
 ?>
 
-<div class="container my-md-4 py-3">
+<div class="container my-md-3 py-3">
     <section id="main_services">
-        
+
         <div class="row">
             <div class="col rect-upper-effect"></div>
         </div>
@@ -46,12 +44,34 @@ require_once('./templates/header.php');
             <div class="col-md-4 d-flex justify-content-center text-align-center">
                 <img src="./uploads/services/<?=$service['image']?>" alt="<?=$service['name']?>" class="service-img">
             </div>
-            <?php if($user == "employee" || $user == "admin"):?>
+            <?php if(isset($_SESSION["userRole"]) && ($_SESSION["userRole"] == "employé" || $_SESSION["userRole"] == "admin")):?>
                 <div class="col-md-1 d-flex flex-col flex-column justify-content-center">
-                    <a href="edit_service.php?myid=<?=$service['id'];?>" class="btn btn-warning my-2"><i class="fa-regular fa-pen-to-square"></i> éditer</a>
-                    <?php if($user == "admin"):?>
-                    <a href="#" class="btn btn-danger mb-2"><i class="fa-solid fa-trash"></i> suppr.</a>
-                    <?php endif ?>
+                    <a href="<?=BASE_URL?>/editservice?service=<?=$service['id'];?>" class="btn btn-warning my-2"><i class="fa-regular fa-pen-to-square"></i> éditer</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteServiceModal<?=$service['id'];?>">
+                    <i class="fa-solid fa-trash"></i> suppr.</button>
+                        <!-- modal config : warning message before user deleted -->
+                            <div class="modal fade" id="deleteServiceModal<?=$service['id'];?>" tabindex="-1" aria-labelledby="deleteServiceModal<?=$service['id'];?>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header  bg-arc-mint-green">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le service ?</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Voulez-vous vraiment supprimer ce service ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
+                                        <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                            <input type="hidden" class="form-control" id="serviceId" name="serviceId" value="<?=$service["id"];?>">
+                                            <button class="btn btn-danger" name="deleteService" type="submit">Supprimer</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- end modal -->
                 </div>
                 <div class="col-md-7">
             <?php else:?>
@@ -70,11 +90,11 @@ require_once('./templates/header.php');
             
     <?php endforeach ;?>
                         
-    <?php if($user == "employee" || $user == "admin"):?>
+    <?php if(isset($_SESSION["userRole"]) && ($_SESSION["userRole"] == "employé" || $_SESSION["userRole"] == "admin")):?>
     
     <div class="row bg-arc-mint-green p-3">
         <div class="py-3 my-3 d-flex align-items-center justify-content-center">
-            <a class="btn btn-arc-dark rounded-5 btn-lg" href="add_service.php">
+            <a class="btn btn-arc-dark rounded-5 btn-lg" href="<?BASE_URL?>/addservice.php">
                 <i class="bi bi-plus-circle-fill"></i> 
                 Ajouter un nouveau service
             </a>

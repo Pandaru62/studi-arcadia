@@ -1,3 +1,5 @@
+<?php $timeConfig = include('./lib/timeconfig.php'); ?>
+
 <footer id="footer">
         <div class="bg-arc-dark px-3 pt-2 arc-footer">
             <div class="row d-none d-md-flex">
@@ -12,8 +14,8 @@
                 <div class="col-md-4 d-flex align-items-end justify-content-end text-end fst-italic">
                     <p class="text-light fs-6">
                     <i class="fa-regular fa-clock"></i>
-                        <?= $openingTimes[0]; ?><br/>
-                        <?= $openingTimes[1]; ?></p>
+                        <?= $timeConfig['opening_hours']['time1']; ?><br/>
+                        <?= $timeConfig['opening_hours']['time2']; ?></p>
                 </div>
             </div>
             <div class="d-sm-flex d-md-none p-2 d-flex align-items-center justify-content-center">
@@ -36,6 +38,7 @@
 </footer>
 </main>
 
+    <script src="script.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
