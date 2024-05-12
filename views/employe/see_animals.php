@@ -117,8 +117,10 @@
                             <td>Nom de l'espèce</td>
                             <td>Nombre d'animaux</td>
                             <td>Consulter</td>
+                            <?php if ($_SESSION['userRole'] == 'admin'): ?>
                             <td>Editer</td>
                             <td>Supprimer</td>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,6 +129,7 @@
                             <td><?= $specie['name'] ?></td>
                             <td>x<?= $specie['animal_count'] ?></td>
                             <td><a class="btn btn-info" href="<?= BASE_URL ?>/animal?species=<?= $specie['id'] ?>"><i class="bi bi-eye-fill"></i> Voir la page</a></td>
+                            <?php if ($_SESSION['userRole'] == 'admin'): ?>
                             <td><a class="btn btn-warning" href="<?= BASE_URL ?>/editspecie?id=<?= $specie['id'] ?>"><i class="bi bi-pencil"></i> Editer</a></td>
                             <td>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSpModal<?= $specie['id'] ?>"><i class="bi bi-person-dash"></i> Supprimer</button>
@@ -152,6 +155,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <?php endif; ?>
                         </tr>
                         <?php endforeach ?>
                     </tbody>
