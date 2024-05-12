@@ -25,10 +25,10 @@ class Dbh {
                     $database = ltrim($dbparts['path'],'/');
 
 
-                    $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                    $pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
                     // set the PDO error mode to exception
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    echo "Connected successfully";
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    return $pdo;
                 } catch(PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
                 }
