@@ -29,19 +29,10 @@ set_error_handler("customErrorHandler");
 
 
 // CONSTANTS
-            // Check if the environment is Heroku
-            $isHeroku = getenv('HEROKU_APP') ? true : false;
 
-            if ($isHeroku) {
-                // Adjust base URL for Heroku
-                define("BASE_URL", '/');
-            } else {
-                // Adjust base URL for local environment
-                define("BASE_URL", '/studi-arcadia');
-            }
-
-            define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
-define('_MENU_PATH_', './src/controllers/');
+    define("BASE_URL", '/studi-arcadia');
+    define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
+    define('_MENU_PATH_', './src/controllers/');
 
 require_once __DIR__ . '/vendor/autoload.php';
 
