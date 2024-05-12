@@ -13,16 +13,39 @@ class Dbh {
     private $port = "3307";
 
     protected function connect() {
-        try {
-            $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbName.';port='.$this->port;
-            $pdo = new PDO($dsn, $this->user, $this->pwd);
-            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            return $pdo;
+
+        if(getenv('JAWSDB_URL') !== false) {
+            try {
+                    $url = getenv('JAWSDB_URL');
+                    $dbparts = parse_url($url);
+
+                    $hostname = $dbparts['host'];
+                    $username = $dbparts['user'];
+                    $password = $dbparts['pass'];
+                    $database = ltrim($dbparts['path'],'/');
+
+
+                    $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                    // set the PDO error mode to exception
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    echo "Connected successfully";
+                } catch(PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+                }
+                
+        } else {
+            try {
+                $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbName.';port='.$this->port;
+                $pdo = new PDO($dsn, $this->user, $this->pwd);
+                $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                return $pdo;
+            }
+            catch (PDOException $e) {
+                print "Error!:" . $e->getMessage() . "<br/>";
+                die();
+            }
         }
-        catch (PDOException $e) {
-            print "Error!:" . $e->getMessage() . "<br/>";
-            die();
-        }
+
     }
 
     protected function isLoggedIn() {
