@@ -4,28 +4,16 @@ require_once "./templates/header.php";
 ?>
 
 <div class="container mb-4 py-3">
-
+ 
     <section id="signup">
 
         <div class="row bg-arc-mint-green py-3 my-5">
             <div class="col-md-8">
                 <h2>Modifier une espèce d'animal existante</h2>
-                <?php if(isset($_GET['success'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-success" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                        </div>
-                    </div>
-                <?php } else if(isset($_GET['error'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-danger" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $error[$_GET['error']]; ?>
-                        </div>
-                    </div>
-                <?php } ?>
 
                 <form method="POST" enctype="multipart/form-data" action="./views/editSpeciesProcess.php">
                     <div class="mb-3">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                     <input required type="hidden" class="form-control" id="speciesId" name="speciesId" value="<?=$specie[0]['id']?>">
                     <input required type="hidden" class="form-control" id="currentImage" name="currentImage" value="<?=$specie[0]['image']?>">
                     </div>

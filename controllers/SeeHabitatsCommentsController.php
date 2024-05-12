@@ -11,7 +11,7 @@ class SeeHabitatsCommentsController extends HabitatComment {
     use getHabitats;
 
     public function addHabComment() {
-        if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'vétérinaire') {
+        if (isset($_SESSION['userRole']) && ($_SESSION['userRole'] == 'vétérinaire' || $_SESSION['userRole'] == 'admin')) {
             $habitats = $this->getHabitats();
                 require_once 'views/vet/addhabcommentform.php';
         } else {

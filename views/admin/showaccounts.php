@@ -9,13 +9,6 @@ require_once "./templates/header.php";
 
         <div class="row bg-arc-mint-green py-3 my-5">
             <h2>Voir les comptes des membres</h2>
-            <?php if(isset($_GET['success'])) { ?>
-                <div class="d-flex">
-                    <div class="alert alert-success" role="alert">
-                        <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                    </div>
-                </div>
-            <?php } ?>
             
             <div class="row g-0 px-5">
                 <div class="table-responsive">
@@ -52,7 +45,11 @@ require_once "./templates/header.php";
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deleteaccount?id=<?=$user['userId'];?>">Supprimer</a>
+                                                <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                                    <input type="hidden" class="form-control" id="userId" name="userId" value="<?=$user["userId"];?>">
+                                                    <button class="btn btn-danger" name="deleteUser" type="submit">Supprimer</button>
+                                                </form>
                                             </div>
                                             </div>
                                         </div>

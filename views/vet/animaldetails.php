@@ -54,7 +54,7 @@ require_once "./templates/header.php";
                                     <?php endif ?>
                     </div>
                     <div class="offset-md-1 col-md-3">
-                        <img class="img-fluid img-habitat" src="./uploads/ANIMAUX/SPECIES/<?=$animal[0]['speciesImage'];?>"  alt="<?=$animal[0]['speciesName']?>">
+                        <img class="img-fluid img-habitat" src="./uploads/ANIMAUX/<?=$animal[0]['animalImage'];?>"  alt="<?=$animal[0]['speciesName']?>">
                     </div>
                 </div>
                 <div class="row bg-arc-dark">

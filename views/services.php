@@ -62,7 +62,11 @@ require_once('./templates/header.php');
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                        <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deleteservice?id=<?=$service['id'];?>">Supprimer</a>
+                                        <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                            <input type="hidden" class="form-control" id="serviceId" name="serviceId" value="<?=$service["id"];?>">
+                                            <button class="btn btn-danger" name="deleteService" type="submit">Supprimer</button>
+                                        </form>
                                     </div>
                                     </div>
                                 </div>

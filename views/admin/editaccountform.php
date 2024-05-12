@@ -23,8 +23,9 @@ require_once "./templates/header.php";
                     </div>
                 <?php } ?>
 
-                <form method="POST" enctype="multipart/form-data" action="./views/editUser.php">
+                <form method="POST" enctype="multipart/form-data" action="./views/editUserProcess.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input type="hidden" class="form-control" id="userId" name="userId" value="<?=$user[0]['userId']?>">
                     </div>
                     <div class="mb-3">

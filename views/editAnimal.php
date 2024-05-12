@@ -2,11 +2,9 @@
 
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-define("BASE_URL", '/studi-arcadia');
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
 
 // Include necessary files
 include_once "../models/animal.class.php";
@@ -76,8 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editAnimalForm"]) && i
     $speciesId = $_POST["animalSpecies"];
     $keepOrChangePhoto = $_POST["keepOrChangePhoto"];
 
-    // var_dump($animalId, $animalFirstName, $animalSpecies, $keepOrChangePhoto);
-
     // Checks if the user wants to change the photo or not
     if($keepOrChangePhoto == 'change') {
     $habitatImage = $_FILES["file"];
@@ -87,8 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editAnimalForm"]) && i
     // else we keep the current image with the same name
     $fileName = $_POST["currentImage"];
     }
-
-    // var_dump($fileName);
 
     // // Editing animal
     $animal = new AnimalContr($firstName, $speciesId, $fileName);

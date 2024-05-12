@@ -30,6 +30,7 @@ require_once "templates/header.php";
 
             <form method="POST" enctype="multipart/form-data" action="./controllers/sendEmail.php">
                 <div class="mb-3">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                     <label for="contactTitle" class="form-label">Titre du message :</label>
                     <input required type="text" class="form-control" id="contactTitle" name="contactTitle" placeholder="ex. Réclamation">
                 </div>

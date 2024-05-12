@@ -1,10 +1,9 @@
 <?php
-
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
 
 define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
 define("BASE_URL", '/studi-arcadia');

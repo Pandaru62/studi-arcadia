@@ -29,7 +29,12 @@ require_once "./templates/header.php"; ?>
                     <td><?php if($review['isChecked'] === 1) {?>
                     <button class="btn btn-arc-dark" href="#" disabled><i class="bi bi-check-circle-fill"></i></button>
                     <?php } else { ?>
-                    <a class="btn btn-arc-dark" href="<?= BASE_URL ?>/validatereview?id=<?= $review['id'];?>"><i class="bi bi-check-circle-fill"></i></a>
+                    <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/testReview.php">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                        <input type="hidden" class="form-control" id="reviewId" name="reviewId" value="<?=$review["id"];?>">
+                        <button class="btn btn-arc-dark" name="validateReview" type="submit"><i class="bi bi-check-circle-fill"></i></button>
+                    </form>
+
                         <?php } ?>
                     </td>
                     <td>
@@ -49,7 +54,11 @@ require_once "./templates/header.php"; ?>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                    <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletereview?id=<?=$review['id'];?>">Supprimer</a>
+                                    <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/testReview.php">
+                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                        <input type="hidden" class="form-control" id="reviewId" name="reviewId" value="<?=$review["id"];?>">
+                                        <button class="btn btn-danger" name="deleteReview" type="submit">Supprimer</button>
+                                    </form>
                                 </div>
                                 </div>
                             </div>

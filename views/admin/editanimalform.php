@@ -3,7 +3,7 @@ require_once "./templates/header.php";
 
 ?>
 
-<div class="container mb-4 py-3">
+<div class="container mb-4 py-3"> 
 
     <section id="signup">
 
@@ -13,6 +13,7 @@ require_once "./templates/header.php";
 
                 <form method="POST" enctype="multipart/form-data" action="./views/editAnimal.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$animal[0]['animalId']?>">
                         <input type="hidden" class="form-control" id="currentImage" name="currentImage" value="<?=$animal[0]['animalImage']?>">
                     </div>

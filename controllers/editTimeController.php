@@ -1,8 +1,10 @@
 <?php
+session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
 
 if(isset($_POST["timeForm"])) {
     $newTime = $_POST["timeForm"];

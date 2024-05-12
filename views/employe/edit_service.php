@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 require_once "./templates/header.php"; ?>
 
 <div class="container mb-4 py-3">
@@ -15,19 +12,12 @@ require_once "./templates/header.php"; ?>
 
                 <form method="POST" enctype="multipart/form-data" action="./views/editserviceprocess.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input type="hidden" class="form-control" id="serviceId" name="serviceId" value="<?=$service["id"];?>">
-                    </div>
-                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="currentImage" name="currentImage" value="<?=$service['image']?>">
+
                         <label for="serviceName" class="form-label">Nom du service</label>
                         <input class="form-control" id="serviceDescription" name="serviceName"  value="<?=$service["name"];?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="serviceDescription" class="form-label">Description du service</label>
-                        <textarea class="form-control" id="serviceDescription" name="serviceDescription" rows="3"><?=$service["description"];?></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="file" class="form-label">Modifier la photo</label>
-                        <input class="form-control" type="file" id="file" name="file">
                     </div>
                     <div class="mb-3">
                         <label for="isFree" class="form-label">Service gratuit ?</label>
@@ -44,6 +34,32 @@ require_once "./templates/header.php"; ?>
                             </label>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="serviceDescription" class="form-label">Description du service</label>
+                        <textarea class="form-control" id="serviceDescription" name="serviceDescription" rows="3"><?=$service["description"];?></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="keepOrChangePhoto" class="form-label">Choix de la photo</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="keepOrChangePhoto" id="hideField" value="keep" checked>
+                            <label class="form-check-label" for="keepPhoto">
+                                Garder la photo actuelle
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="keepOrChangePhoto" id="showField" value="change">
+                            <label class="form-check-label" for="changePhoto">
+                                Changer de photo
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3" id="fieldContainer" style="display: none;">
+                        <!-- if the admin decides to change the photo -->
+                        <label for="file" class="form-label">Ajouter une nouvelle photographie de l'animal</label>
+                        <input class="form-control" type="file" id="file" name="file">
+                    </div>
+                    
 
                     <input class="btn btn-arc-dark" name="editService" type="submit" value="Modifier ce service"></input>
 

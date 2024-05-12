@@ -1,28 +1,45 @@
-<?php 
+<?php
+// Display all errors
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+var_dump($_POST["contactTitle"]);
+var_dump($_POST["contactEmail"]);
+var_dump($_POST["contactMessage"]);
+
+require "../models/Dbh.php";
 require "../PHPMailer/script.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ContactForm'])) {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die('Erreur CSRF !'); 
+    }
     try {
-
-        $subject = htmlspecialchars($_POST["contactTitle"]);
+        $subject = $_POST["contactTitle"];
         $email = filter_var($_POST["contactEmail"], FILTER_SANITIZE_EMAIL);
-        $message = htmlspecialchars($_POST["contactMessage"]);
+        $message = htmlspecialchars($_POST["contactMessage"], ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
-        if(empty($subject) || empty($email) || empty($message|| strlen($subject) > 10 || strlen($message) > 100)) {
-            header("Location: /studi-arcadia/contact?error=emptyimput");
-            throw new Exception("Invalid input");
+        if(empty($subject) || empty($email) || empty($message) || strlen($subject) < 5 || strlen($message) < 50) {
+            throw new Exception("Champs invalides");
         } 
 
+        $subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+        $response = sendContactFormMail($email, $subject, $message);
 
         if ($response) {
-            header("Location: /studi-arcadia/contact?success=emailsent");
+            $_SESSION['success'] = "Votre avis a bien été envoyé.";
         } else {
-            throw new Exception("Error sending email.");
+            throw new Exception("Une erreur s'est produite lors de l'envoi de l'email.");
         }
     } catch (Exception $e) {
-        header("Location: /studi-arcadia/contact?error=" . urlencode($e->getMessage()));
+        $_SESSION['error'] = $e->getMessage();
+    
     }
-exit();
+    header("Location: ".BASE_URL."/contact");
+    exit();
 
 }
+
 

@@ -7,22 +7,10 @@
         <div class="row bg-arc-mint-green py-3 my-5">
             <h2>Modifier un habitat</h2>
             <div class="col-md-8">
-                <?php if(isset($_GET['success'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-success" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                        </div>
-                    </div>
-                <?php } else if(isset($_GET['error'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-danger" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['error']]; ?>
-                        </div>
-                    </div>
-                <?php } ?>
 
 <form method="POST" enctype="multipart/form-data" action="./views/edithabitatprocess.php">
     <div class="mb-3">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
         <input type="hidden" class="form-control" id="habitatId" name="habitatId" value="<?=$editedHabitat[0]['id']?>">
         <input type="hidden" class="form-control" id="currentImage" name="currentImage" value="<?=$editedHabitat[0]['image']?>">
     </div>

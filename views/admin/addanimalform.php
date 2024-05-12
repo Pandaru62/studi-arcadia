@@ -5,7 +5,7 @@ require_once "./templates/header.php";
 
 <div class="container mb-4 py-3">
 
-    <section id="signup">
+    <section id="signup"> 
 
         <div class="row bg-arc-mint-green py-3 my-5">
             <div class="col-md-8">
@@ -13,6 +13,7 @@ require_once "./templates/header.php";
 
                 <form method="POST" enctype="multipart/form-data" action="./views/addAnimalProcess.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <label for="animalFirstName" class="form-label">Prénom de l'animal :</label>
                         <input required type="text" class="form-control" id="animalFirstName" name="animalFirstName">
                     </div>

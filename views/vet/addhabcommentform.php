@@ -12,6 +12,7 @@ require_once "./templates/header.php";
                 <p>Merci de signaler tout problème lié à un habitat pouvant nécessiter une intervention.</p>
                 <form method="POST" enctype="multipart/form-data" action="./views/commmenthabitatprocess.php">
                 <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input type="hidden" class="form-control" id="userId" name="userId" value="<?=$_SESSION['userId']?>">
                     </div>
                     <div class="mb-3">

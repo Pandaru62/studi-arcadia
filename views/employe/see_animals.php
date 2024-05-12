@@ -42,7 +42,12 @@
                             <td>Nom de l'animal</td>
                             <td>Espèce</td>
                             <td>Consulter</td>
+                            <?php if ($_SESSION['userRole'] == 'employé' || $_SESSION['userRole'] == 'admin'){ ?>
                             <td>Nourrir</td>
+                            <?php } ?>
+                            <?php if ($_SESSION['userRole'] == 'vétérinaire' || $_SESSION['userRole'] == 'admin'){ ?>
+                            <td>Avis médical</td>
+                            <?php } ?>
                             <?php if ($_SESSION['userRole'] == 'admin'): ?>
                             <td>Editer</td>
                             <td>Supprimer</td>
@@ -55,7 +60,12 @@
                             <td><?= $animal['first_name'] ?></td>
                             <td><a href="<?= BASE_URL ?>/animal?species=<?= $animal['species_id'] ?>"><?= $animal['speciesName'] ?></a></td>
                             <td><a class="btn btn-info" href="<?= BASE_URL ?>/show?animal=<?= $animal['animalId'] ?>"><i class="bi bi-eye-fill"></i></a></td>
+                            <?php if ($_SESSION['userRole'] == 'employé' || $_SESSION['userRole'] == 'admin'){ ?>
                             <td><a class="btn btn-arc-dark" href="<?= BASE_URL ?>/feeding?id=<?= $animal['animalId'] ?>"><i class="fa-solid fa-carrot"></i></a></td>
+                            <?php } ?>
+                            <?php if ($_SESSION['userRole'] == 'vétérinaire' || $_SESSION['userRole'] == 'admin'){ ?>
+                            <td><a class="btn btn-arc-dark" href="<?= BASE_URL ?>/checkupanimal?animal=<?= $animal['animalId'] ?>"><i class="fa-solid fa-user-doctor"></i></a></td>
+                            <?php } ?>
                             <?php if ($_SESSION['userRole'] == 'admin'): ?>
                             <td><a class="btn btn-warning" href="<?= BASE_URL ?>/editanimal?id=<?= $animal['animalId'] ?>"><i class="bi bi-pencil"></i></a></td>
                             <td>
@@ -72,7 +82,11 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                <a type="button" class="btn btn-danger" href="<?= BASE_URL ?>/deleteanimal?id=<?= $animal['animalId'] ?>">Supprimer</a>
+                                                <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                                    <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$ani['animalId'];?>">
+                                                    <button class="btn btn-danger" name="deleteAnimal" type="submit">Supprimer</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -127,8 +141,12 @@
                                                 Voulez-vous vraiment supprimer l'espèce "<?= $specie['name'] ?>" ?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                <a type="button" class="btn btn-danger" href="<?= BASE_URL ?>/deletespecies?id=<?= $specie['id'] ?>">Supprimer</a>
+                                                <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>                                          
+                                                <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                                    <input type="hidden" class="form-control" id="speciesId" name="speciesId" value="<?=$specie['id'];?>">
+                                                    <button class="btn btn-danger" name="deleteSpecies" type="submit">Supprimer</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

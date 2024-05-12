@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
+
 if(isset($_POST["loginForm"])) {
     $userEmail = filter_var($_POST["userEmail"], FILTER_SANITIZE_EMAIL);
     $userPassword = $_POST["userPassword"];

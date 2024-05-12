@@ -30,17 +30,22 @@ class AccountsController extends Signup {
             header("Location: ".BASE_URL);
         }
     }
+    
 
     public function editAccount() {      
         if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin' && !isset($_GET['id'])) {
             $userList = $this->getUsers();
-            require_once 'views/admin/editaccount.php';
+            require_once 'views/admin/showaccounts.php';
             return $userList;
         } else if(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin' && isset($_GET['id'])) {
             $userId = $_GET['id'];
             $user = $this->getUsers($userId);
+            if(!empty($user)) {
             require_once 'views/admin/editaccountform.php';
             return $user;
+            } else {
+                header("Location: ".BASE_URL);
+            }
         } else {
             header("Location: ".BASE_URL);
         }

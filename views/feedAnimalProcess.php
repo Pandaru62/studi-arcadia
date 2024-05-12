@@ -2,7 +2,10 @@
 
 session_start();
 
-define("BASE_URL", '/studi-arcadia');
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
+
 
 // Include necessary files
 include_once "../models/feeding.class.php";

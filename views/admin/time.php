@@ -17,22 +17,10 @@ require_once "./templates/header.php";
             <h2>Modifier les horaires</h2>
         
             <div class="col-md-8">
-            <?php if(isset($_GET['success'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-success" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                        </div>
-                    </div>
-                <?php } else if(isset($_GET['error'])) { ?>
-                    <div class="d-flex">
-                        <div class="alert alert-danger" role="alert">
-                            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['error']]; ?>
-                        </div>
-                    </div>
-                <?php } ?>
-                
+
                 <form method="POST" enctype="multipart/form-data" action="<?= BASE_URL?>/controllers/editTimeController.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <label for="time1" class="form-label">Ligne 1 :</label>
                         <input  type="text" class="form-control" id="time1" name="time1" value="<?= $openingTimes[0]; ?>">
                     </div>

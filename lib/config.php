@@ -37,11 +37,15 @@ $sucess = [
   'habitatdeleted' => 'L\'habitat a bien été supprimé.',
   'habitatadded' => 'L\'habitat a bien été ajouté.', 
   'animaldeleted' => 'L\'animal a bien été supprimé.',
+  'animaledited' => 'L\'animal a bien été modifié.',
+  'animaladded' => 'L\'animal a bien été ajouté.', 
   'commentsent' => 'Le commentaire a été envoyé avec succès.',
   'checkupadded' => 'Le nouvel avis a bien été ajouté.',
   'foodrecorded' => 'La nourriture a bien été enregistrée.',
   'emailsent' => 'Votre email a bien été envoyé. Nous vous répondrons le plus rapidement possible.',
-
+  'speciesdeleted' => 'L\'espèce a bien été supprimée.',
+  'specieedited' => 'L\'espèce a bien été modifiée.',
+  'speciesadded' => 'L\'espèce a bien été ajoutée.', 
 ];
 
 $mainMenu = [
@@ -94,9 +98,8 @@ $mainMenu = [
   "admin" => [
       '/dashboard' => 'Dashboard',
       "Comptes" => [
-          '/showaccounts' => 'Voir les utilisateurs',
+          '/showaccounts' => 'Voir ou modifier les utilisateurs',
           '/signup' => 'Ajouter un compte',
-          '/editaccount' => 'Editer un compte'
       ],
       "Services et Horaires" => [
           '/time' => 'Modifier les horaires',
@@ -106,6 +109,9 @@ $mainMenu = [
       "Habitats" => [
           '/habitats' => 'Modifier un habitat',
           '/addhabitat' => 'Ajouter un habitat',
+          '/seeHabitatComment' => 'Voir les commentaires',
+          '/commenthabitat' => 'Commenter un habitat',
+
       ],
       "Animaux" => [
           '/seeanimals' => 'Liste des animaux',

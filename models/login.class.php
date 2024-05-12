@@ -30,12 +30,22 @@ class Login extends Dbh{
             // exit();
         }
 
+        function generateToken() {
+            return bin2hex(random_bytes(32)); 
+        }
+
+            session_set_cookie_params(3600);
+            session_regenerate_id(false);
             session_start();
             $_SESSION["userEmail"] = $user[0]["email"];
             $_SESSION["userFirstName"] = $user[0]["first_name"];
             $_SESSION["userLastName"] = $user[0]["last_name"];
             $_SESSION["userRole"] = $user[0]["name"];
             $_SESSION["userId"] = $user[0]["userId"];
+
+            if (!isset($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = generateToken();
+            }
 
                     $stmt = null;
         }

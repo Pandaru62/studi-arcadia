@@ -57,6 +57,7 @@ if(!isset($_SESSION['$userEmail'])) {
 
             <form method="POST" enctype="multipart/form-data" action="./controllers/ProcessContactForm.php">
                 <div class="mb-3">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                     <label for="visitorPseudo" class="form-label">Pseudo :</label>
                     <input required type="text" class="form-control" id="visitorPseudo" name="visitorPseudo" placeholder="Votre pseudo">
                 </div>

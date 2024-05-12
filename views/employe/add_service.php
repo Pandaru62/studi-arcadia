@@ -12,6 +12,7 @@ require_once "./templates/header.php"; ?>
 
                 <form method="POST" enctype="multipart/form-data" action="./views/addservicesprocess.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <label for="serviceName" class="form-label">Nom du service</label>
                         <input class="form-control" id="serviceDescription" name="serviceName">
                     </div>

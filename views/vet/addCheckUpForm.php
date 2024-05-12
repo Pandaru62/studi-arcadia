@@ -12,6 +12,7 @@ require_once "./templates/header.php";
 
                 <form method="POST" enctype="multipart/form-data" action="./views/addCheckUpProcess.php">
                     <div class="mb-3">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input required type="hidden" class="form-control" id="userId" name="userId" value="<?=$_SESSION['userId'];?>">
                     </div>
                     <div class="mb-3">

@@ -18,6 +18,7 @@ require_once "./templates/header.php";
                             <input class="form-control" type="text" id="disabledInput" name="feedingAnimal" value="<?php foreach($animals as $animal){if($_GET['id'] == $animal['animalId']){echo $animal['first_name'] . ' (' .$animal['speciesName']. ')';}};?>">
                         </div>
                     </fieldset>
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input class="form-control" type="hidden" id="feedingAnimalId" name="feedingAnimalId" value="<?php if(isset($_GET['id'])){echo $_GET['id'];};?>">
                     <div class="mb-3">
                         <label for="feedingDate" class="form-label">Date :</label>

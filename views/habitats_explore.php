@@ -12,19 +12,7 @@ $species = $habitats->showSpecies();
 
 <section id="habitats">
     <div class="row bg-arc-mint-green py-3">
-    <?php if(isset($_GET['success'])) { ?>
-    <div class="d-flex">
-        <div class="alert alert-success" role="alert">
-            <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-        </div>
-    </div>
-    <?php } else if(isset($_GET['error'])) { ?>
-    <div class="d-flex">
-        <div class="alert alert-danger" role="alert">
-            <i class="fa-solid fa-check"></i> <?= $error[$_GET['error']]; ?>
-        </div>
-    </div>
-    <?php } ?>
+
         <h2>Explorer un habitat</h2>
         <?php foreach($menuHabitats as $menuHabitat) 
         {?>
@@ -41,7 +29,7 @@ $species = $habitats->showSpecies();
                             <button type="button" class="btn btn-danger z-2" data-bs-toggle="modal" data-bs-target="#deleteHabitat<?=$menuHabitat['id'];?>">
                             <i class="bi bi-trash-fill"></i> Supprimer
                             </button>
-                            <!-- modal config : warning message before user deleted -->
+                            <!-- modal config : warning message before habitat deleted -->
                             <div class="modal fade" id="deleteHabitat<?=$menuHabitat['id'];?>" tabindex="-1" aria-labelledby="deleteHabitat<?=$menuHabitat['id'];?>" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -54,7 +42,11 @@ $species = $habitats->showSpecies();
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                        <a class="btn btn-danger z-2" href="<?=BASE_URL?>/deletehabitat?id=<?=$menuHabitat['id'];?>"><i class="bi bi-pencil"></i> Supprimer l'habitat</a>
+                                        <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                            <input type="hidden" class="form-control" id="habitatId" name="habitatId" value="<?=$menuHabitat['id'];?>">
+                                            <button class="btn btn-danger" name="deleteHabitat" type="submit">Supprimer</button>
+                                        </form>
                                     </div>
                                     </div>
                                 </div>

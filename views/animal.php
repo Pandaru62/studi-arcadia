@@ -36,7 +36,11 @@ require_once "./templates/header.php";
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                            <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$animal[0]['species_id'];?>">Supprimer</a>
+                                            <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                                <input type="hidden" class="form-control" id="speciesId" name="speciesId" value="<?=$specie['id'];?>">
+                                                <button class="btn btn-danger" name="deleteSpecies" type="submit">Supprimer</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +88,7 @@ require_once "./templates/header.php";
                                             <i class="bi bi-trash-fill"></i> Supprimer l'animal</a>
                                         </button>
                                     </div>
-                                    <!-- modal config : warning message before species is deleted -->
+                                    <!-- modal config : warning message before animal is deleted -->
                                     <div class="modal fade" id="deleteAniModal<?=$ani['animalId'];?>" tabindex="-1" aria-labelledby="deleteAniModal<?=$ani['animalId'];?>" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -97,7 +101,11 @@ require_once "./templates/header.php";
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                    <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$ani['animalId'];?>">Supprimer</a>
+                                                    <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                                        <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$ani['animalId'];?>">
+                                                        <button class="btn btn-danger" name="deleteAnimal" type="submit">Supprimer</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

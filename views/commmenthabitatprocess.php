@@ -2,11 +2,9 @@
 
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-define("BASE_URL", '/studi-arcadia');
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
 
 // Include necessary files
 include_once "../models/habitatcomment.class.php";
@@ -14,7 +12,7 @@ include_once "../models/habitatcommentcontroller.class.php";
 
 
 // Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addHabitatComment"]) && isset($_SESSION) && $_SESSION['userRole'] == 'vétérinaire') {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addHabitatComment"]) && isset($_SESSION) && ($_SESSION['userRole'] == 'vétérinaire' || $_SESSION['userRole'] == 'admin')) {
     // Get form data
     $userId = $_POST["userId"];
     $commentHabitat = $_POST["commentHabitat"];

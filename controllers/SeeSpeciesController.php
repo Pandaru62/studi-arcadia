@@ -4,21 +4,6 @@ require_once "./models/species.class.php";
 
 class SeeSpeciesController extends Species {
     use getHabitats;
-    // public function seeSpec() {
-    //     if (!isset($_SESSION['userRole']) || $_SESSION['userRole'] !== 'admin') {
-    //         header("Location: ".BASE_URL);
-    //     } elseif(!isset($_GET['id'])) {
-    //         $animals = $this->getAllAnimals();
-    //         $species = $this->getAllSpecies();
-    //         $menuHabitats = $this->getHabitats();
-    //         require "./views/employe/see_animals.php";
-    //     } else {
-    //         $id = $_POST['speciesSelect'];
-    //         $selectedSpecies = $this->getAnimalsBySpecies($id);
-    //         require "./views/employe/see_animals.php";
-    //         return $selectedSpecies;
-    //     }
-    // }
 
     public function addSpec() {
         if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') {

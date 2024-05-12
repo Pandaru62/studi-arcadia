@@ -1,5 +1,4 @@
 <?php
-define('BASE_URL', '/studi-arcadia');
 
 include_once "signup.class.php";
 class SignUpContr extends Signup {
@@ -20,12 +19,12 @@ class SignUpContr extends Signup {
     public function signupUser() {
         if($this->emptyInput() == true) {
             // Empty input
-            header("Location: " .BASE_URL."/login?error=emptyinput");
+            header("Location: " .BASE_URL."/signup?error=emptyinput");
             exit();
         }
         if($this->invalidEmail() == true) {
             // Empty input
-            header("Location: " .BASE_URL."/login?error=email");
+            header("Location: " .BASE_URL."/signup?error=email");
             exit();
         }
 

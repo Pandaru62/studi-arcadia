@@ -8,13 +8,6 @@ require_once "./templates/header.php";
 
         <div class="row bg-arc-mint-green py-3 my-5">
             <h2>Editer le compte d'un membre</h2>
-            <?php if(isset($_GET['success'])) { ?>
-                <div class="d-flex">
-                    <div class="alert alert-success" role="alert">
-                        <i class="fa-solid fa-check"></i> <?= $sucess[$_GET['success']]; ?>
-                    </div>
-                </div>
-            <?php } ?>
             
             <div class="row g-0 px-5">
                 <div class="table-responsive">

@@ -4,6 +4,9 @@ session_start();
 define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
 define("BASE_URL", '/studi-arcadia');
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('Erreur CSRF !'); 
+}
 
 // Include necessary files
 include_once "../models/services.class.php";
@@ -71,10 +74,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editService"]) && isse
     $serviceId = $_POST["serviceId"];
     $serviceName = $_POST["serviceName"];
     $serviceDescription = $_POST["serviceDescription"];
-    $serviceImage = $_FILES["file"];
+    $keepOrChangePhoto = $_POST["keepOrChangePhoto"];
     $isFree = $_POST["isFree"];
 
-    $fileName = checkFile($serviceImage, $serviceId);
+
+// Checks if the user wants to change the photo or not
+if($keepOrChangePhoto == 'change') {
+    $serviceImage = $_FILES["file"];
+    // if he changes, a new photo is being checked and uploaded
+    $fileName = checkFile($animalId); 
+    } else {
+    // else we keep the current image with the same name
+    $fileName = $_POST["currentImage"];
+    }
 
     // Update service
     $service = new ServicesContr($serviceName, $serviceDescription, $fileName, $isFree);
