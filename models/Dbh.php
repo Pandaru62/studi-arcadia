@@ -2,16 +2,7 @@
 // Database 
 
 if (!defined('BASE_URL')) {
-    // Check if the environment is Heroku
-$isHeroku = getenv('HEROKU_APP') ? true : false;
-
-if ($isHeroku) {
-    // Adjust base URL for Heroku
-    define("BASE_URL", '/');
-} else {
-    // Adjust base URL for local environment
-    define("BASE_URL", '/studi-arcadia');
-}
+    define("BASE_URL", '');
 }
 
 

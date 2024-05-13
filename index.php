@@ -30,8 +30,8 @@ set_error_handler("customErrorHandler");
 
 // CONSTANTS
 
-    define("BASE_URL", '/studi-arcadia');
-    define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
+    define("BASE_URL", '');
+    define('_SERVICES_IMG_PATH_', '/uploads/services/');
     define('_MENU_PATH_', './src/controllers/');
 
 require_once __DIR__ . '/vendor/autoload.php';
