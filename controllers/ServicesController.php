@@ -21,10 +21,10 @@ class ServicesController extends Services {
                 require_once "./views/employe/edit_service.php";
                 return $service;
             } else {
-                header("Location: ".BASE_URL."/services");
+                header("Location: /services");
             }
         } else {
-            header("Location: ".BASE_URL);
+            header("Location: /");
         }
 
     }
@@ -36,7 +36,7 @@ class ServicesController extends Services {
         return $services;
         } 
         else {
-            header("Location: ".BASE_URL);
+            header("Location: /");
         }
     }
 

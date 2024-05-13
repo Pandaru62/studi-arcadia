@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["feedAnimal"]) && isset
     $service = new FeedingContr($feedingAnimalId, $feedingDate, $feedingTime, $feedingFood, $foodQuantity);
     $service->addFeeding();
 
-    header("Location: " . BASE_URL . "/feeding?success=foodrecorded");
+    header("Location: /feeding?success=foodrecorded");
 
 }
 

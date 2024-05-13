@@ -25,6 +25,6 @@ if(isset($_POST["signupForm"])) {
         $response = sendMail($_POST["userEmail"], $subject, $message);
     }
 
-    header("location: /studi-arcadia/signup?success=userAdded");
+    header("location: /signup?success=userAdded");
     exit();
 }

@@ -1,6 +1,9 @@
 <?php
+
+
 session_start();
 
+// Check CSRF token
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     die('Erreur CSRF !'); 
 }
@@ -11,8 +14,7 @@ if(isset($_POST["loginForm"])) {
 
     if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error'] = "Format de l'email invalide.";
-        header("Location: /studi-arcadia/login");
-        exit();
+        die(header("location: ".BASE_URL."/login"));
     }
 
     include "../models/login.class.php";
@@ -22,15 +24,13 @@ if(isset($_POST["loginForm"])) {
         $signup = new LoginContr($userEmail, $userPassword);
         $signup->loginUser();
         
-        // if login ok
+        // If login is successful
         $_SESSION['success'] = "Vous êtes connecté.";
-        header("location: ".BASE_URL);
-        exit();
+        die(header("location: ".BASE_URL."/login"));
     } catch (Exception $e) {
         // Catch any exception
         $_SESSION['error'] = "Une erreur s'est produite. Veuillez réessayer.";
-        header("location: ".BASE_URL."/login");
-        exit();
+        die(header("location: ".BASE_URL."/login"));
     }
 }
 

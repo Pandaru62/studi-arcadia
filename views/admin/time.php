@@ -18,7 +18,7 @@ require_once "./templates/header.php";
         
             <div class="col-md-8">
 
-                <form method="POST" enctype="multipart/form-data" action="<?= BASE_URL?>/controllers/editTimeController.php">
+                <form method="POST" enctype="multipart/form-data" action="/controllers/editTimeController.php">
                     <div class="mb-3">
                         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <label for="time1" class="form-label">Ligne 1 :</label>

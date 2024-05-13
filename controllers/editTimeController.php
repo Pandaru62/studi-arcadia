@@ -22,4 +22,4 @@ file_put_contents('../lib/timeconfig.php', '<?php return ' . var_export($timeCon
 
 }
 
-header('location: /studi-arcadia/time?success=timeupdated');
+header('location: /time?success=timeupdated');

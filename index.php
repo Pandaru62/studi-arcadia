@@ -89,7 +89,7 @@ $router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPa
 $router->addRoute('GET', BASE_URL.'/signup', 'SignUpController', 'signUp');
 $router->addRoute('GET', BASE_URL.'/editaccount', 'AccountsController', 'editAccount');
 $router->addRoute('GET', BASE_URL.'/showaccounts', 'AccountsController', 'showAccounts');
-$router->addRoute('GET', BASE_URL.'/deleteaccount', 'AccountsController', 'deleteAccount'); // test needed
+$router->addRoute('GET', BASE_URL.'/deleteaccount', 'AccountsController', 'deleteAccount'); 
 $router->addRoute('GET', BASE_URL.'/time', 'OpeningTimeController', 'time');
 
 $router->addRoute('GET', BASE_URL.'/editservice', 'ServicesController', 'editService');
@@ -101,16 +101,16 @@ $router->addRoute('GET', BASE_URL.'/validatereview', 'CheckReviewController', 'v
 
 $router->addRoute('GET', BASE_URL.'/edithabitat', 'editHabitatController', 'editHab');
 $router->addRoute('GET', BASE_URL.'/addhabitat', 'editHabitatController', 'addHab');
-$router->addRoute('GET', BASE_URL.'/deletehabitat', 'editHabitatController', 'deleteHab'); // test needed
+$router->addRoute('GET', BASE_URL.'/deletehabitat', 'editHabitatController', 'deleteHab'); 
 
 $router->addRoute('GET', BASE_URL.'/seeanimals', 'SeeAnimalsController', 'seeAnimals');
 $router->addRoute('GET', BASE_URL.'/editanimal', 'SeeAnimalsController', 'editAnim');
-$router->addRoute('GET', BASE_URL.'/deleteanimal', 'SeeAnimalsController', 'deleteAnim');  // test needed
+$router->addRoute('GET', BASE_URL.'/deleteanimal', 'SeeAnimalsController', 'deleteAnim');  
 $router->addRoute('GET', BASE_URL.'/addanimal', 'SeeAnimalsController', 'addAnim');
 
 $router->addRoute('GET', BASE_URL.'/addspecies', 'SeeSpeciesController', 'addSpec');
 $router->addRoute('GET', BASE_URL.'/editspecie', 'SeeSpeciesController', 'editSpec');
-$router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec'); // test needed
+$router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec'); 
 $router->addRoute('GET', BASE_URL.'/dashboard', 'DashboardController', 'showDashboard');
 
 // Vet

@@ -5,10 +5,6 @@ if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_tok
     die('Erreur CSRF !'); 
 }
 
-define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
-define("BASE_URL", '/studi-arcadia');
-
-
 // Include necessary files
 include_once "../models/services.class.php";
 include_once "../models/servicesController.php";
@@ -57,11 +53,11 @@ function checkFile($file, $serviceId) {
 
                 } else {
                     // Error moving file
-                    header("Location: " . BASE_URL . "/addservice?error=uploaderror");
+                    header("Location: /addservice?error=uploaderror");
                 }
             } else {
                 // else error message
-                header("Location: " . BASE_URL . "/addservice?error=notimage");
+                header("Location: /addservice?error=notimage");
                 exit();
             }
         }
@@ -84,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addService"]) && isset
     $service = new ServicesContr($serviceName, $serviceDescription, $fileName, $isFree);
     $service->addService();
 
-    header("Location: " . BASE_URL . "/addservice?success=serviceAdded");
+    header("Location: /addservice?success=serviceAdded");
 
 }
 

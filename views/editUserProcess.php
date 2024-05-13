@@ -25,8 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editAccountForm"])) {
     $signupController = new SignUpContr($userLastName, $userFirstName, $userEmail, $userPassword, $userRole);
     $signupController->updateUser($userId);
 
-    header("Location: " . BASE_URL . "/showaccounts");
+    header("Location: /showaccounts?success=accountedited");
+    exit();
 
+} else {
+    header("Location: /showaccounts?error=accountnotedited");
+    exit();
 }
 
 

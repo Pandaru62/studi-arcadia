@@ -54,11 +54,11 @@ function checkFile($file, $serviceId) {
 
                 } else {
                     // Error moving file
-                    header("Location: " . BASE_URL . "/addspecies?error=uploaderror");
+                    header("Location: /addspecies?error=uploaderror");
                 }
             } else {
                 // else error message
-                header("Location: " . BASE_URL . "/addspecies?error=notimage");
+                header("Location: /addspecies?error=notimage");
                 exit();
             }
         }
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addSpeciesForm"]) && i
     $newSpec = new SpeciesContr($speciesName, $fileName, $speciesHabitat);
     $newSpec->addSpecies();
 
-    header("Location: " . BASE_URL . "/addspecies?success=speciesadded");
+    header("Location: /addspecies?success=speciesadded");
 
 }
 

@@ -7,11 +7,11 @@ if(isset($_SESSION['userRole']) && $_SERVER["REQUEST_METHOD"] == "POST" && isset
 
     $id = $_POST['animalSpec'];
 
-    header("Location: ".BASE_URL."/seeanimals?filter=animalbyspecies&id=".$id);
+    header("Location: /seeanimals?filter=animalbyspecies&id=".$id);
     exit(); 
 } else {
 
     
-    header("Location: ".BASE_URL."/seeanimals?filter=animalbyspecies&id=1");
+    header("Location: /seeanimals?filter=animalbyspecies&id=1");
     exit(); 
 }

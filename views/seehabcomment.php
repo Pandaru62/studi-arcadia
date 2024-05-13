@@ -21,25 +21,24 @@ require_once "./templates/header.php";
         
         <div class="row bg-arc-mint-green pt-3 mb-1">
 
-                <div class="table-responsive">
-                    <table class="table table-success table-striped align-middle" id="HabitatCommentsTable">
-                        <thead class="table-dark fw-bold">
-                            <tr class=" text-center">
-                                <td>Auteur</td>
-                                <td>Habitat concerné</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach($comments as $comment): ?>
-                            <tr class="text-center">
-                                <td><?=$comment['first_name'].' '.$comment['last_name']?></td>
-                                <td><?=$comment['name']?></td>
-                                <td><?=$comment['comment']?></td>
-                        <?php endforeach ?>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-success table-striped align-middle" id="HabitatCommentsTable">
+                    <thead class="table-dark fw-bold">
+                        <tr class=" text-center">
+                            <td>Auteur</td>
+                            <td>Habitat concerné</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($comments as $comment): ?>
+                        <tr class="text-center">
+                            <td><?=$comment['first_name'].' '.$comment['last_name']?></td>
+                            <td><?=$comment['name']?></td>
+                            <td><?=$comment['comment']?></td>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>

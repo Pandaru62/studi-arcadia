@@ -11,7 +11,7 @@ require_once "../models/animal.class.php";
     $id = $_POST['speciesSelect'];
 
     $selectedSpecies = $animal->getAnimalsBySpecies($id);
-    header("Location : " .BASE_URL."/seeanimals");
+    header("Location : /seeanimals");
 
 }
 

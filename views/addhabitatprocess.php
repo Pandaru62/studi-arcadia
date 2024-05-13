@@ -55,11 +55,11 @@ function checkFile() {
 
                 } else {
                     // Error moving file
-                    header("Location: " . BASE_URL . "/addhabitat?error=uploaderror");
+                    header("Location: /addhabitat?error=uploaderror");
                 }
             } else {
                 // else error message
-                header("Location: " . BASE_URL . "/addhabitat?error=notimage");
+                header("Location: /addhabitat?error=notimage");
                 exit();
             }
         }
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addHabitat"]) && isset
     $service = new HabitatsContr($habitatName, $fileName, $habitatDescription);
     $service->addHabitat();
 
-    header("Location: " . BASE_URL . "/addhabitat?success=habitatadded");
+    header("Location: /addhabitat?success=habitatadded");
 
 }
 

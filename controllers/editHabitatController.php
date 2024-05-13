@@ -9,12 +9,12 @@ class editHabitatController extends Habitats {
             if(isset($_GET['id']) ) {
                 $deletedHabitat = $_GET['id'];
                 $delete = $this->deleteHabitat($deletedHabitat);
-                header("Location: ".BASE_URL."/habitats?success=habitatdeleted");
+                header("Location: /habitats?success=habitatdeleted");
             } else {
-                header("Location: ".BASE_URL."/habitats?error=habitatnotdeleted");
+                header("Location: /habitats?error=habitatnotdeleted");
             }      
         } else {
-            header("Location: ".BASE_URL);
+            header("Location: /");
         }
     }
 
@@ -27,10 +27,10 @@ class editHabitatController extends Habitats {
                 require "./views/admin/edithabitatform.php";
                 return ($editedHabitat);
             } else {
-            header("Location: ".BASE_URL."/habitats?error=habitatnotedited");
+            header("Location: /habitats?error=habitatnotedited");
             } 
         } else {
-            header("Location: ".BASE_URL);
+            header("Location: /");
         }
     }
 
@@ -39,7 +39,7 @@ class editHabitatController extends Habitats {
         if(isset($_SESSION["userRole"]) && $_SESSION["userRole"] == "admin") {
             require "./views/admin/addhabitatform.php";
         } else {
-            header("Location: ".BASE_URL);
+            header("Location: /");
         }
     }
 

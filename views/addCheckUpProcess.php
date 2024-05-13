@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addCheckUp"]) && isset
     $service = new checkUpController($userId, $animalId, $animalHealth, $animalFood, $foodQuantity, $checkUpDate, $animalOpinion);
     $service->addAnimalCheckUp();
 
-    header("Location: " . BASE_URL . "/checkupanimal?success=checkupadded");
+    header("Location: /checkupanimal?success=checkupadded");
 
 }
 

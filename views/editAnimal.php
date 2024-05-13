@@ -54,11 +54,11 @@ function checkFile($id) {
 
                 } else {
                     // Error moving file
-                    header("Location: " . BASE_URL . "/editanimal?id=".$id."&error=uploaderror");
+                    header("Location: /editanimal?id=".$id."&error=uploaderror");
                 }
             } else {
                 // else error message
-                header("Location: " . BASE_URL . "/editanimal?id=".$id."&error=notimage");
+                header("Location: /editanimal?id=".$id."&error=notimage");
                 exit();
             }
         }
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editAnimalForm"]) && i
     $animal = new AnimalContr($firstName, $speciesId, $fileName);
     $animal->updateAnimal($animalId);
 
-    header("Location: " . BASE_URL . "/seeanimals?success=animaledited");
+    header("Location: /seeanimals?success=animaledited");
 
 }
 

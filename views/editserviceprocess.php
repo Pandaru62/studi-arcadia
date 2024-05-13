@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-define('_SERVICES_IMG_PATH_', '/studi-arcadia/uploads/services/');
-define("BASE_URL", '/studi-arcadia');
-
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     die('Erreur CSRF !'); 
 }
@@ -56,11 +53,11 @@ function checkFile($file, $serviceId) {
 
                 } else {
                     // Error moving file
-                    header("Location: " . BASE_URL . "/editservice?service=".$serviceId."&error=uploaderror");
+                    header("Location: /editservice?service=".$serviceId."&error=uploaderror");
                 }
             } else {
                 // else error message
-                header("Location: " . BASE_URL . "/editservice?service=".$serviceId."&error=notimage");
+                header("Location: /editservice?service=".$serviceId."&error=notimage");
                 exit();
             }
         }
@@ -92,7 +89,7 @@ if($keepOrChangePhoto == 'change') {
     $service = new ServicesContr($serviceName, $serviceDescription, $fileName, $isFree);
     $service->updateService($serviceId);
 
-    header("Location: " . BASE_URL . "/services?success=serviceEdited");
+    header("Location: /services?success=serviceEdited");
 
 }
 

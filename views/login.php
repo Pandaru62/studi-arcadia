@@ -26,7 +26,7 @@ require_once "./templates/header.php";
                 <?php endif ?>
                 <form method="POST" enctype="multipart/form-data" action="./views/login.inc.php">
                     <div class="mb-3">
-                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']); ?>">
                         <label for="userEmail" class="form-label">Email de connexion :</label>
                         <input  type="email" class="form-control" id="userEmail" name="userEmail" placeholder="user@email.fr">
                     </div>

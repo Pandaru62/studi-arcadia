@@ -94,7 +94,7 @@ require_once('./templates/header.php');
     
     <div class="row bg-arc-mint-green p-3">
         <div class="py-3 my-3 d-flex align-items-center justify-content-center">
-            <a class="btn btn-arc-dark rounded-5 btn-lg" href="<?BASE_URL?>/addservice.php">
+            <a class="btn btn-arc-dark rounded-5 btn-lg" href="/addservice">
                 <i class="bi bi-plus-circle-fill"></i> 
                 Ajouter un nouveau service
             </a>

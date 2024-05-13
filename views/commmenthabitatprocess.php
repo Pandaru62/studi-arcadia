@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addHabitatComment"]) &
     $service = new HabitatCommentController($userId, $commentHabitat, $commentDescription);
     $service->commentHabitat();
 
-    header("Location: " . BASE_URL . "/commenthabitat?success=commentsent");
+    header("Location: /commenthabitat?success=commentsent");
 
 }
 

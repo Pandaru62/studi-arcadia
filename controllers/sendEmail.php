@@ -1,15 +1,13 @@
 <?php
+
+session_start();
+
 // Display all errors
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-var_dump($_POST["contactTitle"]);
-var_dump($_POST["contactEmail"]);
-var_dump($_POST["contactMessage"]);
-
 require "../models/Dbh.php";
 require "../PHPMailer/script.php";
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ContactForm'])) {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {

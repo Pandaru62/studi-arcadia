@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["searchAnimalForm"]) &&
 
     // Redirecting to the page
 
-    header("Location: " . BASE_URL . "/seefeeding?filter=animal&sort=datenew&num=".$id."&pp=1");
+    header("Location: /seefeeding?filter=animal&sort=datenew&num=".$id."&pp=1");
 
 }
 
@@ -27,6 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["searchDateForm"]) && i
 
     // Redirecting to the page
 
-    header("Location: " . BASE_URL . "/seefeeding?filter=date&sort=datenew&num=".$id."&pp=1");
+    header("Location: /seefeeding?filter=date&sort=datenew&num=".$id."&pp=1");
 
 }
