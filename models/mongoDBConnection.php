@@ -1,19 +1,22 @@
 <?php
 
-require_once "./vendor/mongodb/mongodb/src/Client.php";
 
 trait MongoDB {
 
     protected function connectMongoDb() {
-        $uri = 'mongodb+srv://lorisbch:OlOa7jVjSSblVm35@arcadia.yirclzp.mongodb.net/';
+
+            $uri = getenv('MONGODB_URI');
+            if (!$uri) {
+                $uri = MONGODB_URI; }
+            
         $collection = (new MongoDB\Client($uri))->Arcadia->countVisitors;
         return $collection;
+
     }
 }
-class MongoDBConnection {
-use MongoDB;
-
-    
-}
+    class MongoDBConnection {
+    use MongoDB;
+        
+    }
 
            

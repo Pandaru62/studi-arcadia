@@ -30,6 +30,7 @@ set_error_handler("customErrorHandler");
 
 // CONSTANTS
 
+    define('MONGODB_URI', 'mongodb+srv://lorisbch:OlOa7jVjSSblVm35@arcadia.yirclzp.mongodb.net/arcadia?retryWrites=true&amp;w=majority&amp;ssl=true');
     define("BASE_URL", '');
     define('_SERVICES_IMG_PATH_', '/uploads/services/');
 
