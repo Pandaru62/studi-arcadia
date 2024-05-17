@@ -5,8 +5,8 @@ require_once "./vendor/mongodb/mongodb/src/Client.php";
 trait MongoDB {
 
     protected function connectMongoDb() {
-        $uri = 'mongodb://root:root@localhost:8080';
-        $collection = (new MongoDB\Client($uri))->arcadia->countVisitors;
+        $uri = 'mongodb+srv://lorisbch:OlOa7jVjSSblVm35@arcadia.yirclzp.mongodb.net/';
+        $collection = (new MongoDB\Client($uri))->Arcadia->countVisitors;
         return $collection;
     }
 }

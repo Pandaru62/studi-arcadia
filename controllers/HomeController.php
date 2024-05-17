@@ -14,6 +14,7 @@ class HomeController extends Habitats {
         $services = $this->getServices(3);
         $menuHabitats = $this->getHabitats(3);
         $unCheckedReview = $this->countReview();
+        $lastCheckedReviews = $this->getLastReviews(1, 5);
         $countUncheckedReviews = $unCheckedReview[0]["COUNT(*)"];
         foreach($menuHabitats as $hab) {
             $species[$hab['id']] = $this->getSpeciesByHabitat($hab["id"]);

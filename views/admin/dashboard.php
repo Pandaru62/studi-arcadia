@@ -45,8 +45,10 @@ require_once "./templates/header.php";
                 </div>
                     <hr class="border border-light border-2 opacity-75">
                     <ul class="text-left">
-                    <li class="pt-2"><a class="link-light " href="<?=BASE_URL?>/habitats">Modification d'un habitat</a></li>
+                        <li class="pt-2"><a class="link-light " href="<?=BASE_URL?>/habitats">Modification d'un habitat</a></li>
                         <li class="pt-2"><a class="link-light" href="<?=BASE_URL?>/addhabitat">Ajout d'un habitat</a></li>
+                        <li class="pt-2"><a class="link-light" href="<?=BASE_URL?>/seeHabitatComment">Voir les commentaires d'habitat</a></li>
+                        <li class="pt-2"><a class="link-light" href="<?=BASE_URL?>/commenthabitat">Ajouter un commentaire d'habitat</a></li>
                     </ul>                
 
                 </div>

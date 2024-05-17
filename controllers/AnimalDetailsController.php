@@ -9,7 +9,7 @@ class AnimalDetailsController extends Feeding {
     use getAllAnimals;
 
     
-    public function showAnimal() {  
+    public function showAnimal() {
         function formatDate($dateString) {
             $date = DateTime::createFromFormat('Y-m-d', $dateString);
             if ($date !== false) {

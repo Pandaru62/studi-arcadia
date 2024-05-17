@@ -62,13 +62,13 @@ require_once "./templates/header.php";
             <div id="top-animal" class="col-md-8 py-3">
                 <figure class="figure">
                     <img src="assets/panda-4836503_1920.jpg" alt="Panda roux" class="img-top-animal img-fluid">
-                    <figcaption class="figure-caption">Partez à la rencontre de nos pandas roux.</figcaption>
+                    <figcaption class="figure-caption">Rencontrez nos pandas roux.</figcaption>
                 </figure>
             </div>
             <div class="col-md-4 py-3">
                 <div class="bg-arc-mint-green rounded-5 rounded-top-0 h-100 p-3 text-arc-dark justify-content-center d-flex flex-column align-items-center">
                     <h3 class="pb-3">Fun fact:</h3>
-                    <p>Les pandas roux, également connus sous le nom de "petits pandas", ne sont pas de vrais pandas, mais plutôt des membres de la famille des mustélidés, plus proches des ratons laveurs que des grands pandas. Leur pelage roux et leur visage mignon en font des créatures adorables, mais ils sont également connus pour leur agilité dans les arbres, où ils se déplacent avec grâce grâce à leurs pattes agiles et à leur queue touffue, qui leur sert d'équilibreur.</p>
+                    <p>Les pandas roux, également connus sous le nom de "petits pandas" sont plus proches des ratons laveurs que des grands pandas. Ils sont  connus pour leur agilité dans les arbres, où ils se déplacent avec grâce grâce à leurs pattes agiles et à leur queue touffue, qui leur sert d'équilibreur.</p>
                     <a href="<?=BASE_URL?>/animal?species=14" class="btn btn-arc-dark">Accéder à la page des pandas roux</a>
                 </div>
             </div>
@@ -129,7 +129,7 @@ require_once "./templates/header.php";
             <div class="col rect-upper-effect"></div>
         </div>
         <div class="row bg-arc-dark pb-4">
-            <h2 class="light-h2">Restons en contact</h2>
+            <h2 class="light-h2">Donnez votre avis</h2>
             <p class="text-light">Vos avis comptent pour nous : partagez votre expérience.</p>
             <div class="row g-0 text-center d-flex align-items-center">
                 <div class="col-md-12 col-lg-3 text-light">
@@ -150,7 +150,7 @@ require_once "./templates/header.php";
                     </ul>
                 </div>
                 
-                <div class="col-md-6 col-lg-5 p-2">
+                <div class="col-md-6 d-lg-none p-2">
                     <div class="card">
                         <div class="card-header bg-arc-primary text-light d-flex justify-content-between align-items-center">
                             <i class="fa-regular fa-user"></i>
@@ -159,7 +159,29 @@ require_once "./templates/header.php";
                         <div class="card-body">
                             <p class="card-text">"<?=$reviews[0]["message"];?>"</p>
                         </div>
+                    </div>
+                </div>
+
+                <div class="d-none d-lg-flex col-lg-5">
+                    <div id="carouselReviews" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <?php $first = true; ?>
+                            <?php foreach($lastCheckedReviews as $lastCheckedReview): ?>
+                                <div class="carousel-item <?php echo $first ? 'active' : ''; ?>">
+                                    <?php $first = false; ?>
+                                    <div class="card">
+                                        <div class="card-header bg-arc-primary text-light d-flex justify-content-between align-items-center">
+                                            <i class="fa-regular fa-user"></i>
+                                            <span>@<?=$lastCheckedReview["pseudo"];?></span>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">"<?=$lastCheckedReview["message"];?>"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
                         </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6 col-lg-4 px-2">

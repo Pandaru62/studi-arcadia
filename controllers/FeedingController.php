@@ -64,11 +64,11 @@ class FeedingController extends AnimalController {
 
         function count_visitor($speciesId) {
             // Connect to MongoDB
-            $uri = 'mongodb://root:root@localhost:8080';
+            $uri = 'mongodb+srv://lorisbch:OlOa7jVjSSblVm35@arcadia.yirclzp.mongodb.net/';
             $client = new MongoDB\Client($uri);
         
             // Select database and collection
-            $collection = $client->selectDatabase('arcadia')->selectCollection('countVisitors');
+            $collection = $client->selectDatabase('Arcadia')->selectCollection('countVisitors');
         
             // Find the document with the given speciesId
             $document = $collection->findOne(['SpeciesId' => $speciesId]);

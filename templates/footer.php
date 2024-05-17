@@ -19,20 +19,58 @@
                 </div>
             </div>
             <div class="d-sm-flex d-md-none p-2 d-flex align-items-center justify-content-center">
-                <p class="d-inline-flex gap-1">
-                    <a class="btn btn-arc-dark" role="button" href="#collapsePhone" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapsePhone">
-                    <i class="fa-solid fa-phone"></i>
-                    </a>
-                    <a href="#" class="text-light btn btn-arc-dark">Mentions légales</a>
-                    <a class="btn btn-arc-dark" role="button" href="#collapseSchedule" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseSchedule">
-                        <i class="fa-regular fa-clock"></i>
-                    </a>
-                    <div class="collapse" id="collaspsePhone">
-                        <div class="card card-body">
-                            (+33) 03 20 12 12 15
-                        </div>
+                <!-- trigger Phone modal on small screens -->
+                <button type="button" class="btn btn-arc-dark" data-bs-toggle="modal" data-bs-target="#phoneModal">
+                <i class="fa-solid fa-phone"></i>
+                </button>
+
+                <!-- Phone modal on small screens -->
+                <div class="modal fade" id="phoneModal" tabindex="-1" aria-labelledby="phoneModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="phoneModal"><i class="fa-solid fa-phone"></i> Téléphone</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </p>
+                    <div class="modal-body">
+                    (+33) 03 20 12 12 15
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <!-- end phone modal -->
+
+                <a href="#" class="text-light btn btn-arc-dark">Mentions légales</a>
+               
+                <!-- trigger OpeningTimes modal on small screens -->
+                <button type="button" class="btn btn-arc-dark" data-bs-toggle="modal" data-bs-target="#openingTimesModal">
+                    <i class="fa-regular fa-clock"></i>
+                </button>
+
+                <!-- OpeningTimes modal on small screens -->
+                <div class="modal fade" id="openingTimesModal" tabindex="-1" aria-labelledby="openingTimesModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="openingTimesModal"><i class="fa-regular fa-clock"></i> Horaires d'ouverture</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fs-6">
+                            <?= $timeConfig['opening_hours']['time1']; ?><br/>
+                            <?= $timeConfig['opening_hours']['time2']; ?>
+                        </p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <!-- end OpeningTimes modal -->
+ 
             </div>  
         </div>
 </footer>

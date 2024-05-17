@@ -1,12 +1,5 @@
 <?php
 session_start();
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-define("BASE_URL", '/studi-arcadia');
-
 // Check if form is submitted
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["searchAnimalForm"]) && isset($_SESSION['userRole'])) {
@@ -15,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["searchAnimalForm"]) &&
 
     // Redirecting to the page
 
-    header("Location: " . BASE_URL . "/seecheckup?filter=animal&sort=datenew&num=".$id."&pp=1");
+    header("Location: /seecheckup?filter=animal&sort=datenew&num=".$id."&pp=1");
 
 }
 
@@ -27,6 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["searchDateForm"]) && i
 
     // Redirecting to the page
 
-    header("Location: " . BASE_URL . "/seecheckup?filter=date&sort=datenew&num=".$id."&pp=1");
+    header("Location: /seecheckup?filter=date&sort=datenew&num=".$id."&pp=1");
 
 }

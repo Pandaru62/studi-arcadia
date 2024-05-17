@@ -5,13 +5,13 @@
 
   <ul class="nav nav-tabs mt-3">
     <li class="nav-item">
-      <a class="nav-link <?php if($filter == "none") {echo "active";}?>" aria-current="page" href="<?= BASE_URL.'/seefeeding'; ?>">Toutes les sessions de nourrissage</a>
+      <a class="nav-link <?php if($filter == "none") {echo "active";}?>" aria-current="page" href="<?='/seefeeding'; ?>">Toutes les sessions de nourrissage</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <?php if($filter == "date") {echo "active";}?>" href="<?= BASE_URL.'/seefeeding?filter=date&sort=datenew&num=2024-05-02&pp=1'; ?>">Filtrer par date</a>
+      <a class="nav-link <?php if($filter == "date") {echo "active";}?>" href="<?='/seefeeding?filter=date&sort=datenew&num=2024-05-02&pp=1'; ?>">Filtrer par date</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <?php if($filter == "animal") {echo "active";}?>" href="<?= BASE_URL.'/seefeeding?filter=animal&sort=datenew&num=1&pp=1'; ?>">Filtrer par animal</a>
+      <a class="nav-link <?php if($filter == "animal") {echo "active";}?>" href="<?='/seefeeding?filter=animal&sort=datenew&num=1&pp=1'; ?>">Filtrer par animal</a>
     </li>
   </ul>
 
@@ -70,15 +70,15 @@
         <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
         <?php } ?>
         <?php if($currentPage != $pagesNumber){?> 
-      <li class="page-item"><a class="page-link active" href="<?= BASE_URL.'/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$currentPage; ?>"><?= $currentPage ?></a></li>
+      <li class="page-item"><a class="page-link active" href="<?='/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$currentPage; ?>"><?= $currentPage ?></a></li>
         <?php } ?>
       <?php if($currentPage < $pagesNumber && $currentPage +1 != $pagesNumber ){?>
-        <li class="page-item"><a class="page-link" href="<?= BASE_URL.'/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$nextPage; ?>"><?= $nextPage ?></a></li>
+        <li class="page-item"><a class="page-link" href="<?='/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$nextPage; ?>"><?= $nextPage ?></a></li>
       <?php } ?>
 
       <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
-      <li class="page-item"><a class="page-link  <?php if($currentPage==$pagesNumber){echo 'active';}; ?>" href="<?= BASE_URL.'/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$pagesNumber; ?>"><span><?=$pagesNumber?></span></a></li>
-      <li class="page-item <?php if($currentPage==$pagesNumber){echo 'disabled';}; ?>"><a class="page-link" href="<?= BASE_URL.'/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$nextPage; ?>">Suivant</a></li>
+      <li class="page-item"><a class="page-link  <?php if($currentPage==$pagesNumber){echo 'active';}; ?>" href="<?='/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$pagesNumber; ?>"><span><?=$pagesNumber?></span></a></li>
+      <li class="page-item <?php if($currentPage==$pagesNumber){echo 'disabled';}; ?>"><a class="page-link" href="<?='/seefeeding?filter='.$extendedFilter.'&sort=animalabc&pp='.$nextPage; ?>">Suivant</a></li>
     </ul>
   </nav>
 

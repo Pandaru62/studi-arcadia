@@ -18,9 +18,9 @@ $species = $habitats->showSpecies();
         {?>
         <div class="col-12 col-lg-4 pb-3">
             <div class="card card-habitat">
-                <img src="uploads/habitats/<?= $menuHabitat["image"]; ?>" class="card-img-top z-0" alt="marais">
+                <img src="uploads/habitats/<?= $menuHabitat["image"]; ?>" class="card-img-top-animal z-0" alt="marais">
                 <div class="card-img-overlay d-flex align-items-start justify-content-center">
-                    <h5 class="card-title text-light z-1"><?= $menuHabitat["name"]; ?></h5>
+                    <h5 class="card-title text-light z-1"><a class="no-underline" href="#"><?= $menuHabitat["name"]; ?></a></h5>
                 </div>                    
                 <div class="card-body bg-light d-flex flex-column">
                     <?php if(isset($_SESSION['userEmail']) && $_SESSION['userRole'] == 'admin') {?>
@@ -54,21 +54,25 @@ $species = $habitats->showSpecies();
                         
                         </div>
                     <?php } ?>
-                    <p class="card-text z-1"><?= $menuHabitat["description"]; ?>
-                    <a class="text-arc-dark" href="<?=BASE_URL?>/showHabitat?habitat=<?=$menuHabitat['id'];?>" type="button">
-                        Accéder à la page
-                    </a>
+                    <p class="card-text z-1">
+                        <?= $menuHabitat["description"]; ?>
                     </p>
-                    <button class="btn btn-arc-dark align-self-end z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais<?=$menuHabitat['id'];?>" aria-expanded="false" aria-controls="collapseMarais">
-                        Voir les animaux
-                    </button>
+                    <div class="d-flex flex-xl-row justify-content-around">
+                        <button class="btn btn-arc-dark z-1 me-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais<?=$menuHabitat['id'];?>" aria-expanded="false" aria-controls="collapseMarais">
+                            Visiter la page
+                        </button>
+                        <button class="btn btn-outline-arc-dark z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais<?=$menuHabitat['id'];?>" aria-expanded="false" aria-controls="collapseMarais">
+                            Voir les animaux <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                    </div>
+
                     <div class="collapse" id="collapseMarais<?=$menuHabitat['id'];?>">
                         <h4>Animaux de la zone :</h4>
                         <ul class="fa-ul">
                         <?php foreach($species as $specie):
                             if ($specie['habitat_id'] == $menuHabitat['id']) {?>
                             <li><span class="fa-li"><i class="fa-solid fa-paw"></i></span>
-                                <a  class="link-arc-dark-green" href="<?=BASE_URL?>/animal?species=<?=$specie["id"]?>"><?= $specie["name"];?></a>
+                                <a  class="link-arc-dark-green" href="/animal?species=<?=$specie["id"]?>"><?= $specie["name"];?></a>
                             </li>
                         <?php }
                         endforeach ?>

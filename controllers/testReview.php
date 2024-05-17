@@ -9,10 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['validateReview'])) {
     }
     
     $reviewId = $_POST['reviewId'];
-    header("Location: /studi-arcadia/validatereview?id=".$reviewId);
+    header("Location: /validatereview?id=".$reviewId);
     
 } else {
-    header("Location: /studi-arcadia/");
+    header("Location: /");
 }
 
 
@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteReview'])) {
     }
     
     $reviewId = $_POST['reviewId'];
-    header("Location: /studi-arcadia/deletereview?id=".$reviewId);
+    header("Location: /deletereview?id=".$reviewId);
     
 } else {
-    header("Location: /studi-arcadia/");
+    header("Location: /");
 }

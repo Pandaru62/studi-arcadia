@@ -14,7 +14,7 @@ if(isset($_POST["loginForm"])) {
 
     if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error'] = "Format de l'email invalide.";
-        die(header("location: ".BASE_URL."/login"));
+        die(header("location: /login"));
     }
 
     include "../models/login.class.php";
@@ -26,11 +26,11 @@ if(isset($_POST["loginForm"])) {
         
         // If login is successful
         $_SESSION['success'] = "Vous êtes connecté.";
-        die(header("location: ".BASE_URL."/login"));
+        die(header("location: /"));
     } catch (Exception $e) {
         // Catch any exception
         $_SESSION['error'] = "Une erreur s'est produite. Veuillez réessayer.";
-        die(header("location: ".BASE_URL."/login"));
+        die(header("location: /login"));
     }
 }
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 function generateToken() {
-    return bin2hex(random_bytes(32)); 
+    return bin2hex(random_bytes(32));
 }
 
 if (!isset($_SESSION['csrf_token'])) {
@@ -32,17 +32,17 @@ set_error_handler("customErrorHandler");
 
     define("BASE_URL", '');
     define('_SERVICES_IMG_PATH_', '/uploads/services/');
-    define('_MENU_PATH_', './src/controllers/');
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 
 // Instanciation classes
 
-// include 'lib/controller-autoloader.php'; 
+// include 'lib/controller-autoloader.php';
 // the autoloader automatically gets the paths to the controllers
-require_once 'models/Router.php';
 
+use Router;
+require_once 'models/Router.php';
 require_once 'controllers/HomeController.php';
 require_once 'controllers/HabitatsController.php';
 require_once 'controllers/ServicesController.php';
@@ -67,7 +67,7 @@ require_once 'controllers/AnimalDetailsController.php';
 require_once 'controllers/SeeFeedingController.php';
 require_once 'controllers/DashboardController.php';
 
-// Instanciation router 
+// Instanciation router
 
 $router = new Router();
 
@@ -89,28 +89,28 @@ $router->addRoute('GET', BASE_URL.'/404', 'ErrorPageController', 'displayErrorPa
 $router->addRoute('GET', BASE_URL.'/signup', 'SignUpController', 'signUp');
 $router->addRoute('GET', BASE_URL.'/editaccount', 'AccountsController', 'editAccount');
 $router->addRoute('GET', BASE_URL.'/showaccounts', 'AccountsController', 'showAccounts');
-$router->addRoute('GET', BASE_URL.'/deleteaccount', 'AccountsController', 'deleteAccount'); 
+$router->addRoute('GET', BASE_URL.'/deleteaccount', 'AccountsController', 'deleteAccount');
 $router->addRoute('GET', BASE_URL.'/time', 'OpeningTimeController', 'time');
 
 $router->addRoute('GET', BASE_URL.'/editservice', 'ServicesController', 'editService');
 $router->addRoute('GET', BASE_URL.'/addservice', 'ServicesController', 'addService');
-$router->addRoute('GET', BASE_URL.'/deleteservice', 'ServicesController', 'deleteServ'); 
+$router->addRoute('GET', BASE_URL.'/deleteservice', 'ServicesController', 'deleteServ');
 
 $router->addRoute('GET', BASE_URL.'/deletereview', 'CheckReviewController', 'deleteRev');
 $router->addRoute('GET', BASE_URL.'/validatereview', 'CheckReviewController', 'validateRev');
 
 $router->addRoute('GET', BASE_URL.'/edithabitat', 'editHabitatController', 'editHab');
 $router->addRoute('GET', BASE_URL.'/addhabitat', 'editHabitatController', 'addHab');
-$router->addRoute('GET', BASE_URL.'/deletehabitat', 'editHabitatController', 'deleteHab'); 
+$router->addRoute('GET', BASE_URL.'/deletehabitat', 'editHabitatController', 'deleteHab');
 
 $router->addRoute('GET', BASE_URL.'/seeanimals', 'SeeAnimalsController', 'seeAnimals');
 $router->addRoute('GET', BASE_URL.'/editanimal', 'SeeAnimalsController', 'editAnim');
-$router->addRoute('GET', BASE_URL.'/deleteanimal', 'SeeAnimalsController', 'deleteAnim');  
+$router->addRoute('GET', BASE_URL.'/deleteanimal', 'SeeAnimalsController', 'deleteAnim');
 $router->addRoute('GET', BASE_URL.'/addanimal', 'SeeAnimalsController', 'addAnim');
 
 $router->addRoute('GET', BASE_URL.'/addspecies', 'SeeSpeciesController', 'addSpec');
 $router->addRoute('GET', BASE_URL.'/editspecie', 'SeeSpeciesController', 'editSpec');
-$router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec'); 
+$router->addRoute('GET', BASE_URL.'/deletespecies', 'SeeSpeciesController', 'deleteSpec');
 $router->addRoute('GET', BASE_URL.'/dashboard', 'DashboardController', 'showDashboard');
 
 // Vet
@@ -121,7 +121,7 @@ $router->addRoute('GET', BASE_URL.'/seecheckup', 'VetCheckUpController', 'seeChe
 
 $router->addRoute('GET', BASE_URL.'/feeding', 'FeedingPageController', 'feedAnimal');
 $router->addRoute('GET', BASE_URL.'/show', 'AnimalDetailsController', 'showAnimal');
-$router->addRoute('GET', BASE_URL.'/seefeeding', 'SeeFeedingController', 'seeFeeding'); 
+$router->addRoute('GET', BASE_URL.'/seefeeding', 'SeeFeedingController', 'seeFeeding');
 
 
 $router->dispatch();

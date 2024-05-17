@@ -12,7 +12,7 @@ require_once "templates/header.php";
             <div class="col-md-8">
                 <h1 class="text-light text-center pb-2">Erreur 404</h1>
                 <p class="py-3">Oups ! Il semble que l'animal que vous cherchez ait décidé de s'échapper dans la jungle numérique. 🌿🦁 Veuillez revenir à la page d'accueil et nous aider à le retrouver!</p>
-                <p><a href="<?= BASE_URL ?>" class="btn btn-primary">Retour à l'accueil</a></p>
+                <p><a href="/" class="btn btn-primary">Retour à l'accueil</a></p>
             </div>
             <div class="offset-md-1 col-md-3">
                 <img src="assets/errror404.png" class="img-fluid d-none d-md-block" style="opacity: 70%; height: 80%">
