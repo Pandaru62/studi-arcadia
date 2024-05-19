@@ -10,36 +10,61 @@ class FeedingController extends AnimalController {
         function formatDate($dateString) {
             $date = DateTime::createFromFormat('Y-m-d', $dateString);
             if ($date !== false) {
-                $formattedDate = $date->format("d/m/Y");
-                return $formattedDate; // Output: 01/05/2024
+                return $date->format("d/m/Y");
             } else {
                 return "?";
             }
         }
+
         $animal = $this->showAnimal();
         $menuHabitats = $this->getHabitats();
 
-        if(empty($animal) === true) {
-          require_once "views/404.php";
+        // Assuming $animal is an array of animals
+        if (empty($animal) === true) {
+            require_once "views/404.php";
         } else {
+            $lastFeeding = [];
+            $lastCheckUp = [];
+            
+            foreach ($animal as $ani) {
+                $feedings = $this->getLastFeeding($ani["animalId"]);
+                $checkUps = $this->getCheckUpBySpecies($ani["animalId"]);
+                
+                // Initialize default values
+                $feedingDate = "?";
+                $feedingTime = "?";
+                $feedingFood = "?";
+                $feedingQuantity = "?";
+                
+                if (!empty($feedings)) {
+                    $feeding = $feedings[0]; 
+                    $feedingDate = $feeding['date'] ?? "?";
+                    if ($feedingDate !== "?") {
+                        $feedingDate = formatDate($feedingDate);
+                    }
+                    $feedingTime = $feeding['time'] ?? "?";
+                    $feedingFood = $feeding['food'] ?? "?";
+                    $feedingQuantity = $feeding['quantity'] ?? "?";
+                }
 
-            foreach($animal as $ani) {
-                $feeding = $this->getLastFeeding($ani["animalId"]);
-                $checkUp = $this->getCheckUpBySpecies($ani["animalId"]);
+                // Initialize default values
+                $checkHealth = "?";
+                $checkFood = "?";
+                $checkDate = "?";
+                $checkFoodQuantity = "?";
+                $checkOpinion = "?";
 
-                // Replace NULL values with "?"
-                $feedingDate = $feeding[0]['date'] ?? "?";
-                if($feedingDate !== "?") {$feedingDate = formatDate($feedingDate);};
-                $feedingTime = $feeding[0]['time'] ?? "?";
-                $feedingFood = $feeding[0]['food'] ?? "?";
-                $feedingQuantity = $feeding[0]['quantity'] ?? "?";
-
-                $checkHealth = $checkUp[0]['health'] ?? "?";
-                $checkFood = $checkUp[0]['food'] ?? "?";
-                $checkDate = $checkUp[0]['date'] ?? "?";
-                if($checkDate !== "?") {$checkDate = formatDate($checkDate);};
-                $checkFoodQuantity = $checkUp[0]['food_quantity'] ?? "?";
-                $checkOpinion = $checkUp[0]['opinion'] ?? "?";
+                if (!empty($checkUps)) {
+                    $checkUp = $checkUps[0]; // Assuming you want the most recent checkup
+                    $checkHealth = $checkUp['health'] ?? "?";
+                    $checkFood = $checkUp['food'] ?? "?";
+                    $checkDate = $checkUp['date'] ?? "?";
+                    if ($checkDate !== "?") {
+                        $checkDate = formatDate($checkDate);
+                    }
+                    $checkFoodQuantity = $checkUp['food_quantity'] ?? "?";
+                    $checkOpinion = $checkUp['opinion'] ?? "?";
+                }
 
                 $lastFeeding[$ani["animalId"]] = [
                     "date" => $feedingDate,
@@ -48,7 +73,6 @@ class FeedingController extends AnimalController {
                     "quantity" => $feedingQuantity
                 ];
 
-                
                 $lastCheckUp[$ani["animalId"]] = [
                     "health" => $checkHealth,
                     "food" => $checkFood,
@@ -56,47 +80,40 @@ class FeedingController extends AnimalController {
                     "quantity" => $checkFoodQuantity,
                     "opinion" => $checkOpinion
                 ];
+
             
-
-
-
-
-
-
-        function countVisitor($speciesId) {
-            // Connect to MongoDB
-
+            }
+            
+            function countVisitor($speciesId) {
+                // Connect to MongoDB
                 $uri = getenv('MONGODB_URI');
                 if (!$uri) {
                     $uri = MONGODB_URI;
                 }
                 
-            $client = new MongoDB\Client($uri);
-        
-            // Select database and collection
-            $collection = $client->selectDatabase('Arcadia')->selectCollection('countVisitors');
-        
-            // Find the document with the given speciesId
-            $document = $collection->findOne(['SpeciesId' => $speciesId]);
-        
-            if (!isset($_SESSION['visited'][$speciesId])) {
-                $_SESSION['visited'][$speciesId] = true;
-                if ($document) {
-                    // If document exists, update the count
-                    $newCount = $document['countNumber'] + 1;
-                    $collection->updateOne(['SpeciesId' => $speciesId], ['$set' => ['countNumber' => $newCount]]);
-                } else {
-                    // If document doesn't exist, insert a new one
-                    $collection->insertOne(['SpeciesId' => $speciesId, 'countNumber' => 1]);
+                $client = new MongoDB\Client($uri);
+                // Select database and collection
+                $collection = $client->selectDatabase('Arcadia')->selectCollection('countVisitors');
+            
+                // Find the document with the given speciesId
+                $document = $collection->findOne(['SpeciesId' => $speciesId]);
+            
+                if (!isset($_SESSION['visited'][$speciesId])) {
+                    $_SESSION['visited'][$speciesId] = true;
+                    if ($document) {
+                        // If document exists, update the count
+                        $newCount = $document['countNumber'] + 1;
+                        $collection->updateOne(['SpeciesId' => $speciesId], ['$set' => ['countNumber' => $newCount]]);
+                    } else {
+                        // If document doesn't exist, insert a new one
+                        $collection->insertOne(['SpeciesId' => $speciesId, 'countNumber' => 1]);
+                    }
                 }
             }
-        }
-              
+            
             countVisitor($ani['species_id']);
 
             require_once "views/animal.php";
-
         }
     }
 }
-    }

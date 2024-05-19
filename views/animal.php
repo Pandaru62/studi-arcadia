@@ -1,5 +1,8 @@
 <?php
 require_once "./templates/header.php";
+var_dump($lastFeeding);
+echo '<br>';
+var_dump($lastCheckUp);
 ?>
 
 

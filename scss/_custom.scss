@@ -15,8 +15,6 @@ $arcadia-theme-colors: (
     "arc-primary": #168039,
     "arc-secondary": #00261ccc,
     "arc-dark": #044D29,
-    // "arc-dark-bg": #00261c,
-    // "arc-light-green": #97ED8A,
     "arc-mint-green": #B9ECC1
 );
 
@@ -35,19 +33,10 @@ $theme-colors: map-merge($arcadia-theme-colors, $theme-colors);
 
 /* CAROUSEL */
 
-// .bg-image{
-//   background-size: cover;
-//   background-position: center;
-//   background-repeat: no-repeat;
-// } 
-
 #carousel img {
   max-height: 530px;
 }
 
-// .carousel-inner img {
-//   margin: auto;
-// }
 
 @media (max-width: 767px) {
   #carousel img {
@@ -56,7 +45,6 @@ $theme-colors: map-merge($arcadia-theme-colors, $theme-colors);
   }
  
 }
-
 
 
 .carousel-caption {

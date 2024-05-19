@@ -1,7 +1,4 @@
-<?php 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php
 
 require_once "./lib/function.php";
 
@@ -44,12 +41,12 @@ require_once "./templates/header.php";
         <div class="row bg-arc-mint-green pt-3">
 
             <section id="habitatPart">
-                <h3><?=$habitat[0]['name'];?></h3>
+                <h3>Nos pensionnaires</h3>
                     <div class="row text-center align-items-center g-0 pb-3">
                         <?php 
                         foreach($species as $num => $specie): ?>
                         
-                        <?php $imagePath = './uploads/ANIMAUX/SPECIES/'.$specie['image'];?>                    
+                        <?php $imagePath = './uploads/ANIMAUX/SPECIES/'.$specie['image'];?>
                             <div class="col-lg-4 py-3">
                                 <img src="<?=$imagePath?>" alt="<?=$specie['name']?>" class="img-fluid img-habitat">
                                 <h3 class="fw-normal"><?=$specie['name']?></h3>
@@ -60,7 +57,7 @@ require_once "./templates/header.php";
                         <?php endforeach ?>
 
                     </div>
-            </section> 
+            </section>
         </div>
 
 

@@ -1,10 +1,19 @@
 <?php
-// Database 
+// Database
 
 if (!defined('BASE_URL')) {
     define("BASE_URL", '');
 }
 
+
+function handleError($exception) {
+    // Log the error to a file
+    error_log($exception->getMessage(), 3);
+    
+    echo "Une erreur s'est produite.";
+    header('Location: /404');
+    exit();
+}
 
 
 class Dbh {
@@ -32,7 +41,7 @@ class Dbh {
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     return $pdo;
                 } catch(PDOException $e) {
-                echo "Connection failed: " . $e->getMessage();
+                    handleError($e);
                 }
                 
         } else {
@@ -43,11 +52,20 @@ class Dbh {
                 return $pdo;
             }
             catch (PDOException $e) {
-                print "Error!:" . $e->getMessage() . "<br/>";
-                die();
+                handleError($e);
             }
         }
 
+    }
+
+    
+    protected function handleError($exception) {
+        // Log the error to a file
+        error_log($exception->getMessage(), 3, './lib/error_log_file.log');
+        
+        echo "Une erreur s'est produite.";
+        header('Location: /404');
+        exit();
     }
 
     protected function isLoggedIn() {
@@ -57,5 +75,6 @@ class Dbh {
             return false;
         }
     }
+
 }
 

@@ -1,3 +1,5 @@
 RewriteEngine On
-
 RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php [QSA,L]
+
+# Protect against ClickJacking using Content-Security-Policy
+Header set Content-Security-Policy "frame-ancestors 'self'"

@@ -21,7 +21,7 @@ class Login extends Dbh{
             throw new Exception ("login-error");
             // header("Location: " .BASE_URL."/login?error=wronguser");
             // exit();
-        } 
+        }
 
         if(!password_verify($userPassword, $user[0]["password"])) {
             $stmt = null;

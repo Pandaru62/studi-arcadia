@@ -79,13 +79,18 @@ class Signup extends Dbh{
     }
     
     protected function deleteUser(int $id) {
-        $sql = 'DELETE FROM user 
-                WHERE `user`.`id` = :id AND `user`.`role_id` !=1';
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $user = $stmt->fetch();
-        return $user;
+        $sql = 'DELETE FROM user
+                WHERE `user`.`id` = :id AND `user`.`role_id` != 1';
+    
+        try {
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $user = $stmt->fetch();
+            return $user;
+        } catch (PDOException $e) {
+            $this->handleError($e);
+        }
     }
 
 }
