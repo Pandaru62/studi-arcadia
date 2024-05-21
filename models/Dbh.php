@@ -39,11 +39,11 @@ class Dbh {
 
     public function __construct() {
 
-    $this->host = $_ENV['MYSQL_HOST'];
-    $this->user = $_ENV['MYSQL_USER'];
-    $this->pwd = $_ENV['MYSQL_PASSWORD'];
-    $this->dbName = $_ENV['MYSQL_DBNAME'];
-    $this->port = $_ENV['MYSQL_PORT'];
+    $this->host = $_ENV['MYSQL_HOST'] ?? null;
+    $this->user = $_ENV['MYSQL_USER'] ?? null;
+    $this->pwd = $_ENV['MYSQL_PASSWORD'] ?? null;
+    $this->dbName = $_ENV['MYSQL_DBNAME'] ?? null;
+    $this->port = $_ENV['MYSQL_PORT'] ?? null;
 
     }
 

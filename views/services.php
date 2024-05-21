@@ -1,11 +1,11 @@
-<?php $title = "Zoo d'Arcadia";
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+<?php
 require_once('./templates/header.php');
+require_once './models/timeretrieving.class.php';
 
+// Retrieve time1 and time2 values from MongoDB
+$timeConfig = TimeRetrieving::getTimeConfig();
+$time1 = $timeConfig['time1'];
+$time2 = $timeConfig['time2'];
 ?>
 
 <div class="container my-md-3 py-3">
@@ -22,8 +22,8 @@ require_once('./templates/header.php');
                 <h2 class="light-h3 text-center pb-2">Horaires</h2>
                 <p class="py-3">
                 <i class="fa-regular fa-clock"></i>
-                <?= $openingTimes[0]; ?><br/>
-                <?= $openingTimes[1]; ?></p>
+                <?= $time1; ?><br/>
+                <?= $time2; ?></p>
             </div>
             <div class="offset-md-1 col-md-3">
                 <img src="assets/leaf.svg" class="img-fluid d-none d-md-block" style="opacity: 70%; height: 80%">
@@ -111,6 +111,6 @@ require_once('./templates/header.php');
 
 </div>
 
-<?php 
+<?php
 require_once('./templates/footer.php')
  ?>

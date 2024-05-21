@@ -4,9 +4,6 @@
 require_once "./models/signup.class.php";
 require_once "./models/mongoDBConnection.php";
 
-// require_once "./vendor/mongodb/mongodb/src/Client.php";
-// Si problème réactiver le require_once
-
 class DashboardController extends Animals {
 use MongoDB;
     public function showDashboard() {

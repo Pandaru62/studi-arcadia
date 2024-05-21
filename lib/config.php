@@ -21,7 +21,7 @@ $error = [
   'animalnotdeleted' => 'L\'animal n\'a pas pu être supprimé.',
   'commentnotadded' => 'Le commentaire n\'a pas pu être ajouté. Veuillez réessayer.',
   'checkuperror' => 'Une erreur est survenue, veuillez réessayer.',
-
+  'timeerror' => 'Une erreur est survenue, veuillez réessayer.',
 ];
 
 $sucess = [
@@ -37,17 +37,17 @@ $sucess = [
   'reviewvalidated' =>  'L\'avis a bien été validé.',
   'habitatedited' => 'L\'habitat a bien été modifié.',
   'habitatdeleted' => 'L\'habitat a bien été supprimé.',
-  'habitatadded' => 'L\'habitat a bien été ajouté.', 
+  'habitatadded' => 'L\'habitat a bien été ajouté.',
   'animaldeleted' => 'L\'animal a bien été supprimé.',
   'animaledited' => 'L\'animal a bien été modifié.',
-  'animaladded' => 'L\'animal a bien été ajouté.', 
+  'animaladded' => 'L\'animal a bien été ajouté.',
   'commentsent' => 'Le commentaire a été envoyé avec succès.',
   'checkupadded' => 'Le nouvel avis a bien été ajouté.',
   'foodrecorded' => 'La nourriture a bien été enregistrée.',
   'emailsent' => 'Votre email a bien été envoyé. Nous vous répondrons le plus rapidement possible.',
   'speciesdeleted' => 'L\'espèce a bien été supprimée.',
   'specieedited' => 'L\'espèce a bien été modifiée.',
-  'speciesadded' => 'L\'espèce a bien été ajoutée.', 
+  'speciesadded' => 'L\'espèce a bien été ajoutée.',
 ];
 
 $mainMenu = [

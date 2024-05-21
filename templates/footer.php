@@ -1,4 +1,13 @@
-<?php $timeConfig = include('./lib/timeconfig.php'); ?>
+<?php
+
+require_once './models/timeretrieving.class.php';
+
+// Retrieve time1 and time2 values from MongoDB
+$timeConfig = TimeRetrieving::getTimeConfig();
+$time1 = $timeConfig['time1'];
+$time2 = $timeConfig['time2'];
+?>
+
 
 </main>
 <footer id="footer">
@@ -15,8 +24,8 @@
                 <div class="col-md-4 d-flex align-items-end justify-content-end text-end fst-italic">
                     <p class="text-light fs-6">
                     <i class="fa-regular fa-clock"></i>
-                        <?= $timeConfig['opening_hours']['time1']; ?><br/>
-                        <?= $timeConfig['opening_hours']['time2']; ?></p>
+                        <?= $time1; ?><br/>
+                        <?= $time2; ?></p>
                 </div>
             </div>
             <div class="d-sm-flex d-md-none p-2 d-flex align-items-center justify-content-center">
@@ -61,8 +70,8 @@
                     </div>
                     <div class="modal-body">
                         <p class="fs-6">
-                            <?= $timeConfig['opening_hours']['time1']; ?><br/>
-                            <?= $timeConfig['opening_hours']['time2']; ?>
+                            <?= $time1; ?><br/>
+                            <?= $time2; ?>
                         </p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Fermer</button>
@@ -72,7 +81,7 @@
                 </div>
                 <!-- end OpeningTimes modal -->
  
-            </div>  
+            </div>
         </div>
 </footer>
 
