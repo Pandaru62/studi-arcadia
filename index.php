@@ -37,7 +37,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline) {
     return true;
 }
 
-set_error_handler("customErrorHandler");
+// set_error_handler("customErrorHandler");
 
 // Your other PHP code...
 
@@ -49,11 +49,6 @@ set_error_handler("customErrorHandler");
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-
-// Instanciation classes
-
-// include 'lib/controller-autoloader.php';
-// the autoloader automatically gets the paths to the controllers
 
 use Router;
 require_once 'models/Router.php';

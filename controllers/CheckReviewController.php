@@ -9,14 +9,14 @@ class CheckReviewController extends Reviews {
             if(isset($_GET['id'])) {
                 $reviewId = $_GET['id'];
                 $validateReview = $this->validateReview($reviewId);
-                header('Location: ' . BASE_URL . '/review?success=reviewvalidated');
+                header('Location: /review?success=reviewvalidated');
                 exit();
             } else {
-                header('Location: ' . BASE_URL . '/review?error=reviewnotvalidated');
+                header('Location: /review?error=reviewnotvalidated');
                 exit();
             }
         } else {
-            header("Location: " . BASE_URL);
+            header("Location: /");
             exit();
         }
 
@@ -27,14 +27,14 @@ class CheckReviewController extends Reviews {
             if(isset($_GET['id'])) {
             $reviewId = $_GET['id'];
             $deletedReview = $this->deleteReview($reviewId);
-            header('Location: ' . BASE_URL . '/review?success=reviewdeleted');
+            header('Location: /review?success=reviewdeleted');
             exit();
             } else {
-            header('Location: ' . BASE_URL . '/review?error=reviewdeleted');
+            header('Location: /review?error=reviewdeleted');
             exit();
             }
         } else {
-            header("Location: " . BASE_URL);
+            header("Location: /");
             exit;
         }
     }

@@ -61,4 +61,6 @@ require_once "./templates/header.php";
     </section>
 </div>
 
+<script src="js/script.js"></script>
+
     <?php require_once"./templates/footer.php" ?>

@@ -42,7 +42,11 @@ require_once "./templates/header.php";
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                    <a type="button" class="btn btn-danger" href="<?=BASE_URL?>/deletespecies?id=<?=$animal[0]['animalId'];?>">Supprimer</a>
+                                                    <form method="POST" enctype="multipart/form-data" action="/controllers/Deletiontest.php">
+                                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                                                        <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$animal[0]['animalId'];?>">
+                                                        <button class="btn btn-danger" name="deleteAnimal" type="submit">Supprimer</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

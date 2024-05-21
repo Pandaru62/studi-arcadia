@@ -15,9 +15,9 @@ require_once "./templates/header.php";
             <div class="col rect-upper-effect"></div>
         </div>
         <div class="row text-center pt-md-3 bg-arc-dark text-light">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h1 class="text-light text-center pb-2"><?= $habitat[0]['name']?></h1>
-                <p class="py-3"><?= $habitat[0]['description']?></p>
+                <p class="p-4"><?= $habitat[0]['description']?></p>
                 <div>
                     <?php if(isset($_SESSION) && isset($_SESSION['userRole']) && !empty($lastComments)){ ?>
                     <div class="card d-flex">
@@ -30,7 +30,7 @@ require_once "./templates/header.php";
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="offset-md-2 col-md-4">
                 <img src="./uploads/habitats/<?=$habitat[0]['image'];?>" class="img-fluid img-habitat">
             </div>
         </div>
@@ -43,7 +43,7 @@ require_once "./templates/header.php";
             <section id="habitatPart">
                 <h3>Nos pensionnaires</h3>
                     <div class="row text-center align-items-center g-0 pb-3">
-                        <?php 
+                        <?php
                         foreach($species as $num => $specie): ?>
                         
                         <?php $imagePath = './uploads/ANIMAUX/SPECIES/'.$specie['image'];?>

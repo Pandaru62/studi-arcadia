@@ -66,18 +66,18 @@ class SeeAnimalsController extends Animals {
 
     }
 
-    public function deleteAnim() {      
+    public function deleteAnim() {
         if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') {
             if(isset($_GET['id'])) {
                 $animalId = $_GET['id'];
                 $delete = $this->deleteAnimal($animalId);
-                header("Location: ".BASE_URL."/seeanimals?success=animaldeleted");
+                header("Location: /seeanimals?success=animaldeleted");
                 exit();
             } else {
-                header("Location: ".BASE_URL."/seeanimals");
+                header("Location: /seeanimals");
             }
         } else {
-            header("Location: ".BASE_URL);
+            header("Location: /");
             exit();
         }
 

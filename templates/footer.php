@@ -1,5 +1,6 @@
 <?php $timeConfig = include('./lib/timeconfig.php'); ?>
 
+</main>
 <footer id="footer">
         <div class="bg-arc-dark px-3 pt-2 arc-footer">
             <div class="row d-none d-md-flex">
@@ -74,9 +75,7 @@
             </div>  
         </div>
 </footer>
-</main>
 
-    <script src="script.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')

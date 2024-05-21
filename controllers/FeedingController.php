@@ -96,7 +96,7 @@ class FeedingController extends AnimalController {
        
                 $client = new MongoDB\Client($uri);
                 // Select database and collection
-                $collection = $client->selectDatabase('arcadia')->selectCollection('countVisitors');
+                $collection = $client->selectDatabase('Arcadia')->selectCollection('countVisitors');
             
                 // Find the document with the given speciesId
                 $document = $collection->findOne(['SpeciesId' => $speciesId]);

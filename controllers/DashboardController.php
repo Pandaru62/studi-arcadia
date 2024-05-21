@@ -9,7 +9,7 @@ require_once "./models/mongoDBConnection.php";
 
 class DashboardController extends Animals {
 use MongoDB;
-    public function showDashboard() {      
+    public function showDashboard() {
         
         if(isset($_SESSION) && $_SESSION["userRole"] == "admin") {
 

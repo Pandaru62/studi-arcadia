@@ -43,14 +43,15 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteSpecies'])) 
     $speciesId = $_POST['speciesId'];
     header("Location: /deletespecies?id=".$speciesId);
     }
-} elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteAnimal'])) {
+} // before deleting animal
+elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteAnimal'])) {
     // Check CSRF token
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die('Action non autorisée');
     } else {
     
     $animalId = $_POST['animalId'];
-    header("Location: /studi-arcadia/deleteanimal?id=".$animalId);
+    header("Location: /deleteanimal?id=".$animalId);
     }
 } else
  {

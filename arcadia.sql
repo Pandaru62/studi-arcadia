@@ -94,9 +94,7 @@ INSERT INTO `animals` (`id`, `first_name`, `species_id`, `image`) VALUES
 (53, 'Timide', 18, 'suricates.jpg'),
 (54, 'Simba', 19, 'simba.jpg'),
 (55, 'Nala', 19, 'nala.jpg'),
-(56, 'Kiara', 19, 'kiara.jpg'),
-(57, 'Karl', 1, '663092b93026b-nama-meyer.jpg'),
-(58, 'Test2', 10, NULL);
+(56, 'Kiara', 19, 'kiara.jpg');
 
 -- --------------------------------------------------------
 
@@ -277,8 +275,7 @@ CREATE TABLE `habitats` (
 INSERT INTO `habitats` (`id`, `name`, `image`, `description`) VALUES
 (1, 'Les Marais de la Légende', 'marais.jpg', ' Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière des faucons.'),
 (2, 'La Jungle aux Merveilles', 'jungle.jpg', 'Au cœur de la forêt luxuriante, panthères, pandas roux et lémuriens cohabitent près d\'un imposant vivarium.'),
-(3, 'La Savane des Obis', 'savane.jpg', 'Plongez au cœur d\'un monde aride où girafes, zèbres, suricates et lions trônent et n\'attendent que vous.'),
-(5, 'Banquise', '662f4aec64a04-banquise.jpg', ' Glaglagla ! Il fait trop froid là-bas.');
+(3, 'La Savane des Obis', 'savane.jpg', 'Plongez au cœur d\'un monde aride où girafes, zèbres, suricates et lions trônent et n\'attendent que vous.');
 
 -- --------------------------------------------------------
 
@@ -749,8 +746,7 @@ INSERT INTO `species` (`id`, `name`, `image`, `habitat_id`) VALUES
 (16, 'Girafe', 'girafe.jpg', 3),
 (17, 'Zèbre', 'zebre.jpg', 3),
 (18, 'Suricate', 'suricate.jpg', 3),
-(19, 'Lion', 'lion.jpg', 3),
-(20, 'Pingouin', '6630f0fa2fbce-penguin.jpg', 5);
+(19, 'Lion', 'lion.jpg', 3);
 
 -- --------------------------------------------------------
 

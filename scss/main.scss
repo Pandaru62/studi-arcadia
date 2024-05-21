@@ -8,6 +8,10 @@ html{
     min-height: 100%;
 }
 
+main{
+    margin-top: 80px;
+}
+
 footer.footer {
     padding: 15px;
     position: absolute;
@@ -109,7 +113,12 @@ h2, h3 {
 }
 
 .service-img {
-    max-width: 280px;
+    // max-width: 280px;
+    float: center;
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+    margin-bottom: 20px;
     box-shadow: 2px 2px #044D29;
     border-radius: 50%;
 }

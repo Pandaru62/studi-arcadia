@@ -37,7 +37,7 @@ require_once('./templates/header.php');
     <section id="services_list">
 
     
-    <?php 
+    <?php
     foreach($services as $key => $service): ?>
 
         <div class="row bg-arc-mint-green pt-3">
@@ -75,7 +75,7 @@ require_once('./templates/header.php');
                 </div>
                 <div class="col-md-7">
             <?php else:?>
-                <div class="offset-md-1 col-md-7">
+                <div class="offset-md-1 col-md-6">
             <?php endif ?>
                 <h2><?= $service['name'];?></h2>
                 <?php if($service['isFree'] == 1):?>

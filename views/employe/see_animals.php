@@ -82,9 +82,9 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                                <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
+                                                <form method="POST" enctype="multipart/form-data" action="/controllers/Deletiontest.php">
                                                     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
-                                                    <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$ani['animalId'];?>">
+                                                    <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$animal['animalId'];?>">
                                                     <button class="btn btn-danger" name="deleteAnimal" type="submit">Supprimer</button>
                                                 </form>
                                             </div>

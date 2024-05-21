@@ -29,7 +29,7 @@ require_once "./templates/header.php"; ?>
                     <td><?php if($review['isChecked'] === 1) {?>
                     <button class="btn btn-arc-dark" href="#" disabled><i class="bi bi-check-circle-fill"></i></button>
                     <?php } else { ?>
-                    <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/testReview.php">
+                    <form method="POST" enctype="multipart/form-data" action="/controllers/testReview.php">
                         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input type="hidden" class="form-control" id="reviewId" name="reviewId" value="<?=$review["id"];?>">
                         <button class="btn btn-arc-dark" name="validateReview" type="submit"><i class="bi bi-check-circle-fill"></i></button>
