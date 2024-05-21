@@ -1,5 +1,19 @@
 <?php
 session_start();
+
+// Load the .env file
+$envFile = __DIR__ . '/.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos($line, '=') !== false && substr($line, 0, 1) !== '#') {
+            list($key, $value) = explode('=', $line, 2);
+            $_ENV[$key] = $value;
+        }
+    }
+}
+
+
 function generateToken() {
     return bin2hex(random_bytes(32));
 }
@@ -30,7 +44,6 @@ set_error_handler("customErrorHandler");
 
 // CONSTANTS
 
-    define('MONGODB_URI', 'mongodb+srv://lorisbch:OlOa7jVjSSblVm35@arcadia.yirclzp.mongodb.net/arcadia?retryWrites=true&amp;w=majority&amp;ssl=true');
     define("BASE_URL", '');
     define('_SERVICES_IMG_PATH_', '/uploads/services/');
 

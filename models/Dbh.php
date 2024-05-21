@@ -1,8 +1,21 @@
 <?php
-// Database
 
-if (!defined('BASE_URL')) {
-    define("BASE_URL", '');
+
+// Define the path to your .env file
+$dotenvFilePath = '../.env';
+
+if (file_exists($dotenvFilePath)) {
+    $dotenvFileContents = file_get_contents($dotenvFilePath);
+    $dotenvLines = preg_split('/\R/', $dotenvFileContents);
+
+    foreach ($dotenvLines as $line) {
+        if (strpos($line, '=') !== false && substr($line, 0, 1) !== '#') {
+            list($key, $value) = explode('=', $line, 2);
+            // Remove quotes on password
+            $value = trim($value, "\"'");
+            $_ENV[$key] = $value;
+        }
+    }
 }
 
 
@@ -17,11 +30,22 @@ function handleError($exception) {
 
 
 class Dbh {
-    private $host = "localhost";
-    private $user = "root";
-    private $pwd = "root";
-    private $dbName = "arcadia";
-    private $port = "3307";
+
+    private $host;
+    private $user;
+    private $pwd;
+    private $dbName;
+    private $port;
+
+    public function __construct() {
+
+    $this->host = $_ENV['MYSQL_HOST'];
+    $this->user = $_ENV['MYSQL_USER'];
+    $this->pwd = $_ENV['MYSQL_PASSWORD'];
+    $this->dbName = $_ENV['MYSQL_DBNAME'];
+    $this->port = $_ENV['MYSQL_PORT'];
+
+    }
 
     protected function connect() {
 
@@ -46,14 +70,14 @@ class Dbh {
                 
         } else {
             try {
-                $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbName.';port='.$this->port;
-                $pdo = new PDO($dsn, $this->user, $this->pwd);
-                $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                $dsn = 'mysql:host='.$_ENV['MYSQL_HOST'].';dbname='.$_ENV['MYSQL_DBNAME'].';port='.$_ENV['MYSQL_PORT'];
+                $pdo = new PDO($dsn, $_ENV['MYSQL_USER'], $_ENV['MYSQL_PASSWORD']);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $pdo;
-            }
-            catch (PDOException $e) {
+            } catch (PDOException $e) {
                 handleError($e);
             }
+           
         }
 
     }
@@ -61,8 +85,7 @@ class Dbh {
     
     protected function handleError($exception) {
         // Log the error to a file
-        error_log($exception->getMessage(), 3, './lib/error_log_file.log');
-        
+        error_log($exception->getMessage(), 3, 'path/to/log/file.log');
         echo "Une erreur s'est produite.";
         header('Location: /404');
         exit();
@@ -71,8 +94,6 @@ class Dbh {
     protected function isLoggedIn() {
         if(isset($_SESSION['userRole']) & isset ($_SESSION['userEmail'])) {
             return true;
-        } else {
-            return false;
         }
     }
 

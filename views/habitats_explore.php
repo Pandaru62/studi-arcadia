@@ -20,8 +20,8 @@ $species = $habitats->showSpecies();
             <div class="card card-habitat">
                 <img src="uploads/habitats/<?= $menuHabitat["image"]; ?>" class="card-img-top-animal z-0" alt="marais">
                 <div class="card-img-overlay d-flex align-items-start justify-content-center">
-                    <h5 class="card-title text-light z-1"><a class="no-underline" href="#"><?= $menuHabitat["name"]; ?></a></h5>
-                </div>                    
+                    <h5 class="card-title text-light z-1"><a class="no-underline" href="/showHabitat?habitat=<?=$menuHabitat['id']?>"><?= $menuHabitat["name"]; ?></a></h5>
+                </div>
                 <div class="card-body bg-light d-flex flex-column">
                     <?php if(isset($_SESSION['userEmail']) && $_SESSION['userRole'] == 'admin') {?>
                         <div class="d-flex justify-content-around mb-2">
@@ -58,9 +58,9 @@ $species = $habitats->showSpecies();
                         <?= $menuHabitat["description"]; ?>
                     </p>
                     <div class="d-flex flex-xl-row justify-content-around">
-                        <button class="btn btn-arc-dark z-1 me-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais<?=$menuHabitat['id'];?>" aria-expanded="false" aria-controls="collapseMarais">
+                        <a class="btn btn-arc-dark z-1 me-1" href="/showHabitat?habitat=<?=$menuHabitat['id']?>">
                             Visiter la page
-                        </button>
+                        </a>
                         <button class="btn btn-outline-arc-dark z-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMarais<?=$menuHabitat['id'];?>" aria-expanded="false" aria-controls="collapseMarais">
                             Voir les animaux <i class="fa-solid fa-arrow-down"></i>
                         </button>

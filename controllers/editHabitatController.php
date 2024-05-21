@@ -3,7 +3,7 @@
 require_once "./models/habitat.class.php";
 
 class editHabitatController extends Habitats {
-    public function deleteHab() {      
+    public function deleteHab() {
         
         if(isset($_SESSION["userRole"])&& $_SESSION["userRole"] == "admin") {
             if(isset($_GET['id']) ) {
@@ -12,13 +12,13 @@ class editHabitatController extends Habitats {
                 header("Location: /habitats?success=habitatdeleted");
             } else {
                 header("Location: /habitats?error=habitatnotdeleted");
-            }      
+            }
         } else {
             header("Location: /");
         }
     }
 
-    public function editHab() {      
+    public function editHab() {
             
         if(isset($_SESSION) && $_SESSION["userRole"] == "admin" ) {
             if(isset($_GET['id']) ) {
@@ -34,7 +34,7 @@ class editHabitatController extends Habitats {
         }
     }
 
-    public function addHab() {      
+    public function addHab() {
             
         if(isset($_SESSION["userRole"]) && $_SESSION["userRole"] == "admin") {
             require "./views/admin/addhabitatform.php";

@@ -5,12 +5,17 @@ trait MongoDB {
 
     protected function connectMongoDb() {
 
-            $uri = getenv('MONGODB_URI');
+        $uri = getenv('MONGODB_URI');
+
             if (!$uri) {
-                $uri = MONGODB_URI; }
+                $uri = $_ENV['MONGODB_URI'] ?? null;
+            }
             
-        $collection = (new MongoDB\Client($uri))->Arcadia->countVisitors;
+        $client = new MongoDB\Client($uri);
+        $collection = $client->Arcadia->countVisitors;
+
         return $collection;
+
 
     }
 }

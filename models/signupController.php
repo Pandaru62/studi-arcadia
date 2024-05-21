@@ -1,5 +1,4 @@
 <?php
-
 include_once "signup.class.php";
 class SignUpContr extends Signup {
 
@@ -47,14 +46,12 @@ class SignUpContr extends Signup {
     
             // Perform update logic
             $this->editUser($userId, $this->userLastName, $this->userFirstName, $this->userEmail, $this->userPassword, $this->userRole);
-        } 
+        }
     }
     
     private function emptyInput() {
         if (empty($this->userLastName) || empty($this->userFirstName) || empty($this->userEmail) || empty($this->userRole)) {
             return true;
-        } else {
-            return false;
         }
     }
     private function invalidEmail() {

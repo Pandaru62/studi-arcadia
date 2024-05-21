@@ -4,7 +4,7 @@ require_once "AnimalController.php";
 require_once "./models/checkup.class.php";
 
 class FeedingController extends AnimalController {
-    use getCheckUp; 
+    use getCheckUp;
     public function showAnimalPage() {
         
         function formatDate($dateString) {
@@ -83,17 +83,20 @@ class FeedingController extends AnimalController {
 
             
             }
-            
+
+
+
             function countVisitor($speciesId) {
                 // Connect to MongoDB
                 $uri = getenv('MONGODB_URI');
-                if (!$uri) {
-                    $uri = MONGODB_URI;
-                }
-                
+
+            if (!$uri) {
+                $uri = $_ENV['MONGODB_URI'] ?? null;
+            }
+       
                 $client = new MongoDB\Client($uri);
                 // Select database and collection
-                $collection = $client->selectDatabase('Arcadia')->selectCollection('countVisitors');
+                $collection = $client->selectDatabase('arcadia')->selectCollection('countVisitors');
             
                 // Find the document with the given speciesId
                 $document = $collection->findOne(['SpeciesId' => $speciesId]);

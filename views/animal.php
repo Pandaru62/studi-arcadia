@@ -1,8 +1,5 @@
 <?php
 require_once "./templates/header.php";
-var_dump($lastFeeding);
-echo '<br>';
-var_dump($lastCheckUp);
 ?>
 
 
@@ -163,3 +160,4 @@ var_dump($lastCheckUp);
 
 
     <?php require_once "templates/footer.php"; ?>
+    

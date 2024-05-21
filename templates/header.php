@@ -6,6 +6,8 @@ require_once('../lib/config.php');
 }
 
 (isset($_SESSION['userEmail'])) ? $role = checkRole($_SESSION['userRole']) : $role = "visiteur";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -80,11 +82,10 @@ require_once('../lib/config.php');
                         <?php } ?>
                     </li>
                 <?php else : 
-                // the value $tag is an array, so the header displays a dropdown
                 ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?= $url // the title of the dropdown ?> 
+                            <?= $url ?>
                         </a>
                         <ul class="dropdown-menu bg-arc-mint-green text-light">
                             <?php
@@ -93,7 +94,7 @@ require_once('../lib/config.php');
                             <li><a class="dropdown-item" href="<?=BASE_URL.$subUrl?>"><?=$subTag?></a></li>
                             <?php } ?>
                         </ul>
-                    </li>        
+                    </li>
                 <?php endif ?>
                 <?php endforeach?>
         
@@ -122,7 +123,7 @@ require_once('../lib/config.php');
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-        <?php } else if(isset($_GET['error'])) { ?>
+        <?php } elseif(isset($_GET['error'])) { ?>
             <div class="d-flex justify-content-center mt-2">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fa-solid fa-xmark"></i> <?= $error[$_GET['error']]; ?>
@@ -141,7 +142,7 @@ require_once('../lib/config.php');
             </div>
         <?php endif; ?>
         
-        <?php if ($bad): ?>
+        <?php if($bad): ?>
             <div class="d-flex justify-content-center mt-2">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fa-solid fa-xmark"></i> <?= $bad; ?>

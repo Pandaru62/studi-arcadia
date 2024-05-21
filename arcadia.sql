@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3307
--- Généré le : dim. 12 mai 2024 à 12:24
+-- Généré le : dim. 19 mai 2024 à 07:04
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.3.1
 
@@ -95,9 +95,8 @@ INSERT INTO `animals` (`id`, `first_name`, `species_id`, `image`) VALUES
 (54, 'Simba', 19, 'simba.jpg'),
 (55, 'Nala', 19, 'nala.jpg'),
 (56, 'Kiara', 19, 'kiara.jpg'),
-(57, 'Karlito', 1, '663092b93026b-nama-meyer.jpg'),
-(58, 'Test2', 10, NULL),
-(59, 'Pingu', 20, '664071e09846b-empereur.jpg');
+(57, 'Karl', 1, '663092b93026b-nama-meyer.jpg'),
+(58, 'Test2', 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -235,8 +234,7 @@ INSERT INTO `feeding` (`id`, `animal_id`, `date`, `time`, `food`, `quantity`) VA
 (114, 5, '2024-05-02', '10:52:00', 'viande', 1000),
 (115, 5, '2024-04-25', '12:02:00', 'viande', 1000),
 (116, 5, '2024-04-26', '08:02:00', 'poisson', 1000),
-(117, 5, '2024-05-02', '10:03:00', 'viande', 1000),
-(118, 58, '2024-05-12', '10:21:00', 'Légumes', 120);
+(117, 5, '2024-05-02', '10:03:00', 'viande', 1000);
 
 -- --------------------------------------------------------
 
@@ -257,7 +255,7 @@ CREATE TABLE `habitatcomments` (
 
 INSERT INTO `habitatcomments` (`id`, `user_id`, `habitat_id`, `comment`) VALUES
 (1, 10, 1, 'Tapez une description ici'),
-(2, 9, 5, 'Habitat à terminer.');
+(2, 9, 1, 'Tapez une description ici');
 
 -- --------------------------------------------------------
 
@@ -277,10 +275,10 @@ CREATE TABLE `habitats` (
 --
 
 INSERT INTO `habitats` (`id`, `name`, `image`, `description`) VALUES
-(1, 'Les Marais de la Légende', 'marais.jpg', 'Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière des faucons.'),
+(1, 'Les Marais de la Légende', 'marais.jpg', ' Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière des faucons.'),
 (2, 'La Jungle aux Merveilles', 'jungle.jpg', 'Au cœur de la forêt luxuriante, panthères, pandas roux et lémuriens cohabitent près d\'un imposant vivarium.'),
 (3, 'La Savane des Obis', 'savane.jpg', 'Plongez au cœur d\'un monde aride où girafes, zèbres, suricates et lions trônent et n\'attendent que vous.'),
-(5, 'Banquise', '662f4aec64a04-banquise.jpg', 'Glaglagla ! Il fait trop froid là-bas. Venez découvrir les animaux polaires dans un habitat d\'exception.');
+(5, 'Banquise', '662f4aec64a04-banquise.jpg', ' Glaglagla ! Il fait trop froid là-bas.');
 
 -- --------------------------------------------------------
 
@@ -636,7 +634,7 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (336, 10, 2, 'Bonne santé', 'Croquettes', 200, '2024-05-08', 'Aucun problème de santé détecté. L\'animal semble en bonne forme.'),
 (337, 10, 2, 'Santé acceptable', 'Pâtée', 110, '2024-05-09', 'Un léger problème de digestion. Surveiller l\'alimentation.'),
 (338, 10, 2, 'Santé préoccupante', 'Riz et poulet', 130, '2024-05-10', 'Problème de santé identifié. Consultation vétérinaire nécessaire.'),
-(339, 10, 58, 'Malade', 'Poisson', 50, '2024-05-12', 'Soins dispensés toutes les 4h');
+(339, 11, 5, 'OK', 'ok', 100, '2024-05-14', 'çava');
 
 -- --------------------------------------------------------
 
@@ -667,23 +665,9 @@ INSERT INTO `reviews` (`id`, `pseudo`, `message`, `isChecked`) VALUES
 (9, 'JulietteB', 'Une visite instructive pour toute la famille ! Les soigneurs sont passionnés.', 0),
 (10, 'SimonC', 'Je suis venu plusieurs fois et je ne m\'en lasse pas. Toujours une expérience enrichissante.', 0),
 (11, 'Marc36', 'Quelle journée incroyable au zoo ! Les animaux étaient si fascinants à observer, et j\'ai tellement appris sur la diversité de notre belle planète. C\'était une expérience qui a vraiment égayé ma journée et renforcé mon amour pour la nature. #Gratitude #BelleJournée', 1),
-(15, 'hui', 'Donnez votre avisiuhuih', 1),
-(21, 'pl', 'Donnez votre avis', 1),
-(22, 'pl', 'Donnez votre avis', 1),
-(24, 'à', 'Donnezpokopk votre avis', 1),
-(25, 'Test', 'Alors _a f\r\nDonnez votre avis', 0),
 (26, 'Paul', 'J\'ai adoré cette visite. L\'équipe est au top, mes enfants sont ravis. Merci !!', 0),
-(28, 'Hello', 'C&#039;était top', 0),
 (29, 'Hello', 'C&#039;était top', 0),
-(30, 'Test2', 'Voilà c&#039;était cool', 0),
-(31, 'Test', 'Donnez votre avis', 0),
-(32, 'ioji', 'Donnez votre avis', 0),
-(33, 'Bouh', 'Jsptrop', 0),
-(34, 'Mouah', 'Dfdbfbf', 0),
-(35, 'Bouh', 'efff', 0),
-(36, 'hui', 'ddd', 0),
-(37, 'ddd', 'ddd', 0),
-(38, 'Bouh', 'Okidoki', 0);
+(30, 'Test2', 'Voilà c&#039;était cool', 0);
 
 -- --------------------------------------------------------
 
@@ -727,7 +711,7 @@ INSERT INTO `services` (`id`, `name`, `description`, `image`, `isFree`) VALUES
 (1, 'Petit train', 'Explorez notre parc à bord de notre charmant petit train, une manière relaxante et divertissante de découvrir les trésors cachés de la forêt de Brocéliande et d\'admirer nos merveilleux pensionnaires sous un nouvel angle.\r\n', 'train.jpg', '0'),
 (2, 'Visites guidées', 'Pour une expérience encore plus enrichissante, nos visites guidées vous emmènent dans un voyage captivant à travers les différents habitats de nos animaux. Nos guides passionnés partageront avec vous des connaissances fascinantes sur nos résidents, tout en mettant l\'accent sur notre engagement envers le respect de l\'environnement et le bien-être animal. Rejoignez-nous pour une aventure mémorable, où chaque moment est une découverte.', 'fauconnier.jpg', '1'),
 (3, 'Restauration', 'Plongez dans une aventure unique au zoo Arcadia, où chaque visiteur est choyé avec une gamme de services exceptionnels. Notre espace de restauration propose une variété de délices culinaires, allant des snacks rapides aux repas gastronomiques, pour ravir les papilles des petits et des grands aventuriers.', 'restaurant.jpg', '0'),
-(7, 'Nourrissage des lémuriens', 'Venez donner à manger aux singes !', '662d0b2f6ab90-lemuriens.jpg', '1');
+(7, 'Nourrissage des lémuriens', 'Venez donner à manger aux singes !', '662d0b2f6ab90-lemuriens.jpg', '0');
 
 -- --------------------------------------------------------
 
@@ -766,8 +750,7 @@ INSERT INTO `species` (`id`, `name`, `image`, `habitat_id`) VALUES
 (17, 'Zèbre', 'zebre.jpg', 3),
 (18, 'Suricate', 'suricate.jpg', 3),
 (19, 'Lion', 'lion.jpg', 3),
-(20, 'Pingouin', '6630f0fa2fbce-penguin.jpg', 5),
-(21, 'Ours Polaire', '664075150985b-empereur.jpg', 5);
+(20, 'Pingouin', '6630f0fa2fbce-penguin.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -789,12 +772,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `password`, `role_id`) VALUES
-(6, 'ladydi@email.com', 'Lady', 'Diana', '$2y$10$khHpIdqm8d87jb/Mnmigw.rWR/gCV8bgPyvOaIVBhHXnqCdop7jae', 2),
 (9, 'admin@email.com', 'Admini', 'Strator', '$2y$10$EETQwKXm8oFsvBhSqtQHGOVkHCE5pIscCslXUvKCu1dliJFjF0YBG', 1),
-(10, 'veto@email.com', 'Jean', 'Veto', '$2y$10$PBWElZSoQqinnSoj7geWYulxzEVRAAoC5ZfVcfpkykIh3.vwB1K0S', 2),
-(11, 'day.ta@email.com', 'Daenerys', 'Targaryen', '$2y$10$CIRFCnPsAx3yLfWAvCJMFO7owjZltyEzz2A1FHJEMFaSbJrUMfH0e', 3),
-(12, 'johnsnow@email.com', 'John', 'Snow', '$2y$10$vCIA2brZUMc.qiy5c1tCWeZ4LThllvxAfgT7egRjxWh6xcswt.p5S', 3),
-(13, 'loris.buchelet@gmail.com', 'Loris', 'Buchelet', '$2y$10$Iesn0uvkcsZog.mZ2VWXkuyS4tTyVhZncW4PpNbbRPS0fKqfnBLpm', 3);
+(10, 'veto.jean@email.com', 'Jean', 'Veto', '$2y$10$kHcAHfIaTArtGX1b1cMaP.wOaoJswyP.JDBGM4Y/5Q.SMlavHpCJC', 2),
+(11, 'employee.dany@email.com', 'Daenerys', 'Targaryen', '$2y$10$zgiWimPrbSg0tRIhLZ9ez.o6a3IbaVk9739lqtQja3arPbE17YKqS', 3);
 
 --
 -- Index pour les tables déchargées
@@ -876,13 +856,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT pour la table `feeding`
 --
 ALTER TABLE `feeding`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT pour la table `habitatcomments`
@@ -906,7 +886,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT pour la table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -924,13 +904,13 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT pour la table `species`
 --
 ALTER TABLE `species`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Contraintes pour les tables déchargées
