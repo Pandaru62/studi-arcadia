@@ -1,42 +1,109 @@
--- phpMyAdmin SQL Dump
--- version 5.1.2
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost:3307
--- Généré le : dim. 19 mai 2024 à 07:04
--- Version du serveur : 5.7.24
--- Version de PHP : 8.3.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `arcadia`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `animals`
---
+CREATE DATABASE `arcadia`;
 
 CREATE TABLE `animals` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
   `species_id` int(11) NOT NULL,
-  `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `image` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `species_id` (`species_id`),
+  CONSTRAINT `fk_animals_species` FOREIGN KEY (`species_id`) REFERENCES `species` (`id`) ON DELETE CASCADE
+);
 
---
--- Déchargement des données de la table `animals`
---
+CREATE TABLE `feeding` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `animal_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `food` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `animal_id` (`animal_id`),
+  CONSTRAINT `fk_feeding_animals` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `habitatcomments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `habitat_id` int(11) NOT NULL,
+  `comment` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `habitat_id` (`habitat_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `fk_habitatcomments_users` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_habitatcomments_habitats` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `habitats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vet_id` int(11) NOT NULL,
+  `animal_id` int(11) NOT NULL,
+  `health` varchar(1000) NOT NULL,
+  `food` varchar(255) NOT NULL,
+  `food_quantity` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `opinion` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `animal_id` (`animal_id`),
+  KEY `vet_id` (`vet_id`),
+  CONSTRAINT `fk_reports_animals` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_reports_vets` FOREIGN KEY (`vet_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `isChecked` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `services` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `isFree` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `species` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `habitat_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `habitat_id` (`habitat_id`),
+  CONSTRAINT `fk_species_habitats` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE
+);
+
+
 
 INSERT INTO `animals` (`id`, `first_name`, `species_id`, `image`) VALUES
 (1, 'Perceval', 1, 'perceval.jpg'),
@@ -96,24 +163,6 @@ INSERT INTO `animals` (`id`, `first_name`, `species_id`, `image`) VALUES
 (55, 'Nala', 19, 'nala.jpg'),
 (56, 'Kiara', 19, 'kiara.jpg');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `feeding`
---
-
-CREATE TABLE `feeding` (
-  `id` int(11) NOT NULL,
-  `animal_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
-  `food` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `feeding`
---
 
 INSERT INTO `feeding` (`id`, `animal_id`, `date`, `time`, `food`, `quantity`) VALUES
 (1, 1, '2024-04-20', '08:00:00', 'Granulés', 100),
@@ -234,69 +283,15 @@ INSERT INTO `feeding` (`id`, `animal_id`, `date`, `time`, `food`, `quantity`) VA
 (116, 5, '2024-04-26', '08:02:00', 'poisson', 1000),
 (117, 5, '2024-05-02', '10:03:00', 'viande', 1000);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `habitatcomments`
---
-
-CREATE TABLE `habitatcomments` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `habitat_id` int(11) NOT NULL,
-  `comment` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `habitatcomments`
---
-
 INSERT INTO `habitatcomments` (`id`, `user_id`, `habitat_id`, `comment`) VALUES
 (1, 10, 1, 'Tapez une description ici'),
 (2, 9, 1, 'Tapez une description ici');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `habitats`
---
-
-CREATE TABLE `habitats` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `description` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `habitats`
---
 
 INSERT INTO `habitats` (`id`, `name`, `image`, `description`) VALUES
 (1, 'Les Marais de la Légende', 'marais.jpg', ' Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière des faucons.'),
 (2, 'La Jungle aux Merveilles', 'jungle.jpg', 'Au cœur de la forêt luxuriante, panthères, pandas roux et lémuriens cohabitent près d\'un imposant vivarium.'),
 (3, 'La Savane des Obis', 'savane.jpg', 'Plongez au cœur d\'un monde aride où girafes, zèbres, suricates et lions trônent et n\'attendent que vous.');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `reports`
---
-
-CREATE TABLE `reports` (
-  `id` int(11) NOT NULL,
-  `vet_id` int(11) NOT NULL,
-  `animal_id` int(11) NOT NULL,
-  `health` varchar(1000) NOT NULL,
-  `food` varchar(255) NOT NULL,
-  `food_quantity` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `opinion` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `reports`
---
 
 INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quantity`, `date`, `opinion`) VALUES
 (1, 10, 5, 'en grande forme', 'viande', 1000, '2024-05-01', 'RAS'),
@@ -633,23 +628,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (338, 10, 2, 'Santé préoccupante', 'Riz et poulet', 130, '2024-05-10', 'Problème de santé identifié. Consultation vétérinaire nécessaire.'),
 (339, 11, 5, 'OK', 'ok', 100, '2024-05-14', 'çava');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `reviews`
---
-
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
-  `pseudo` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `isChecked` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `reviews`
---
-
 INSERT INTO `reviews` (`id`, `pseudo`, `message`, `isChecked`) VALUES
 (1, 'Jean123', 'J\'ai adoré ma visite au zoo ! Les animaux sont très bien entretenus.', 1),
 (2, 'MarieZoo', 'Une expérience incroyable ! Mes enfants étaient ravis de voir tous les animaux.', 1),
@@ -666,66 +644,11 @@ INSERT INTO `reviews` (`id`, `pseudo`, `message`, `isChecked`) VALUES
 (29, 'Hello', 'C&#039;était top', 0),
 (30, 'Test2', 'Voilà c&#039;était cool', 0);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `role`
---
-
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `role`
---
-
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'vétérinaire'),
-(3, 'employé');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `services`
---
-
-CREATE TABLE `services` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `isFree` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `services`
---
-
 INSERT INTO `services` (`id`, `name`, `description`, `image`, `isFree`) VALUES
 (1, 'Petit train', 'Explorez notre parc à bord de notre charmant petit train, une manière relaxante et divertissante de découvrir les trésors cachés de la forêt de Brocéliande et d\'admirer nos merveilleux pensionnaires sous un nouvel angle.\r\n', 'train.jpg', '0'),
 (2, 'Visites guidées', 'Pour une expérience encore plus enrichissante, nos visites guidées vous emmènent dans un voyage captivant à travers les différents habitats de nos animaux. Nos guides passionnés partageront avec vous des connaissances fascinantes sur nos résidents, tout en mettant l\'accent sur notre engagement envers le respect de l\'environnement et le bien-être animal. Rejoignez-nous pour une aventure mémorable, où chaque moment est une découverte.', 'fauconnier.jpg', '1'),
 (3, 'Restauration', 'Plongez dans une aventure unique au zoo Arcadia, où chaque visiteur est choyé avec une gamme de services exceptionnels. Notre espace de restauration propose une variété de délices culinaires, allant des snacks rapides aux repas gastronomiques, pour ravir les papilles des petits et des grands aventuriers.', 'restaurant.jpg', '0'),
 (7, 'Nourrissage des lémuriens', 'Venez donner à manger aux singes !', '662d0b2f6ab90-lemuriens.jpg', '0');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `species`
---
-
-CREATE TABLE `species` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `habitat_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `species`
---
 
 INSERT INTO `species` (`id`, `name`, `image`, `habitat_id`) VALUES
 (1, 'Faucon pélerin', 'faucon.jpg', 1),
@@ -748,209 +671,13 @@ INSERT INTO `species` (`id`, `name`, `image`, `habitat_id`) VALUES
 (18, 'Suricate', 'suricate.jpg', 3),
 (19, 'Lion', 'lion.jpg', 3);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `user`
---
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `user`
---
-
 INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `password`, `role_id`) VALUES
 (9, 'admin@email.com', 'Admini', 'Strator', '$2y$10$EETQwKXm8oFsvBhSqtQHGOVkHCE5pIscCslXUvKCu1dliJFjF0YBG', 1),
 (10, 'veto.jean@email.com', 'Jean', 'Veto', '$2y$10$kHcAHfIaTArtGX1b1cMaP.wOaoJswyP.JDBGM4Y/5Q.SMlavHpCJC', 2),
 (11, 'employee.dany@email.com', 'Daenerys', 'Targaryen', '$2y$10$zgiWimPrbSg0tRIhLZ9ez.o6a3IbaVk9739lqtQja3arPbE17YKqS', 3);
 
---
--- Index pour les tables déchargées
---
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'admin'),
+(2, 'vétérinaire'),
+(3, 'employé');
 
---
--- Index pour la table `animals`
---
-ALTER TABLE `animals`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `species_id` (`species_id`);
-
---
--- Index pour la table `feeding`
---
-ALTER TABLE `feeding`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `animal_id` (`animal_id`);
-
---
--- Index pour la table `habitatcomments`
---
-ALTER TABLE `habitatcomments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `habitat_id` (`habitat_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Index pour la table `habitats`
---
-ALTER TABLE `habitats`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `reports`
---
-ALTER TABLE `reports`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `animal_id` (`animal_id`),
-  ADD KEY `vet_id` (`vet_id`);
-
---
--- Index pour la table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `services`
---
-ALTER TABLE `services`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `species`
---
-ALTER TABLE `species`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `habitat_id` (`habitat_id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `animals`
---
-ALTER TABLE `animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT pour la table `feeding`
---
-ALTER TABLE `feeding`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
-
---
--- AUTO_INCREMENT pour la table `habitatcomments`
---
-ALTER TABLE `habitatcomments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `habitats`
---
-ALTER TABLE `habitats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `reports`
---
-ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=340;
-
---
--- AUTO_INCREMENT pour la table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT pour la table `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT pour la table `services`
---
-ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT pour la table `species`
---
-ALTER TABLE `species`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `animals`
---
-ALTER TABLE `animals`
-  ADD CONSTRAINT `animals_ibfk_1` FOREIGN KEY (`species_id`) REFERENCES `species` (`id`);
-
---
--- Contraintes pour la table `feeding`
---
-ALTER TABLE `feeding`
-  ADD CONSTRAINT `feeding_ibfk_1` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`);
-
---
--- Contraintes pour la table `habitatcomments`
---
-ALTER TABLE `habitatcomments`
-  ADD CONSTRAINT `habitatcomments_ibfk_1` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`),
-  ADD CONSTRAINT `habitatcomments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
--- Contraintes pour la table `reports`
---
-ALTER TABLE `reports`
-  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`),
-  ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`vet_id`) REFERENCES `user` (`id`);
-
---
--- Contraintes pour la table `species`
---
-ALTER TABLE `species`
-  ADD CONSTRAINT `species_ibfk_1` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`);
-
---
--- Contraintes pour la table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

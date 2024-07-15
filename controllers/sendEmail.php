@@ -1,8 +1,4 @@
 <?php
-// Report all PHP errors
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 
 session_start();
 
@@ -37,6 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ContactForm'])) {
     }
 
     // Redirect to the contact page
-    header("Location: " . BASE_URL . "/contact");
+    header("Location: /contact");
     exit();
 }

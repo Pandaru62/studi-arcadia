@@ -1,8 +1,4 @@
 <?php
-$openingTimes = [
-  'Tous les jours du lundi au vendredi : de 10h à 18h',
-  'Le weekend, les vacances et les jours fériés : de 9h à 20h',
-];
 
 $error = [
   'champs' => 'Vous devez remplir tous les champs pour vous connecter.',

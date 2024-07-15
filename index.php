@@ -37,7 +37,7 @@ function customErrorHandler($errno, $errstr, $errfile, $errline) {
     return true;
 }
 
-// set_error_handler("customErrorHandler");
+set_error_handler("customErrorHandler");
 
 // Your other PHP code...
 
