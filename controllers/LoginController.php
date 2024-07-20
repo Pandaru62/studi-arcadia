@@ -3,7 +3,7 @@
 // Redirects to the login view
 class LoginController extends Habitats {
 
-    public function login() { 
+    public function login() {
         $menuHabitats = $this->getHabitats();
 
         // Check for success or error messages

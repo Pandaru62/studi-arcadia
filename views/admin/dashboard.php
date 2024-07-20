@@ -49,7 +49,7 @@ require_once "./templates/header.php";
                         <li class="pt-2"><a class="link-light" href="<?=BASE_URL?>/addhabitat">Ajout d'un habitat</a></li>
                         <li class="pt-2"><a class="link-light" href="<?=BASE_URL?>/seeHabitatComment">Voir les commentaires d'habitat</a></li>
                         <li class="pt-2"><a class="link-light" href="<?=BASE_URL?>/commenthabitat">Ajouter un commentaire d'habitat</a></li>
-                    </ul>                
+                    </ul>
 
                 </div>
                     <a href="<?=BASE_URL?>/review" class="btn btn-arc-dark mt-3 d-flex justify-content-center fw-bold align-items-center"><i class="fa-solid fa-magnifying-glass pe-2"></i> Consulter les avis des visiteurs</a>
@@ -111,6 +111,8 @@ require_once "./templates/header.php";
     </section>
 </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         var speciesData = <?php echo $chartData; ?>;
         
@@ -140,5 +142,6 @@ require_once "./templates/header.php";
             }
         });
     </script>
+
 
     <?php require_once"./templates/footer.php" ?>

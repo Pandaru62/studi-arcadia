@@ -35,6 +35,21 @@ class Feeding extends Dbh {
                 return $results;
             }
 
+            protected function getAllFeeding() {
+                $sql = 'SELECT feeding.id AS feedingId, animal_id, date, time, food, quantity, first_name, species_id, species.name AS speciesName
+                FROM feeding
+                LEFT JOIN animals
+                ON feeding.animal_id = animals.id
+                LEFT JOIN species
+                ON animals.species_id = species.id
+                ';
+                
+                $stmt = $this->connect()->prepare($sql);       
+                $stmt->execute();
+                
+                $results = $stmt->fetchAll();
+                return $results;
+            }
         
             protected function getAllFeedingByAnimal(int $id) {
                 $sql = 'SELECT 	feeding.id AS feedingId, animal_id, date, time, food, quantity, first_name, image, species_id
@@ -51,7 +66,7 @@ class Feeding extends Dbh {
                 return $results;
             }
 
-            protected function getAllFeeding(int $limit, int $offset, string $sort) {
+            protected function getAllFeedingOld(int $limit, int $offset, string $sort) {
 
                 switch($sort) {
                     case 'datenew':

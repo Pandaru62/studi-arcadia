@@ -1,0 +1,25 @@
+[16-Jul-2024 17:49:53 UTC] Error: [2] Undefined variable $checkups in C:\Users\loris\Documents\projets_studi\studi-arcadia\controllers\VetCheckUpController.php on line 121
+[16-Jul-2024 17:57:27 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 45
+[16-Jul-2024 18:00:01 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 45
+[16-Jul-2024 18:03:56 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:05:23 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:05:44 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:09:29 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:16:02 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:16:05 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:16:11 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:17:13 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:18:34 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[16-Jul-2024 18:20:11 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[19-Jul-2024 08:06:17 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[19-Jul-2024 08:11:14 UTC] Error: [2] Undefined variable $numberCheckUp in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 47
+[19-Jul-2024 08:38:14 UTC] Error: [2] Undefined variable $checkUps in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 60
+[19-Jul-2024 08:38:14 UTC] Error: [2] foreach() argument must be of type array|object, null given in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 60
+[19-Jul-2024 08:47:53 UTC] Error: [2] Undefined variable $checkUps in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:47:53 UTC] Error: [2] foreach() argument must be of type array|object, null given in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:49:08 UTC] Error: [2] Undefined variable $checkUps in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:49:08 UTC] Error: [2] foreach() argument must be of type array|object, null given in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:49:39 UTC] Error: [2] Undefined variable $checkUps in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:49:39 UTC] Error: [2] foreach() argument must be of type array|object, null given in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:52:29 UTC] Error: [2] Undefined variable $checkUps in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61
+[19-Jul-2024 08:52:29 UTC] Error: [2] foreach() argument must be of type array|object, null given in C:\Users\loris\Documents\projets_studi\studi-arcadia\views\seecheckup.php on line 61

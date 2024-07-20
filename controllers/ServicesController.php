@@ -7,6 +7,14 @@ require_once "./models/services.class.php";
 class ServicesController extends Services {
     use getHabitats;
     public function services() { 
+
+        require_once './models/timeretrieving.class.php';
+
+        // Retrieve time1 and time2 values from MongoDB
+        $timeConfig = TimeRetrieving::getTimeConfig();
+        $time1 = $timeConfig['time1'];
+        $time2 = $timeConfig['time2'];
+
         $services = $this->getServices();
         $menuHabitats = $this->getHabitats();
         require_once 'views/services.php';
@@ -41,7 +49,7 @@ class ServicesController extends Services {
     }
 
     
-    public function deleteServ() {      
+    public function deleteServ() {
         
         if(isset($_SESSION) && ($_SESSION["userRole"] == "admin" || $_SESSION["userRole"] == "employé")) {
             if(isset($_GET['id'])) {

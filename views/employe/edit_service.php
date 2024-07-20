@@ -56,7 +56,7 @@ require_once "./templates/header.php"; ?>
                     </div>
                     <div class="mb-3" id="fieldContainer" style="display: none;">
                         <!-- if the admin decides to change the photo -->
-                        <label for="file" class="form-label">Ajouter une nouvelle photographie de l'animal</label>
+                        <label for="file" class="form-label">Ajouter une nouvelle photographie du service.</label>
                         <input class="form-control" type="file" id="file" name="file">
                     </div>
                     

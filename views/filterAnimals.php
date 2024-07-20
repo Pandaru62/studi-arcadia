@@ -1,10 +1,6 @@
-<?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-define('BASE_URL', '/studi-arcadia');
+<?php
 require_once "../models/animal.class.php";
 
-    // Create an instance of the Animal class
     $animal = new Animals();
 
     if (isset($_POST['selectSpecies'])) {
@@ -14,4 +10,3 @@ require_once "../models/animal.class.php";
     header("Location : /seeanimals");
 
 }
-

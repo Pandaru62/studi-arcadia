@@ -1,11 +1,6 @@
 <?php
 require_once('./templates/header.php');
-require_once './models/timeretrieving.class.php';
 
-// Retrieve time1 and time2 values from MongoDB
-$timeConfig = TimeRetrieving::getTimeConfig();
-$time1 = $timeConfig['time1'];
-$time2 = $timeConfig['time2'];
 ?>
 
 <div class="container my-md-3 py-3">
@@ -41,11 +36,11 @@ $time2 = $timeConfig['time2'];
     foreach($services as $key => $service): ?>
 
         <div class="row bg-arc-mint-green pt-3">
-            <div class="col-md-4 d-flex justify-content-center text-align-center">
-                <img src="./uploads/services/<?=$service['image']?>" alt="<?=$service['name']?>" class="service-img">
+            <div class="col-lg-4 d-flex justify-content-center text-align-center">
+                <img src="./uploads/services/<?=$service['image']?>" alt="<?=$service['name']?>" class="service-img img-fluid">
             </div>
             <?php if(isset($_SESSION["userRole"]) && ($_SESSION["userRole"] == "employé" || $_SESSION["userRole"] == "admin")):?>
-                <div class="col-md-1 d-flex flex-col flex-column justify-content-center">
+                <div class="col-lg-1 d-flex flex-col flex-column justify-content-center">
                     <a href="<?=BASE_URL?>/editservice?service=<?=$service['id'];?>" class="btn btn-warning my-2"><i class="fa-regular fa-pen-to-square"></i> éditer</a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteServiceModal<?=$service['id'];?>">
                     <i class="fa-solid fa-trash"></i> suppr.</button>
@@ -73,9 +68,9 @@ $time2 = $timeConfig['time2'];
                             </div>
                         <!-- end modal -->
                 </div>
-                <div class="col-md-7">
+                <div class="col-lg-7">
             <?php else:?>
-                <div class="offset-md-1 col-md-6">
+                <div class="offset-lg-1 col-lg-6">
             <?php endif ?>
                 <h2><?= $service['name'];?></h2>
                 <?php if($service['isFree'] == 1):?>

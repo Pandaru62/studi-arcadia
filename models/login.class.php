@@ -1,6 +1,6 @@
 <?php
 
-include "Dbh.php";
+include_once "Dbh.php";
 
 class Login extends Dbh{
     protected function getUser ($userEmail, $userPassword) {
@@ -19,19 +19,15 @@ class Login extends Dbh{
         {
             $stmt = null;
             throw new Exception ("login-error");
-            // header("Location: " .BASE_URL."/login?error=wronguser");
-            // exit();
         }
 
         if(!password_verify($userPassword, $user[0]["password"])) {
             $stmt = null;
             throw new Exception ("login-error");
-            // header("location: /studi-arcadia/login?error=wrongPassword");
-            // exit();
         }
 
         function generateToken() {
-            return bin2hex(random_bytes(32)); 
+            return bin2hex(random_bytes(32));
         }
 
             session_set_cookie_params(3600);

@@ -77,48 +77,47 @@ require_once "./templates/header.php";
     
     
     <section id="services" class="bg-arc-mint-green">
-                <div class="row bg-arc-mint-green py-3">
-                    <h2>Nos services</h2>
-                    <p>Savourez votre journée en compagnie des animaux : nos employés sont aux petits soins pour vous proposer des services qui rendront votre expérience unique.</p>
+        <div class="row bg-arc-mint-green py-3">
+            <h2>Nos services</h2>
+            <p>Savourez votre journée en compagnie des animaux : nos employés sont aux petits soins pour vous proposer des services qui rendront votre expérience unique.</p>
 
-                    <div class="row text-center align-items-center g-0 d-none d-lg-flex">
-                    <?php 
-                    foreach($services as $key => $service): ?>                    
-                        <div class="col-lg-4 py-3">
+            <div class="row text-center align-items-center g-0 d-none d-lg-flex">
+                <?php
+                foreach($services as $key => $service): ?>
+                    <div class="col-lg-4 py-3">
+                        <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
+                    <h3 class="fw-normal"><?=$service['name'];?></h3>
+                    </div>
+                <?php endforeach ?>
+            
+            </div>
+        
+                <!-- Carousel on smaller screens -->
+            <div id="carouselExampleAutoplaying" class="carousel slide d-lg-none" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php foreach($services as $key => $service): ?>
+                    <div class="carousel-item <?php if($key==1){echo " active";} ?>">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
                             <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
-                        <h3 class="fw-normal"><?=$service['name'];?></h3>
+                            <h3 class="fw-normal text-center"><?=$service['name'];?></h3>
                         </div>
+                    </div>
                     <?php endforeach ?>
-                    
-                    </div>
-                    
-                        <!-- Carousel on smaller screens -->
-                    <div id="carouselExampleAutoplaying" class="carousel slide d-lg-none" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <?php foreach($services as $key => $service): ?>
-                            <div class="carousel-item <?php if($key==1){echo " active";} ?>">
-                                <div class="d-flex flex-column align-items-center justify-content-center"> <!-- Add classes -->
-                                    <img src="<?=_SERVICES_IMG_PATH_.$service['image'];?>" alt="<?=$service['name'];?>" class="service-img">
-                                    <h3 class="fw-normal text-center"><?=$service['name'];?></h3>
-                                </div>
-                            </div>
-                            <?php endforeach ?>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-
-                    
-
-                    <p class="text-center pt-3"><a class="btn btn-arc-dark btn-lg" href="<?=BASE_URL?>/services">En savoir plus sur nos services »</a></p>
                 </div>
-            </section>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <p class="text-center pt-3"><a class="btn btn-arc-dark btn-lg" href="<?=BASE_URL?>/services">En savoir plus sur nos services »</a></p>
+        
+        </div>
+    </section>
 
 
     <section id="contact">

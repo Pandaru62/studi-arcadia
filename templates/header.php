@@ -1,4 +1,5 @@
 <?php
+
 if(file_exists('./lib/config.php')) {
     require_once('./lib/config.php');
 } else {
@@ -10,7 +11,7 @@ require_once('../lib/config.php');
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,25 +21,18 @@ require_once('../lib/config.php');
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
 
-
+    <!-- font styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Mountains+of+Christmas&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Hind+Madurai:wght@300;400;500;600;700&family=Mountains+of+Christmas&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- stylesheets -->
     <link rel="stylesheet" href="scss/main.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
@@ -148,7 +142,7 @@ require_once('../lib/config.php');
             <?php if ($great): ?>
                 <div class="d-flex justify-content-center mt-2">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="fa-solid fa-check"></i> <?= $great;; ?>
+                        <i class="fa-solid fa-check"></i> <?= $great; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
@@ -162,4 +156,4 @@ require_once('../lib/config.php');
                     </div>
                 </div>
             <?php endif; ?>
-        <?php } ?>
+<?php } ?>

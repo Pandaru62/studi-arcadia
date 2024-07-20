@@ -66,6 +66,24 @@ class CheckUp extends Dbh {
     
     }
 
+    protected function getAllCheckUpNew() {
+        
+        $sql = 'SELECT reports.*, animals.first_name AS animalFirstName, species_id, species.name AS speciesName, animals.image AS animalImage, user.first_name AS userFirstName, user.last_name AS userLastName
+        FROM reports 
+        LEFT JOIN animals 
+        ON animals.id = reports.animal_id
+        LEFT JOIN species
+        ON species.id = animals.species_id
+        LEFT JOIN user
+        ON reports.vet_id = user.id';
+        
+        $stmt = $this->connect()->prepare($sql);
+
+        $stmt->execute();
+        
+        return $results = $stmt->fetchAll();
+    }
+
     protected function getAllCheckUp(int $limit, int $offset, string $sort) {
         switch($sort) {
             case 'datenew':

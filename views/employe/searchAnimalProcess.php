@@ -8,10 +8,10 @@ if(isset($_SESSION['userRole']) && $_SERVER["REQUEST_METHOD"] == "POST" && isset
     $id = $_POST['animalSpec'];
 
     header("Location: /seeanimals?filter=animalbyspecies&id=".$id);
-    exit(); 
+    exit();
 } else {
 
     
     header("Location: /seeanimals?filter=animalbyspecies&id=1");
-    exit(); 
+    exit();
 }
