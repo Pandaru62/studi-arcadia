@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('searchForm');
     const checkupsTbody = document.getElementById('checkups');
     const searchFeedback = document.getElementById('searchFeedback');
-    const searchSpecies = document.getElementById('searchSpecies');
     const AtoZbutton = document.getElementById('animalAtoZ');
     const ZtoAbutton = document.getElementById('animalZtoA');
     const dateFromRecent = document.getElementById('dateFromRecent');

@@ -1,5 +1,43 @@
 CREATE DATABASE `arcadia`;
 
+USE `arcadia`;
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `habitats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `species` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `habitat_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `habitat_id` (`habitat_id`),
+  CONSTRAINT `fk_species_habitats` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`) ON DELETE CASCADE
+);
+
 CREATE TABLE `animals` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
@@ -34,13 +72,6 @@ CREATE TABLE `habitatcomments` (
   CONSTRAINT `fk_habitatcomments_habitats` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE `habitats` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  PRIMARY KEY (`id`)
-);
 
 CREATE TABLE `reports` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,11 +97,6 @@ CREATE TABLE `reviews` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-);
 
 CREATE TABLE `services` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -81,28 +107,42 @@ CREATE TABLE `services` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `species` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `habitat_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `habitat_id` (`habitat_id`),
-  CONSTRAINT `fk_species_habitats` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`) ON DELETE CASCADE
-);
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `role_id` (`role_id`),
-  CONSTRAINT `fk_user_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE
-);
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'admin'),
+(2, 'vétérinaire'),
+(3, 'employé');
 
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `password`, `role_id`) VALUES
+(9, 'admin@email.com', 'Admini', 'Strator', '$2y$10$EETQwKXm8oFsvBhSqtQHGOVkHCE5pIscCslXUvKCu1dliJFjF0YBG', 1),
+(10, 'veto.jean@email.com', 'Jean', 'Veto', '$2y$10$kHcAHfIaTArtGX1b1cMaP.wOaoJswyP.JDBGM4Y/5Q.SMlavHpCJC', 2),
+(11, 'employee.dany@email.com', 'Daenerys', 'Targaryen', '$2y$10$zgiWimPrbSg0tRIhLZ9ez.o6a3IbaVk9739lqtQja3arPbE17YKqS', 3);
+
+INSERT INTO `habitats` (`id`, `name`, `image`, `description`) VALUES
+(1, 'Les Marais de la Légende', 'marais.jpg', ' Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière des faucons.'),
+(2, 'La Jungle aux Merveilles', 'jungle.jpg', 'Au cœur de la forêt luxuriante, panthères, pandas roux et lémuriens cohabitent près d\'un imposant vivarium.'),
+(3, 'La Savane des Obis', 'savane.jpg', 'Plongez au cœur d\'un monde aride où girafes, zèbres, suricates et lions trônent et n\'attendent que vous.');
+
+INSERT INTO `species` (`id`, `name`, `image`, `habitat_id`) VALUES
+(1, 'Faucon pélerin', 'faucon.jpg', 1),
+(2, 'Buse à queue rousse', 'buse.jpg', 1),
+(3, 'Aigle royal', 'aigle.jpg', 1),
+(4, 'Epervier d\'Europe', 'epervier.jpg', 1),
+(5, 'Crocodile', 'crocodile.jpg', 1),
+(6, 'Hippopotame', 'hippopotame.jpg', 1),
+(7, 'Castor', 'castor.jpg', 1),
+(8, 'Héron', 'heron.jpg', 1),
+(9, 'Flamand Rose', 'flamand.jpg', 1),
+(10, 'Couleuvre vipérine', 'couleuvre.jpg', 2),
+(11, 'Boa constrictor', 'boa.jpg', 2),
+(12, 'Python', 'python.jpg', 2),
+(13, 'Panthère noire', 'panthere.jpg', 2),
+(14, 'Panda roux', 'pandaroux.jpg', 2),
+(15, 'Lémurien', 'lemurien.jpg', 2),
+(16, 'Girafe', 'girafe.jpg', 3),
+(17, 'Zèbre', 'zebre.jpg', 3),
+(18, 'Suricate', 'suricate.jpg', 3),
+(19, 'Lion', 'lion.jpg', 3);
 
 
 INSERT INTO `animals` (`id`, `first_name`, `species_id`, `image`) VALUES
@@ -283,15 +323,12 @@ INSERT INTO `feeding` (`id`, `animal_id`, `date`, `time`, `food`, `quantity`) VA
 (116, 5, '2024-04-26', '08:02:00', 'poisson', 1000),
 (117, 5, '2024-05-02', '10:03:00', 'viande', 1000);
 
+
 INSERT INTO `habitatcomments` (`id`, `user_id`, `habitat_id`, `comment`) VALUES
 (1, 10, 1, 'Tapez une description ici'),
 (2, 9, 1, 'Tapez une description ici');
 
 
-INSERT INTO `habitats` (`id`, `name`, `image`, `description`) VALUES
-(1, 'Les Marais de la Légende', 'marais.jpg', ' Crocodiles et hippopotames se partagent les eaux sauvages bordant une majestueuse volière des faucons.'),
-(2, 'La Jungle aux Merveilles', 'jungle.jpg', 'Au cœur de la forêt luxuriante, panthères, pandas roux et lémuriens cohabitent près d\'un imposant vivarium.'),
-(3, 'La Savane des Obis', 'savane.jpg', 'Plongez au cœur d\'un monde aride où girafes, zèbres, suricates et lions trônent et n\'attendent que vous.');
 
 INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quantity`, `date`, `opinion`) VALUES
 (1, 10, 5, 'en grande forme', 'viande', 1000, '2024-05-01', 'RAS'),
@@ -301,12 +338,10 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (10, 10, 15, 'En bonne santé', 'Poisson', 150, '2024-04-26', ' '),
 (11, 10, 30, 'En bonne santé', 'Foin', 200, '2024-04-27', 'L\'animal semble heureux.'),
 (12, 10, 45, 'En bonne santé', 'Herbe', 50, '2024-04-28', ' '),
-(13, 10, 58, 'En bonne santé', 'Légumes', 120, '2024-04-29', 'Rien à signaler.'),
 (15, 10, 1, 'En bonne santé', 'Croquettes', 100, '2024-04-25', 'Tout va bien avec ce chat.'),
 (16, 10, 15, 'En bonne santé', 'Poisson', 150, '2024-04-26', ' '),
 (17, 10, 30, 'En bonne santé', 'Foin', 200, '2024-04-27', 'L\'animal semble heureux.'),
 (18, 10, 45, 'En bonne santé', 'Herbe', 50, '2024-04-28', ' '),
-(19, 10, 58, 'En bonne santé', 'Légumes', 120, '2024-04-29', 'Rien à signaler.'),
 (20, 10, 37, 'En mauvaise santé', 'Poisson', 253, '2024-04-19', 'Tout va bien.'),
 (21, 10, 28, 'En mauvaise santé', 'Poisson', 162, '2024-04-09', ' '),
 (22, 10, 28, 'En mauvaise santé', 'Croquettes', 119, '2024-04-04', 'Tout va bien.'),
@@ -347,7 +382,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (57, 10, 33, 'En mauvaise santé', 'Poisson', 300, '2024-04-04', 'Le vétérinaire doit revenir.'),
 (58, 10, 30, 'En mauvaise santé', 'Poisson', 208, '2024-04-09', ' '),
 (59, 10, 31, 'En bonne santé', 'Poisson', 122, '2024-04-29', 'Le vétérinaire doit revenir.'),
-(60, 10, 58, 'En mauvaise santé', 'Poisson', 52, '2024-04-26', 'Tout va bien.'),
 (61, 10, 36, 'En mauvaise santé', 'Foin', 88, '2024-04-30', ' '),
 (62, 10, 35, 'En mauvaise santé', 'Foin', 320, '2024-04-06', ' '),
 (63, 10, 34, 'En bonne santé', 'Foin', 135, '2024-04-04', ' '),
@@ -390,7 +424,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (100, 10, 56, 'En mauvaise santé', 'Croquettes', 115, '2024-04-11', ' '),
 (101, 10, 2, 'En mauvaise santé', 'Poisson', 55, '2024-04-17', ' '),
 (102, 10, 49, 'En mauvaise santé', 'Foin', 198, '2024-04-25', 'Le vétérinaire doit revenir.'),
-(103, 10, 57, 'En mauvaise santé', 'Foin', 60, '2024-04-28', ' '),
 (104, 10, 28, 'En bonne santé', 'Poisson', 196, '2024-04-26', ' '),
 (105, 10, 24, 'En mauvaise santé', 'Croquettes', 64, '2024-04-16', ' '),
 (106, 10, 21, 'En mauvaise santé', 'Foin', 157, '2024-04-24', ' '),
@@ -405,7 +438,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (115, 10, 20, 'En mauvaise santé', 'Poisson', 308, '2024-04-09', ' '),
 (116, 10, 12, 'En mauvaise santé', 'Croquettes', 265, '2024-04-25', 'Tout va bien.'),
 (117, 10, 51, 'En mauvaise santé', 'Foin', 175, '2024-05-01', ' '),
-(118, 10, 57, 'En mauvaise santé', 'Foin', 128, '2024-04-11', ' '),
 (119, 10, 43, 'En bonne santé', 'Poisson', 244, '2024-05-02', 'Tout va bien.'),
 (120, 10, 25, 'En mauvaise santé', 'Foin', 331, '2024-04-13', 'Le vétérinaire doit revenir.'),
 (121, 10, 47, 'En bonne santé', 'Poisson', 208, '2024-04-30', ' '),
@@ -422,7 +454,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (132, 10, 23, 'En mauvaise santé', 'Croquettes', 279, '2024-04-21', ' '),
 (133, 10, 49, 'En bonne santé', 'Croquettes', 138, '2024-04-13', 'Le vétérinaire doit revenir.'),
 (134, 10, 24, 'En mauvaise santé', 'Poisson', 74, '2024-04-09', ' '),
-(135, 10, 58, 'En mauvaise santé', 'Croquettes', 297, '2024-04-11', 'Tout va bien.'),
 (136, 10, 32, 'En bonne santé', 'Foin', 262, '2024-04-19', 'Tout va bien.'),
 (137, 10, 10, 'En mauvaise santé', 'Croquettes', 52, '2024-04-12', 'Le vétérinaire doit revenir.'),
 (138, 10, 51, 'En mauvaise santé', 'Poisson', 116, '2024-04-26', 'Le vétérinaire doit revenir.'),
@@ -444,8 +475,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (154, 10, 44, 'En bonne santé', 'Poisson', 63, '2024-05-01', 'Tout va bien.'),
 (155, 10, 37, 'En mauvaise santé', 'Poisson', 246, '2024-04-12', 'Le vétérinaire doit revenir.'),
 (156, 10, 28, 'En bonne santé', 'Poisson', 301, '2024-04-04', 'Tout va bien.'),
-(157, 10, 57, 'En bonne santé', 'Croquettes', 266, '2024-05-02', 'Le vétérinaire doit revenir.'),
-(158, 10, 58, 'En bonne santé', 'Croquettes', 253, '2024-04-05', 'Le vétérinaire doit revenir.'),
 (159, 10, 16, 'En mauvaise santé', 'Foin', 173, '2024-04-09', 'Le vétérinaire doit revenir.'),
 (160, 10, 36, 'En mauvaise santé', 'Poisson', 321, '2024-04-11', 'Le vétérinaire doit revenir.'),
 (161, 10, 30, 'En mauvaise santé', 'Poisson', 309, '2024-04-13', 'Le vétérinaire doit revenir.'),
@@ -468,7 +497,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (178, 10, 30, 'En mauvaise santé', 'Croquettes', 327, '2024-04-26', ' '),
 (179, 10, 50, 'En mauvaise santé', 'Croquettes', 134, '2024-04-19', ' '),
 (180, 10, 2, 'En mauvaise santé', 'Foin', 335, '2024-04-11', ' '),
-(181, 10, 58, 'En mauvaise santé', 'Croquettes', 176, '2024-04-24', 'Tout va bien.'),
 (182, 10, 4, 'En mauvaise santé', 'Poisson', 78, '2024-04-08', 'Le vétérinaire doit revenir.'),
 (183, 10, 10, 'En bonne santé', 'Foin', 332, '2024-04-16', 'Le vétérinaire doit revenir.'),
 (184, 10, 29, 'En bonne santé', 'Poisson', 139, '2024-04-20', ' '),
@@ -492,7 +520,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (202, 10, 21, 'En mauvaise santé', 'Foin', 239, '2024-04-10', ' '),
 (203, 10, 13, 'En bonne santé', 'Poisson', 156, '2024-04-21', ' '),
 (204, 10, 26, 'En mauvaise santé', 'Poisson', 340, '2024-04-12', 'Le vétérinaire doit revenir.'),
-(205, 10, 58, 'En bonne santé', 'Foin', 338, '2024-04-08', 'Tout va bien.'),
 (206, 10, 31, 'En bonne santé', 'Poisson', 264, '2024-04-09', 'Le vétérinaire doit revenir.'),
 (207, 10, 35, 'En mauvaise santé', 'Poisson', 262, '2024-04-03', ' '),
 (208, 10, 37, 'En mauvaise santé', 'Poisson', 100, '2024-04-30', ' '),
@@ -500,7 +527,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (210, 10, 44, 'En mauvaise santé', 'Croquettes', 200, '2024-04-09', ' '),
 (211, 10, 18, 'En mauvaise santé', 'Poisson', 132, '2024-04-13', ' '),
 (212, 10, 48, 'En mauvaise santé', 'Croquettes', 295, '2024-04-18', 'Le vétérinaire doit revenir.'),
-(213, 10, 57, 'En mauvaise santé', 'Poisson', 196, '2024-04-09', 'Le vétérinaire doit revenir.'),
 (214, 10, 46, 'En bonne santé', 'Croquettes', 304, '2024-04-26', ' '),
 (215, 10, 46, 'En bonne santé', 'Poisson', 211, '2024-04-19', 'Le vétérinaire doit revenir.'),
 (216, 10, 14, 'En mauvaise santé', 'Croquettes', 53, '2024-04-18', ' '),
@@ -533,7 +559,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (243, 10, 24, 'En bonne santé', 'Croquettes', 210, '2024-04-30', 'Le vétérinaire doit revenir.'),
 (244, 10, 37, 'En bonne santé', 'Croquettes', 51, '2024-04-21', ' '),
 (245, 10, 28, 'En bonne santé', 'Poisson', 316, '2024-04-27', ' '),
-(246, 10, 58, 'En bonne santé', 'Poisson', 269, '2024-04-07', 'Tout va bien.'),
 (247, 10, 42, 'En bonne santé', 'Poisson', 306, '2024-05-02', ' '),
 (248, 10, 31, 'En mauvaise santé', 'Croquettes', 218, '2024-04-23', ' '),
 (249, 10, 2, 'En mauvaise santé', 'Foin', 65, '2024-04-18', 'Le vétérinaire doit revenir.'),
@@ -572,7 +597,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (282, 10, 36, 'En mauvaise santé', 'Poisson', 187, '2024-04-06', 'Tout va bien.'),
 (283, 10, 24, 'En bonne santé', 'Poisson', 242, '2024-04-18', ' '),
 (284, 10, 2, 'En bonne santé', 'Croquettes', 311, '2024-04-15', 'Le vétérinaire doit revenir.'),
-(285, 10, 57, 'En mauvaise santé', 'Poisson', 135, '2024-04-06', 'Le vétérinaire doit revenir.'),
 (286, 10, 1, 'En mauvaise santé', 'Croquettes', 197, '2024-04-25', 'Le vétérinaire doit revenir.'),
 (287, 10, 3, 'En bonne santé', 'Foin', 286, '2024-04-26', ' '),
 (288, 10, 37, 'En mauvaise santé', 'Foin', 316, '2024-04-25', 'Le vétérinaire doit revenir.'),
@@ -580,7 +604,6 @@ INSERT INTO `reports` (`id`, `vet_id`, `animal_id`, `health`, `food`, `food_quan
 (290, 10, 7, 'En bonne santé', 'Croquettes', 311, '2024-04-06', ' '),
 (291, 10, 5, 'En mauvaise santé', 'Poisson', 306, '2024-04-06', ' '),
 (292, 10, 2, 'En bonne santé', 'Croquettes', 175, '2024-05-01', ' '),
-(293, 10, 58, 'En mauvaise santé', 'Croquettes', 162, '2024-04-10', 'Le vétérinaire doit revenir.'),
 (294, 10, 26, 'En mauvaise santé', 'Foin', 278, '2024-04-05', ' '),
 (295, 10, 36, 'En mauvaise santé', 'Croquettes', 193, '2024-04-29', ' '),
 (296, 10, 48, 'En bonne santé', 'Poisson', 223, '2024-04-14', ' '),
@@ -649,35 +672,3 @@ INSERT INTO `services` (`id`, `name`, `description`, `image`, `isFree`) VALUES
 (2, 'Visites guidées', 'Pour une expérience encore plus enrichissante, nos visites guidées vous emmènent dans un voyage captivant à travers les différents habitats de nos animaux. Nos guides passionnés partageront avec vous des connaissances fascinantes sur nos résidents, tout en mettant l\'accent sur notre engagement envers le respect de l\'environnement et le bien-être animal. Rejoignez-nous pour une aventure mémorable, où chaque moment est une découverte.', 'fauconnier.jpg', '1'),
 (3, 'Restauration', 'Plongez dans une aventure unique au zoo Arcadia, où chaque visiteur est choyé avec une gamme de services exceptionnels. Notre espace de restauration propose une variété de délices culinaires, allant des snacks rapides aux repas gastronomiques, pour ravir les papilles des petits et des grands aventuriers.', 'restaurant.jpg', '0'),
 (7, 'Nourrissage des lémuriens', 'Venez donner à manger aux singes !', '662d0b2f6ab90-lemuriens.jpg', '0');
-
-INSERT INTO `species` (`id`, `name`, `image`, `habitat_id`) VALUES
-(1, 'Faucon pélerin', 'faucon.jpg', 1),
-(2, 'Buse à queue rousse', 'buse.jpg', 1),
-(3, 'Aigle royal', 'aigle.jpg', 1),
-(4, 'Epervier d\'Europe', 'epervier.jpg', 1),
-(5, 'Crocodile', 'crocodile.jpg', 1),
-(6, 'Hippopotame', 'hippopotame.jpg', 1),
-(7, 'Castor', 'castor.jpg', 1),
-(8, 'Héron', 'heron.jpg', 1),
-(9, 'Flamand Rose', 'flamand.jpg', 1),
-(10, 'Couleuvre vipérine', 'couleuvre.jpg', 2),
-(11, 'Boa constrictor', 'boa.jpg', 2),
-(12, 'Python', 'python.jpg', 2),
-(13, 'Panthère noire', 'panthere.jpg', 2),
-(14, 'Panda roux', 'pandaroux.jpg', 2),
-(15, 'Lémurien', 'lemurien.jpg', 2),
-(16, 'Girafe', 'girafe.jpg', 3),
-(17, 'Zèbre', 'zebre.jpg', 3),
-(18, 'Suricate', 'suricate.jpg', 3),
-(19, 'Lion', 'lion.jpg', 3);
-
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `password`, `role_id`) VALUES
-(9, 'admin@email.com', 'Admini', 'Strator', '$2y$10$EETQwKXm8oFsvBhSqtQHGOVkHCE5pIscCslXUvKCu1dliJFjF0YBG', 1),
-(10, 'veto.jean@email.com', 'Jean', 'Veto', '$2y$10$kHcAHfIaTArtGX1b1cMaP.wOaoJswyP.JDBGM4Y/5Q.SMlavHpCJC', 2),
-(11, 'employee.dany@email.com', 'Daenerys', 'Targaryen', '$2y$10$zgiWimPrbSg0tRIhLZ9ez.o6a3IbaVk9739lqtQja3arPbE17YKqS', 3);
-
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'vétérinaire'),
-(3, 'employé');
-

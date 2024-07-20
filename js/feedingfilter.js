@@ -2,15 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('searchForm');
     const feedingsTbody = document.getElementById('feedings');
     const searchFeedback = document.getElementById('searchFeedback');
-    const searchSpecies = document.getElementById('searchSpecies');
     const AtoZbutton = document.getElementById('animalAtoZ');
     const ZtoAbutton = document.getElementById('animalZtoA');
     const dateFromRecent = document.getElementById('dateFromRecent');
     const dateFromOld = document.getElementById('dateFromOld');
     let currentFilteredFeedings = allFeedings; // Store current filtered results
 
-    console.log(allFeedings);
-  
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const animalId = document.getElementById('searchAnimal').value;
@@ -39,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
     AtoZbutton.addEventListener('click', () => {
       const sortedFeedings = [...currentFilteredFeedings].sort((a, b) => {
-        if (a.animalFirstName < b.animalFirstName) return -1;
-        if (a.animalFirstName > b.animalFirstName) return 1;
+        if (a.first_name < b.first_name) return -1;
+        if (a.first_name > b.first_name) return 1;        
         return 0;
       });
   
@@ -49,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ZtoAbutton.addEventListener('click', () => {
         const sortedFeedings = [...currentFilteredFeedings].sort((a, b) => {
-          if (a.animalFirstName < b.animalFirstName) return 1;
-          if (a.animalFirstName > b.animalFirstName) return -1;
+          if (a.first_name < b.first_name) return 1;
+          if (a.first_name > b.first_name) return -1;
           return 0;
         });
     
