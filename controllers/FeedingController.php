@@ -19,7 +19,6 @@ class FeedingController extends AnimalController {
         $animal = $this->showAnimal();
         $menuHabitats = $this->getHabitats();
 
-        // Assuming $animal is an array of animals
         if (empty($animal) === true) {
             require_once "views/404.php";
         } else {
@@ -28,16 +27,15 @@ class FeedingController extends AnimalController {
             
             foreach ($animal as $ani) {
                 $feedings = $this->getLastFeeding($ani["animalId"]);
-                $checkUps = $this->getCheckUpBySpecies($ani["animalId"]);
                 
-                // Initialize default values
+                // Initialize default values for feeding
                 $feedingDate = "?";
                 $feedingTime = "?";
                 $feedingFood = "?";
                 $feedingQuantity = "?";
                 
                 if (!empty($feedings)) {
-                    $feeding = $feedings[0]; 
+                    $feeding = $feedings[0];
                     $feedingDate = $feeding['date'] ?? "?";
                     if ($feedingDate !== "?") {
                         $feedingDate = formatDate($feedingDate);
@@ -47,7 +45,16 @@ class FeedingController extends AnimalController {
                     $feedingQuantity = $feeding['quantity'] ?? "?";
                 }
 
-                // Initialize default values
+                $lastFeeding[$ani["animalId"]] = [
+                    "date" => $feedingDate,
+                    "time" => $feedingTime,
+                    "food" => $feedingFood,
+                    "quantity" => $feedingQuantity
+                ];
+
+                $checkUps = $this->getCheckUpByAnimal($ani["animalId"], 1);
+
+                // Initialize default values for check up
                 $checkHealth = "?";
                 $checkFood = "?";
                 $checkDate = "?";
@@ -55,7 +62,7 @@ class FeedingController extends AnimalController {
                 $checkOpinion = "?";
 
                 if (!empty($checkUps)) {
-                    $checkUp = $checkUps[0]; // Assuming you want the most recent checkup
+                    $checkUp = $checkUps[0];
                     $checkHealth = $checkUp['health'] ?? "?";
                     $checkFood = $checkUp['food'] ?? "?";
                     $checkDate = $checkUp['date'] ?? "?";
@@ -66,13 +73,6 @@ class FeedingController extends AnimalController {
                     $checkOpinion = $checkUp['opinion'] ?? "?";
                 }
 
-                $lastFeeding[$ani["animalId"]] = [
-                    "date" => $feedingDate,
-                    "time" => $feedingTime,
-                    "food" => $feedingFood,
-                    "quantity" => $feedingQuantity
-                ];
-
                 $lastCheckUp[$ani["animalId"]] = [
                     "health" => $checkHealth,
                     "food" => $checkFood,
@@ -81,10 +81,9 @@ class FeedingController extends AnimalController {
                     "opinion" => $checkOpinion
                 ];
 
+                
             
             }
-
-
 
             function countVisitor($speciesId) {
                 // Connect to MongoDB

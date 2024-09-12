@@ -5,12 +5,13 @@ require_once('Dbh.php');
 trait getCheckUp {
     public function getCheckUpByAnimal(int $id, int $limit = null) {
         $sql = 'SELECT reports.*, animals.first_name AS animalFirstName, species_id, image, user.first_name AS userFirstName, user.last_name AS userLastName
-        FROM reports 
-        LEFT JOIN animals 
+        FROM reports
+        LEFT JOIN animals
         ON animals.id = reports.animal_id
         LEFT JOIN user
         ON reports.vet_id = user.id
-        WHERE animals.id = :id';
+        WHERE animals.id = :id
+        ORDER BY date DESC';
         if($limit !== null) {
             $sql .= ' LIMIT :limit';
         }

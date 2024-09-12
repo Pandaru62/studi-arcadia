@@ -53,13 +53,21 @@ class Animals extends Dbh {
     }
     
     protected function getAnimalsBySpecies(int $id) {
-        $sql = 'SELECT habitats.image AS habitatImage, habitats.name AS habitatName, animals.id AS animalId, first_name, species_id, animals.image AS animalImage, species.image AS speciesImage, species.name AS speciesName
+        $sql = 'SELECT habitats.image AS habitatImage,
+        habitats.name AS habitatName,
+        animals.id AS animalId,
+        first_name,
+        species_id,
+        animals.image AS animalImage,
+        species.image AS speciesImage,
+        species.name AS speciesName
         FROM animals
         LEFT JOIN species
         ON animals.species_id = species.id
         LEFT JOIN habitats
         ON species.habitat_id = habitats.id
         WHERE species_id = :id';
+        
         $stmt = $this->connect()->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

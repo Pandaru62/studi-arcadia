@@ -9,6 +9,10 @@ class AnimalController extends Animals {
 
     public function showAnimal() {
         $id = $_GET["species"];
+        if ($id === null) {
+            header('Location: /404');
+        }
+
         $menuHabitats = $this->getHabitats();
         $animal = $this->getAnimalsBySpecies($id);
         return $animal;

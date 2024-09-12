@@ -103,7 +103,7 @@ h2, h3 {
 /* Image sizes */
 
 .card img {
-    max-height: 200px;
+    max-height: 250px;
 }
 
 .falcon-img {
@@ -138,6 +138,8 @@ h2, h3 {
 
 .card-img-top-animal {
     height: 100%;
+    object-fit: cover;
+    object-position: 5px 20%;
 }
 
 .img-top-animal {

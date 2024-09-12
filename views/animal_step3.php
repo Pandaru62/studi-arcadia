@@ -2,7 +2,7 @@
 require_once "./templates/header.php";
 ?>
 
-<!-- FINAL STEP -->
+<!-- ETAPE 3 : Récupération des données vétérinaire et nourrissage -->
 
 
 <div class="container my-md-4 py-3">
@@ -72,49 +72,6 @@ require_once "./templates/header.php";
                         <div class="card-body bg-light d-flex flex-column">
                             <h2><?=$ani['first_name']?></h2>
 
-                            <?php if(isset($_SESSION) && isset($_SESSION['userRole'])): ?>
-                            <div>
-                                <a class="btn btn-info" href="<?=BASE_URL?>/show?animal=<?=$ani['animalId'];?>"><i class="bi bi-eye-fill"></i> Voir la fiche détaillée</a></td>
-                                <?php if(($_SESSION['userRole']) !== 'vétérinaire') { ?>
-                                <a class="btn btn-arc-dark" href="<?=BASE_URL?>/feeding?id=<?=$ani['animalId'];?>"><i class="fa-solid fa-carrot"></i> Nourrir l'animal</a></td>
-                                <?php } elseif(($_SESSION['userRole']) !== 'employé') { ?>
-                                <a class="btn btn-arc-dark" href="<?=BASE_URL?>/checkupanimal?animal=<?=$an['animalId'];?>"><i class="fa-solid fa-user-doctor"></i> Ajouter un avis médical</a></td>
-                                <?php } ?>
-                                <?php if(isset($_SESSION) && $_SESSION['userRole'] == 'admin'): ?>
-                                <a class="btn btn-warning" href="<?=BASE_URL?>/editanimal?id=<?=$ani['animalId'];?>"><i class="bi bi-pencil"></i> éditer l'animal</a>
-                                <!-- delete -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAniModal<?=$ani['animalId']?>">
-                                    <i class="bi bi-trash-fill"></i> Supprimer l'animal</a>
-                                </button>
-                            </div>
-                            <!-- modal config : warning message before animal is deleted -->
-                            <div class="modal fade" id="deleteAniModal<?=$ani['animalId'];?>" tabindex="-1" aria-labelledby="deleteAniModal<?=$ani['animalId'];?>" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-arc-mint-green">
-                                            <h1 class="modal-title fs-5 text-dark" id="modalLabel">Supprimer l'animal ?</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-dark">
-                                            Voulez-vous vraiment supprimer l'animal "<?= $ani['first_name']; ?>" ?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-arc-dark" data-bs-dismiss="modal">Annuler</button>
-                                            <form method="POST" enctype="multipart/form-data" action="<?=BASE_URL?>/controllers/Deletiontest.php">
-                                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
-                                                <input type="hidden" class="form-control" id="animalId" name="animalId" value="<?=$ani['animalId'];?>">
-                                                <button class="btn btn-danger" name="deleteAnimal" type="submit">Supprimer</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end modal -->
-                            <?php else: ?>
-                            </div>
-                            <?php endif ?>
-                            <?php endif ?>
-
                             <div class="bg-arc-secondary rounded-5 mt-3 p-3">
                                 <h3 class="light-h3"><i class="fa-solid fa-user-doctor"></i> Le dernier avis du vétérinaire</h3>
                                 <ul class="text-light">
@@ -135,7 +92,7 @@ require_once "./templates/header.php";
                                 </ul>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
 
                 <?php endforeach ?>
