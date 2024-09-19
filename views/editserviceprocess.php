@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editService"]) && isse
 if($keepOrChangePhoto == 'change') {
     $serviceImage = $_FILES["file"];
     // if he changes, a new photo is being checked and uploaded
-    $fileName = checkFile($animalId); 
+    $fileName = checkFile($animalId);
     } else {
     // else we keep the current image with the same name
     $fileName = $_POST["currentImage"];

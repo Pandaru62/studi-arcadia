@@ -32,7 +32,7 @@ class SendReviewController extends Reviews {
         }
         
         // Redirect after setting session variables
-        header("Location: " .BASE_URL. "/review");
+        header("Location: /review");
         exit();
     }
         
